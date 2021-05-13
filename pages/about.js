@@ -23,7 +23,12 @@ export default function About() {
               {siteMetadata.author}
             </h3>
             <div className="text-gray-500 dark:text-gray-400">Software Engineer</div>
-            <div className="text-gray-500 dark:text-gray-400">@everywhere</div>
+            <div className="text-gray-500 dark:text-gray-400">
+              <span role="img" aria-label="location">
+                📍
+              </span>
+              HCMC, Vietnam
+            </div>
             <div className="flex pt-6 space-x-3">
               <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} />
               <SocialIcon kind="github" href={siteMetadata.github} />
@@ -33,13 +38,14 @@ export default function About() {
           </div>
           <div className="pt-8 pb-8 prose dark:prose-dark max-w-none xl:col-span-2">
             <p>
-              Welcome, and thank you for paying a visit. This blog is where I share codes, and
+              Welcome, and thank you for paying a visit. This blog is where I share codes and
               sometimes reflect on my career as a software developer. Opinions are my own and can
               always be wrong.
             </p>
             <p>
-              I am currently focusing on the development of Frontend engineering using open sources
-              technologies.
+              I am currently focusing on the development of Frontend engineering using open-source
+              technologies. My previous works include hybrid mobile development and building
+              full-stack applications.
             </p>
           </div>
         </div>
