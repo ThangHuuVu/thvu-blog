@@ -6,7 +6,7 @@ export default function NowPlaying() {
   const { data } = useSWR('/api/now-playing', fetcher)
 
   return (
-    <div className="max-w-full mb-2 w-max flex space-x-0 sm:space-x-2 h-full">
+    <div className="max-w-full mb-2 w-max flex gap-1 sm:gap-2 h-full">
       <svg className="h-5 w-5" viewBox="0 0 168 168">
         <path
           fill="#1ED760"
@@ -26,9 +26,7 @@ export default function NowPlaying() {
         ) : (
           <p className="text-gray-500 dark:text-gray-400 text-sm">Not playing</p>
         )}
-        <span className="mx-2 text-gray-500 dark:text-gray-400 hidden sm:block  text-sm">
-          {' – '}
-        </span>
+        <span className="mx-2 text-gray-500 dark:text-gray-400 sm:block text-sm">{' – '}</span>
         <p className="text-gray-500 dark:text-gray-400 max-w-max truncate  text-sm">
           {data?.artist ?? 'Spotify'}
         </p>
