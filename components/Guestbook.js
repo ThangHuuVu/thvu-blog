@@ -76,7 +76,7 @@ export default function Guestbook({ initialEntries }) {
     mutate('/api/guestbook')
     setForm({
       state: 'success',
-      message: `Hooray! Thanks for signing my Guestbook.`,
+      message: 'You did it! Thank you for signing my guestbook.',
     })
   }
 
@@ -142,7 +142,7 @@ export default function Guestbook({ initialEntries }) {
       </div>
       <div className="mt-4 space-y-8">
         {entries?.map((entry) => (
-          <GuestbookEntry key={entry.id} entry={entry} user={session.user} />
+          <GuestbookEntry key={entry.id} entry={entry} user={session?.user} />
         ))}
       </div>
     </>
