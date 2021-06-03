@@ -1,6 +1,7 @@
 import redis from '@/lib/redis'
 import Guestbook from '@/components/Guestbook'
 import { PageSeo } from '@/components/SEO'
+import Link from 'next/link'
 
 export default function GuestbookPage() {
   return (
@@ -17,6 +18,10 @@ export default function GuestbookPage() {
         <p className="text-gray-600 dark:text-gray-400 mb-4">
           An artifact of the 90's webs. Leave a comment below for my future blog readers. Feel free
           to write anything!
+        </p>
+        <p className="text-gray-600 dark:text-gray-400 mb-4">
+          This page is inspired by{' '}
+          <Link href="https://leerob.io/guestbook">Lee Robinson's guestbook.</Link>
         </p>
         <Guestbook />
       </div>

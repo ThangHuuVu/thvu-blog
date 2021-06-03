@@ -18,4 +18,7 @@ export default NextAuth({
       clientSecret: process.env.LINE_CHANNEL_SECRET,
     }),
   ],
+  pages: {
+    signIn: '/auth/signin',
+  },
 })
