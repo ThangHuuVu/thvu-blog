@@ -142,7 +142,7 @@ export default function Guestbook({ initialEntries }) {
       </div>
       <div className="mt-4 space-y-8">
         {entries?.map((entry) => (
-          <GuestbookEntry key={entry.id} entry={entry} user={session.user} />
+          <GuestbookEntry key={entry.id} entry={entry} user={session?.user} />
         ))}
       </div>
     </>
