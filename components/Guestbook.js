@@ -76,7 +76,7 @@ export default function Guestbook({ initialEntries }) {
     mutate('/api/guestbook')
     setForm({
       state: 'success',
-      message: `Hooray! Thanks for signing my Guestbook.`,
+      message: 'You did it! Thank you for signing my guestbook.',
     })
   }
 
