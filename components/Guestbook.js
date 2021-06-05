@@ -9,8 +9,10 @@ import LoadingSpinner from '@/components/LoadingSpinner'
 import { signIn, signOut, useSession } from 'next-auth/client'
 
 function GuestbookEntry({ entry, user }) {
+  const [isDeleting, setIsDeleting] = useState(false)
   const deleteEntry = async (e) => {
     e.preventDefault()
+    setIsDeleting(true)
 
     await fetch(`/api/guestbook/${entry.id}`, {
       method: 'DELETE',
@@ -20,24 +22,30 @@ function GuestbookEntry({ entry, user }) {
   }
 
   return (
-    <div className="flex flex-col space-y-2">
-      <div className="prose text-gray-700 max-w-none dark:text-gray-300">{entry.body}</div>
-      <div className="flex items-center space-x-3">
-        <p className="text-sm text-gray-500">{entry.created_by}</p>
-        <span className=" text-gray-300 dark:text-gray-700">/</span>
-        <p className="text-sm text-gray-300 dark:text-gray-700">
-          {format(new Date(entry.updated_at), "d MMM yyyy 'at' h:mm bb")}
-        </p>
-        {user && entry.created_by === user.name && (
-          <>
-            <span className="text-gray-300 dark:text-gray-700">/</span>
-            <button className="text-sm text-red-600 dark:text-red-400" onClick={deleteEntry}>
-              Delete
-            </button>
-          </>
-        )}
-      </div>
-    </div>
+    <>
+      {isDeleting ? (
+        <LoadingSpinner />
+      ) : (
+        <div className="flex flex-col space-y-2">
+          <div className="prose text-gray-700 max-w-none dark:text-gray-300">{entry.body}</div>
+          <div className="flex items-center space-x-3">
+            <p className="text-sm text-gray-500">{entry.created_by}</p>
+            <span className=" text-gray-300 dark:text-gray-700">/</span>
+            <p className="text-sm text-gray-300 dark:text-gray-700">
+              {format(new Date(entry.updated_at), "d MMM yyyy 'at' h:mm bb")}
+            </p>
+            {user && entry.created_by === user.name && (
+              <>
+                <span className="text-gray-300 dark:text-gray-700">/</span>
+                <button className="text-sm text-red-600 dark:text-red-400" onClick={deleteEntry}>
+                  Delete
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
@@ -45,7 +53,7 @@ export default function Guestbook({ initialEntries }) {
   const [form, setForm] = useState(false)
   const inputEl = useRef(null)
   const [session] = useSession()
-  const { data: entries } = useSWR('/api/guestbook', fetcher, {
+  const { error: entriesError, data: entries } = useSWR('/api/guestbook', fetcher, {
     initialData: initialEntries,
   })
 
@@ -123,27 +131,38 @@ export default function Guestbook({ initialEntries }) {
         ) : form.state === 'success' ? (
           <SuccessMessage>{form.message}</SuccessMessage>
         ) : (
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Your information is only used to display your name and reply by email.{' '}
-            {session && (
-              <a
-                className="my-4 font-semibold h-8 text-gray-900 dark:text-gray-100 rounded"
-                href="/api/auth/signout"
-                onClick={(e) => {
-                  e.preventDefault()
-                  signOut()
-                }}
-              >
-                Log out
-              </a>
-            )}
-          </p>
+          <div />
         )}
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          Your information is only used to display your name and reply by email.{' '}
+          {session && (
+            <a
+              className="my-4 font-semibold h-8 text-gray-900 dark:text-gray-100 rounded"
+              href="/api/auth/signout"
+              onClick={(e) => {
+                e.preventDefault()
+                signOut()
+              }}
+            >
+              Log out
+            </a>
+          )}
+        </p>
       </div>
       <div className="mt-4 space-y-8">
-        {entries?.map((entry) => (
-          <GuestbookEntry key={entry.id} entry={entry} user={session?.user} />
-        ))}
+        {entriesError && (
+          <ErrorMessage>
+            An unexpected error occurred. The entries are not available for now. Please try again
+            later
+          </ErrorMessage>
+        )}
+        {entries ? (
+          entries.map((entry) => (
+            <GuestbookEntry key={entry.id} entry={entry} user={session?.user} />
+          ))
+        ) : (
+          <LoadingSpinner />
+        )}
       </div>
     </>
   )

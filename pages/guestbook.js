@@ -21,8 +21,13 @@ export default function GuestbookPage() {
         </p>
         <p className="text-gray-600 dark:text-gray-400 mb-4">
           This page is inspired by{' '}
-          <Link href="https://leerob.io/guestbook">Lee Robinson's guestbook.</Link>
+          <Link href="https://leerob.io/guestbook">
+            <a className="text-base font-medium leading-6 text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">
+              Lee Robinson's guestbook.
+            </a>
+          </Link>
         </p>
+
         <Guestbook />
       </div>
     </>
