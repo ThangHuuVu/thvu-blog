@@ -1,10 +1,10 @@
 import { signIn } from 'next-auth/client'
-import { useTheme } from 'next-themes'
 import Line from './line.svg'
 import Google from './google.svg'
 import GoogleDark from './google-dark.svg'
 import Github from './github.svg'
 import GithubDark from './github-dark.svg'
+import { useDarkTheme } from '@/lib/hooks/useDarkTheme'
 
 const providerStyleGuides = {
   github: {
@@ -31,8 +31,7 @@ const providerStyleGuides = {
 }
 
 export default function LoginButton({ provider }) {
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
+  const [isDark] = useDarkTheme()
   const { Logo, LogoDark, bg, bgDark, text, textDark } = providerStyleGuides[provider.id]
   return (
     <div key={provider.name}>
