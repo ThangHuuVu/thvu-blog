@@ -17,22 +17,18 @@ export default function GuestbookPage() {
             Guestbook
           </h1>
         </div>
-        <div className="flex flex-col item-center gap-4 pt-8 pb-8 sm:gap-8">
-          <div className="prose dark:prose-dark max-w-none lg:prose-xl">
-            <p className="text-gray-600 dark:text-gray-400">
-              An artifact of the 90's webs. Leave a comment below for my future blog readers. Feel
-              free to write anything!
-            </p>
-          </div>
+        <div className="flex flex-col item-center gap-4 pt-8 pb-8">
+          <p className="text-lg text- text-gray-600 dark:text-gray-400 xl:text-xl">
+            An artifact of the 90's webs. Leave a comment below for my future blog readers. Feel
+            free to write anything!
+          </p>
           <Guestbook />
         </div>
       </div>
-      <p className="text-gray-600 dark:text-gray-400">
+      <p className="text-sm text-gray-600 dark:text-gray-400 prose dark:prose-dark">
         This page is inspired by{' '}
         <Link href="https://leerob.io/guestbook">
-          <a className="text-base font-medium leading-6 text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">
-            Lee Robinson's guestbook.
-          </a>
+          <a className="text-sm font-semibold">Lee Robinson's guestbook.</a>
         </Link>
       </p>
     </>
