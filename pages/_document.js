@@ -28,7 +28,7 @@ class MyDocument extends Document {
           <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="msapplication-TileColor" content="#000000" />
           <meta name="theme-color" content="#000000" />
-          <link rel="alternate" type="application/rss+xml" href="/index.xml" />
+          <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
           <link
             rel="preload"
             href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/fonts/KaTeX_Main-Regular.woff2"
