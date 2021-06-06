@@ -4,6 +4,13 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <link
+            rel="preload"
+            href="/fonts/inter-var-latin.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
           <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
           <link
             rel="icon"
@@ -22,11 +29,6 @@ class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#000000" />
           <meta name="theme-color" content="#000000" />
           <link rel="alternate" type="application/rss+xml" href="/index.xml" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-            rel="stylesheet"
-          />
           <link
             rel="preload"
             href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/fonts/KaTeX_Main-Regular.woff2"
