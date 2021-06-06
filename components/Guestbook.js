@@ -90,16 +90,22 @@ export default function Guestbook({ initialEntries }) {
 
   return (
     <>
-      <div className="border border-blue-200 rounded p-6 my-4 w-full dark:border-gray-800 dark:bg-blue-opaque">
+      <div className="border border-blue-200 rounded p-6 dark:border-gray-800 dark:bg-blue-opaque">
         <h5 className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-100">
-          Sign the Guestbook
+          Sign the Guestbook{' '}
+          <span role="img" aria-label="guestbook">
+            ✍️
+          </span>{' '}
+          <span role="img" aria-label="guestbook">
+            📖
+          </span>
         </h5>
-        <p className="my-1 text-gray-600 dark:text-gray-400">
+        <p className="mt-1 text-gray-600 dark:text-gray-400">
           Share some wisdom with my future visitors.
         </p>
 
         {session ? (
-          <form className="flex flex-col gap-4 my-4" onSubmit={leaveEntry}>
+          <form className="flex flex-col gap-4 mt-4" onSubmit={leaveEntry}>
             <textarea
               ref={inputEl}
               aria-label="Your message"
@@ -133,7 +139,7 @@ export default function Guestbook({ initialEntries }) {
         ) : (
           <div />
         )}
-        <p className="text-sm text-gray-600 dark:text-gray-400">
+        <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
           Your information is only used to display your name and reply by email.{' '}
           {session && (
             <a
