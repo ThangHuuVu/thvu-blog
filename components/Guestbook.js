@@ -7,6 +7,7 @@ import SuccessMessage from '@/components/SuccessMessage'
 import ErrorMessage from '@/components/ErrorMessage'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import { signIn, signOut, useSession } from 'next-auth/client'
+import CustomLink from './Link'
 
 function GuestbookEntry({ entry, user }) {
   const [isDeleting, setIsDeleting] = useState(false)
@@ -138,7 +139,7 @@ export default function Guestbook({ initialEntries }) {
         <p className="text-sm text-gray-600 dark:text-gray-400">
           Your information is only used to display your name and reply by email.{' '}
           {session && (
-            <a
+            <CustomLink
               className="font-semibold"
               href="/api/auth/signout"
               onClick={(e) => {
@@ -147,7 +148,7 @@ export default function Guestbook({ initialEntries }) {
               }}
             >
               Log out
-            </a>
+            </CustomLink>
           )}
         </p>
       </div>

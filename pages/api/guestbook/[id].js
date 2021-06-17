@@ -1,7 +1,7 @@
 import redis from '@/lib/redis'
 import { getSession } from 'next-auth/client'
 
-export default async (req, res) => {
+const guestbookEntries = async (req, res) => {
   const { user } = await getSession({ req })
 
   const { id } = req.query
@@ -39,3 +39,4 @@ export default async (req, res) => {
 
   return res.send('Method not allowed.')
 }
+export default guestbookEntries
