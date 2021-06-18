@@ -51,7 +51,9 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                     <Image
                       src={siteMetadata.image}
                       alt="avatar"
-                      className="w-10 h-10 rounded-full"
+                      width={40}
+                      height={40}
+                      className="rounded-full"
                     />
                     <dl className="text-sm font-medium leading-5 whitespace-nowrap">
                       <dt className="sr-only">Name</dt>
