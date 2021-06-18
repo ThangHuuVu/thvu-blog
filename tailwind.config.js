@@ -11,6 +11,7 @@ module.exports = {
     extend: {
       spacing: {
         '9/16': '56.25%',
+        0.75: '0.1875rem',
       },
       lineHeight: {
         11: '2.75rem',
@@ -144,10 +145,33 @@ module.exports = {
           },
         },
       }),
+      keyframes: {
+        shrink: {
+          '0% , 100%': {
+            height: '1rem',
+          },
+          '50%': {
+            height: '0.375rem',
+          },
+        },
+        expand: {
+          '0% , 100%': {
+            height: '0.375rem',
+          },
+          '50%': {
+            height: '1rem',
+          },
+        },
+      },
+      animation: {
+        shrink: 'shrink 1.5s infinite',
+        expand: 'expand 1.5s infinite',
+      },
     },
   },
   variants: {
     typography: ['dark'],
+    animation: ['responsive', 'motion-safe', 'motion-reduce'],
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 }
