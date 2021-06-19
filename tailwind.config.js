@@ -148,7 +148,7 @@ module.exports = {
       keyframes: {
         shrink: {
           '0% , 100%': {
-            height: '1rem',
+            height: '0.75rem',
           },
           '50%': {
             height: '0.375rem',
@@ -159,7 +159,7 @@ module.exports = {
             height: '0.375rem',
           },
           '50%': {
-            height: '1rem',
+            height: '0.75rem',
           },
         },
       },
@@ -171,7 +171,7 @@ module.exports = {
   },
   variants: {
     typography: ['dark'],
-    animation: ['responsive', 'motion-safe', 'motion-reduce'],
+    animation: ['motion-safe'],
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 }
