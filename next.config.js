@@ -6,7 +6,7 @@ module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   images: {
-    disableStaticImages: true,
+    domains: ['avatars.githubusercontent.com', 'images.unsplash.com'],
   },
   webpack5: true,
   webpack: (config, { dev, isServer }) => {

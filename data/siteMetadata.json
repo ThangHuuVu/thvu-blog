@@ -1,16 +1,17 @@
 {
-  "title": "THVu Blog",
+  "title": "THVu",
   "author": "Thang Huu Vu",
   "headerTitle": "THVu",
-  "description": "Thang Huu Vu's blog",
+  "description": "THVu's site",
   "language": "en-us",
   "siteUrl": "https://thvu.dev",
   "siteRepo": "https://github.com/ThangHuuVu/thvu-blog",
-  "image": "/static/images/avatar.jpeg",
+  "image": "https://avatars.githubusercontent.com/u/31528554?v=4",
   "socialBanner": "",
   "email": "thvu@hey.com",
   "github": "https://github.com/ThangHuuVu",
   "twitter": "https://twitter.com/thanghvu",
   "linkedin": "https://www.linkedin.com/in/thanghuuvu/",
+  "codepen": "https://codepen.io/thanghuuvu",
   "locale": "en-US"
 }
