@@ -35,7 +35,7 @@ export const SEO = {
 export const PageSeo = ({ title, description, url }) => {
   return (
     <NextSeo
-      title={`${title} – ${siteMetadata.title}`}
+      title={`${title}`}
       description={description}
       canonical={url}
       openGraph={{

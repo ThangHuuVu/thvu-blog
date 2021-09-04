@@ -1,5 +1,6 @@
 import redis from '@/lib/redis'
 import Guestbook from '@/components/Guestbook'
+import siteMetadata from '@/data/siteMetadata'
 import { PageSeo } from '@/components/SEO'
 import Link from 'next/link'
 
@@ -7,7 +8,7 @@ export default function GuestbookPage() {
   return (
     <>
       <PageSeo
-        title={'Guestbook – Thang Huu Vu'}
+        title={`Guestbook – ${siteMetadata.author}`}
         description={'Share some wisdom with my future visitors.'}
         url={'https://thvu.dev/guestbook'}
       />

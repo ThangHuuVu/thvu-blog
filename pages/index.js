@@ -85,14 +85,8 @@ export default function Home({ posts }) {
           </ul>
         ) : (
           <p className="text-gray-600 dark:text-gray-400 prose dark:prose-dark xl:prose-xl">
-            No posts found. While you're here, you can{' '}
-            <Link href="/about">
-              <a className="font-semibold">get acquainted</a>
-            </Link>{' '}
-            ,or{' '}
-            <Link href="/guestbook">
-              <a className="font-semibold">sign my guestbook!</a>
-            </Link>
+            No posts yet. While you're here, you can <Link href="/about">get acquainted</Link>, or{' '}
+            <Link href="/guestbook">sign my guestbook</Link>!
           </p>
         )}
       </div>
