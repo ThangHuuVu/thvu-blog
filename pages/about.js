@@ -39,20 +39,19 @@ export default function About() {
             <div className="flex pt-6 space-x-3">
               <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} />
               <SocialIcon kind="github" href={siteMetadata.github} />
-              <SocialIcon kind="linkedin" href={siteMetadata.linkedin} />
+              <SocialIcon kind="codepen" href={siteMetadata.codepen} />
               <SocialIcon kind="twitter" href={siteMetadata.twitter} />
             </div>
           </div>
           <div className="pt-8 pb-8 prose dark:prose-dark max-w-none xl:col-span-2">
             <p>
-              Welcome, and thank you for paying a visit. This blog is where I share codes and
-              sometimes reflect on my career as a software developer. Opinions are my own and can
-              always be wrong.
+              Welcome to my home on the internet. This site is where I share codes and sometimes
+              reflect on my career as a software developer. Opinions are my own and can always be
+              wrong.
             </p>
             <p>
-              I am currently focusing on the development of Frontend engineering using open-source
-              technologies. My previous works include hybrid mobile development and building
-              full-stack applications.
+              I am currently focusing on Frontend engineering using open-source technologies. My
+              previous works include hybrid mobile development and building full-stack applications.
             </p>
           </div>
         </div>
