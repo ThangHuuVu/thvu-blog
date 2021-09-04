@@ -15,7 +15,10 @@ export default function App({ Component, pageProps }) {
       <Provider session={pageProps.session}>
         <MDXProvider components={MDXComponents}>
           <Head>
-            <meta content="width=device-width, initial-scale=1" name="viewport" />
+            <meta
+              name="viewport"
+              content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+            />
           </Head>
           <DefaultSeo {...SEO} />
           <LayoutWrapper>
