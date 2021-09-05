@@ -2,6 +2,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 const withPWA = require('next-pwa')
+const runtimeCaching = require('next-pwa/cache')
 
 module.exports = withPWA(
   withBundleAnalyzer({
@@ -13,6 +14,9 @@ module.exports = withPWA(
     webpack5: true,
     pwa: {
       dest: 'public',
+      runtimeCaching,
+      disable: process.env.NODE_ENV === 'development',
+      mode: 'production',
     },
     webpack: (config, { dev, isServer }) => {
       config.module.rules.push({
