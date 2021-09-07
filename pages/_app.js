@@ -1,5 +1,6 @@
 import '@/css/tailwind.css'
-
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { MDXProvider } from '@mdx-js/react'
 import { ThemeProvider } from 'next-themes'
 import { DefaultSeo } from 'next-seo'
@@ -8,8 +9,19 @@ import { Provider } from 'next-auth/client'
 import { SEO } from '@/components/SEO'
 import LayoutWrapper from '@/components/LayoutWrapper'
 import MDXComponents from '@/components/MDXComponents'
+import { pageView } from '@/lib/gtag'
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter()
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      pageView(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
   return (
     <ThemeProvider attribute="class">
       <Provider session={pageProps.session}>
