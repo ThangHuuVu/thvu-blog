@@ -1,15 +1,15 @@
-import redis from '@/lib/redis'
+import db from '@/lib/planetscale'
 import { getSession } from 'next-auth/client'
 
 const guestbookIndex = async (req, res) => {
   const session = await getSession({ req })
-
   if (req.method === 'GET') {
-    const entries = (await redis.hvals('guestbook'))
-      .map((entry) => JSON.parse(entry))
-      .sort((a, b) => b.id - a.id)
+    const [rows] = await db.query(`
+    SELECT * FROM guestbook
+    ORDER BY updated_at DESC;
+  `)
 
-    return res.json(entries)
+    return res.json(rows)
   }
 
   if (req.method === 'POST') {
@@ -18,17 +18,24 @@ const guestbookIndex = async (req, res) => {
       return res.status(403).send('Unauthorized')
     }
 
-    const id = Date.now()
-    const newEntry = {
-      id,
-      email: user.email,
-      updated_at: Date.now(),
-      body: (req.body.body || '').slice(0, 500),
-      created_by: user.name,
-    }
+    const body = (req.body.body || '').slice(0, 500)
+    const [insert] = await db.query(
+      `
+      INSERT INTO guestbook (email, body, created_by)
+      VALUES (?, ?, ?);
+    `,
+      [user.email || 'not@provided.com', body, user.name]
+    )
 
-    await redis.hset('guestbook', id, JSON.stringify(newEntry))
-    return res.status(200).json(newEntry)
+    const [rows] = await db.query(
+      `
+      SELECT * FROM guestbook
+      WHERE id = ?;
+    `,
+      [insert.insertId]
+    )
+
+    return res.status(200).json(rows[0])
   }
 
   return res.send('Method not allowed.')

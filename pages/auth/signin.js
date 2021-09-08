@@ -5,7 +5,9 @@ export default function SignIn({ providers }) {
   return (
     <div className="divide-y">
       <div className="pt-6 pb-4 space-y-2 md:space-y-5">
-        <h2 className="text-2xl font-bold leading-8 tracking-tight mb-3">Sign In</h2>
+        <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          Sign In
+        </h1>
       </div>
       <div className="space-y-2 flex justify-items-center items-center flex-col xl:space-y-0">
         <div className="p-8 prose dark:prose-dark max-w-none">
