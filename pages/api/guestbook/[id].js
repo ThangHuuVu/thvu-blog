@@ -1,11 +1,18 @@
-import redis from '@/lib/redis'
+import db from '@/lib/planetscale'
 import { getSession } from 'next-auth/client'
 
 const guestbookEntries = async (req, res) => {
   const { user } = await getSession({ req })
-
   const { id } = req.query
-  const entry = JSON.parse((await redis.hget('guestbook', id)) || 'null')
+
+  const [rows] = await db.query(
+    `
+    SELECT * FROM guestbook
+    WHERE id = ?;
+  `,
+    [id]
+  )
+  const entry = rows[0]
 
   if (req.method === 'GET') {
     return res.json(entry)
@@ -16,7 +23,13 @@ const guestbookEntries = async (req, res) => {
       return res.status(403).send('Unauthorized')
     }
 
-    await redis.hdel('guestbook', id)
+    await db.query(
+      `
+      DELETE FROM guestbook
+      WHERE id = ?;
+    `,
+      [id]
+    )
     return res.status(204).json({})
   }
 
@@ -25,16 +38,20 @@ const guestbookEntries = async (req, res) => {
       return res.status(403).send('Unauthorized')
     }
 
-    const updated = {
-      id,
-      email: user.email,
-      updated_at: Date.now(),
-      body: (req.body.body || '').slice(0, 500),
-      created_by: user.name,
-    }
+    const body = (req.body.body || '').slice(0, 500)
+    await db.query(
+      `
+      UPDATE guestbook
+      SET body = ?, updated_at = now()
+      WHERE id = ?;
+    `,
+      [body, id]
+    )
 
-    await redis.hset('guestbook', id, JSON.stringify(updated))
-    return res.status(201).json(updated)
+    return res.status(201).json({
+      ...entry,
+      body,
+    })
   }
 
   return res.send('Method not allowed.')

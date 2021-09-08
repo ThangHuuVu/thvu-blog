@@ -1,4 +1,4 @@
-import redis from '@/lib/redis'
+import db from '@/lib/planetscale'
 import Guestbook from '@/components/Guestbook'
 import siteMetadata from '@/data/siteMetadata'
 import { PageSeo } from '@/components/SEO'
@@ -20,8 +20,8 @@ export default function GuestbookPage() {
         </div>
         <div className="flex flex-col item-center gap-4 pt-8 pb-8">
           <p className="text-lg text- text-gray-600 dark:text-gray-400 xl:text-xl">
-            An artifact of the 90's webs. Leave a comment below for my future blog readers. Feel
-            free to write anything!
+            An artifact of the 90's webs. Leave a comment below for my future visitors. Feel free to
+            write anything!
           </p>
           <Guestbook />
         </div>
@@ -37,9 +37,12 @@ export default function GuestbookPage() {
 }
 
 export async function getStaticProps() {
-  const entries = (await redis.hvals('guestbook'))
-    .map((entry) => JSON.parse(entry))
-    .sort((a, b) => b.id - a.id)
+  const [rows] = await db.query(`
+    SELECT * FROM guestbook
+    ORDER BY updated_at DESC;
+  `)
+
+  const entries = Object.values(JSON.parse(JSON.stringify(rows)))
 
   return {
     props: {
