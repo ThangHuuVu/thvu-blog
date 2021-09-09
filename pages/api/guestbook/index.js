@@ -1,5 +1,6 @@
 import db from '@/lib/planetscale'
 import { getSession } from 'next-auth/client'
+import { withSentry } from '@sentry/nextjs'
 
 const guestbookIndex = async (req, res) => {
   const session = await getSession({ req })
@@ -40,4 +41,5 @@ const guestbookIndex = async (req, res) => {
 
   return res.send('Method not allowed.')
 }
-export default guestbookIndex
+
+export default withSentry(guestbookIndex)
