@@ -1,9 +1,9 @@
 import siteMetadata from '@/data/siteMetadata'
-import projectsData from '@/data/projectsData'
 import Card from '@/components/Card'
 import { PageSeo } from '@/components/SEO'
+import { getAllProjects } from '@/lib/cms/datocms'
 
-export default function Projects() {
+export default function Projects({ allProjects }) {
   return (
     <>
       <PageSeo
@@ -22,13 +22,13 @@ export default function Projects() {
         </div>
         <div className="container py-12">
           <div className="flex flex-wrap -m-4">
-            {projectsData.map((d) => (
+            {allProjects.map((d) => (
               <Card
                 key={d.title}
                 title={d.title}
                 description={d.description}
-                imgSrc={d.imgSrc}
-                href={d.href}
+                imgSrc={d.imagesrc}
+                href={d.url}
               />
             ))}
           </div>
@@ -36,4 +36,12 @@ export default function Projects() {
       </div>
     </>
   )
+}
+
+export async function getStaticProps({ preview = false }) {
+  const allProjects = (await getAllProjects(preview)) || []
+
+  return {
+    props: { allProjects },
+  }
 }
