@@ -2,8 +2,11 @@ import siteMetadata from '@/data/siteMetadata'
 import SocialIcon from '@/components/social-icons'
 import { PageSeo } from '@/components/SEO'
 import Image from 'next/image'
+import { getAbout } from '@/lib/cms/datocms'
 
-export default function About() {
+export default function About({ about }) {
+  const { name, title, location, introduction1, introduction2, profilepicture } = about
+
   return (
     <>
       <PageSeo
@@ -20,21 +23,21 @@ export default function About() {
         <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
           <div className="flex flex-col items-center pt-8 space-x-2">
             <Image
-              src={siteMetadata.image}
+              src={profilepicture.url}
               width={192}
               height={192}
-              alt="avatar"
+              alt={profilepicture.alt}
               className="rounded-full"
+              placeholder="blur"
+              blurDataURL={profilepicture.blurUpThumb}
             />
-            <h3 className="pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight">
-              {siteMetadata.author}
-            </h3>
-            <div className="text-gray-500 dark:text-gray-400">Software Engineer</div>
+            <h3 className="pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight">{name}</h3>
+            <div className="text-gray-500 dark:text-gray-400">{title}</div>
             <div className="text-gray-500 dark:text-gray-400">
               <span role="img" aria-label="location">
                 📍
               </span>
-              HCMC, Vietnam
+              {location}
             </div>
             <div className="flex pt-6 space-x-3">
               <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} />
@@ -44,18 +47,19 @@ export default function About() {
             </div>
           </div>
           <div className="pt-8 pb-8 prose dark:prose-dark max-w-none xl:col-span-2">
-            <p>
-              Welcome to my home on the internet. This site is where I share codes and sometimes
-              reflect on my career as a software developer. Opinions are my own and can always be
-              wrong.
-            </p>
-            <p>
-              I am currently focusing on Frontend engineering using open-source technologies. My
-              previous works include hybrid mobile development and building full-stack applications.
-            </p>
+            <p>{introduction1}</p>
+            <p>{introduction2}</p>
           </div>
         </div>
       </div>
     </>
   )
+}
+
+export async function getStaticProps({ preview = false }) {
+  const about = (await getAbout(preview)) || []
+
+  return {
+    props: { about },
+  }
 }
