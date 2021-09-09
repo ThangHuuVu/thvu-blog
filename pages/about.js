@@ -53,14 +53,6 @@ export default function About() {
               I am currently focusing on Frontend engineering using open-source technologies. My
               previous works include hybrid mobile development and building full-stack applications.
             </p>
-            <button
-              type="button"
-              onClick={() => {
-                throw new Error('Sentry Frontend Error')
-              }}
-            >
-              Throw error
-            </button>
           </div>
         </div>
       </div>
