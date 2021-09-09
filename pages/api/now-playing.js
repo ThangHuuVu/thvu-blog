@@ -1,6 +1,7 @@
 import { getNowPlaying } from '@/lib/spotify'
+import { withSentry } from '@sentry/nextjs'
 
-export default async function handler(_, res) {
+async function handler(_, res) {
   const response = await getNowPlaying()
 
   if (response.status === 204 || response.status > 400) {
@@ -26,3 +27,5 @@ export default async function handler(_, res) {
     title,
   })
 }
+
+export default withSentry(handler)

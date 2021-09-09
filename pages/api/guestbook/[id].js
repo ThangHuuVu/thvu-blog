@@ -1,5 +1,6 @@
 import db from '@/lib/planetscale'
 import { getSession } from 'next-auth/client'
+import { withSentry } from '@sentry/nextjs'
 
 const guestbookEntries = async (req, res) => {
   const { user } = await getSession({ req })
@@ -56,4 +57,5 @@ const guestbookEntries = async (req, res) => {
 
   return res.send('Method not allowed.')
 }
-export default guestbookEntries
+
+export default withSentry(guestbookEntries)

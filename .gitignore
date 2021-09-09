@@ -38,3 +38,6 @@ yarn-error.log*
 
 # pwa
 public/*.js
+
+# Sentry
+.sentryclirc
