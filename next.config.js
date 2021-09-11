@@ -13,7 +13,8 @@ const SentryWebpackPluginOptions = {
 // https://securityheaders.com
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline';
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.google.com;
+  child-src *.google.com;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src * blob: data:;
   media-src 'none';
@@ -59,11 +60,18 @@ const securityHeaders = [
   },
 ]
 
+const isDevelopment = process.env.NODE_ENV === 'development'
+
 const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   images: {
-    domains: ['avatars.githubusercontent.com', 'images.unsplash.com', 'www.datocms-assets.com'],
+    domains: [
+      // project hero
+      'images.unsplash.com',
+      // cms assets
+      'www.datocms-assets.com',
+    ],
   },
   webpack5: true,
   async headers() {
@@ -77,7 +85,7 @@ const nextConfig = {
   pwa: {
     dest: 'public',
     runtimeCaching,
-    disable: process.env.NODE_ENV === 'development',
+    disable: isDevelopment,
     mode: 'production',
   },
   webpack: (config, { dev, isServer }) => {
@@ -111,7 +119,6 @@ const nextConfig = {
   },
 }
 
-module.exports = withSentryConfig(
-  withPWA(withBundleAnalyzer(nextConfig)),
-  SentryWebpackPluginOptions
-)
+module.exports = isDevelopment
+  ? nextConfig
+  : withSentryConfig(withPWA(withBundleAnalyzer(nextConfig)), SentryWebpackPluginOptions)
