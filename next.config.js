@@ -22,7 +22,6 @@ const ContentSecurityPolicy = `
   connect-src *;
   font-src 'self';
   object-src 'none';
-  require-trusted-types-for 'script';
   worker-src 'self' *.youtube.com *.google.com *.twitter.com;
 `
 const securityHeaders = [
