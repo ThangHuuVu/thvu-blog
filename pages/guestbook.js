@@ -40,7 +40,7 @@ export default function GuestbookPage() {
 
 export async function getStaticProps() {
   const [rows] = await db.query(`
-    SELECT * FROM guestbook
+    SELECT id, body, created_by, updated_at FROM guestbook
     ORDER BY updated_at DESC;
   `)
 

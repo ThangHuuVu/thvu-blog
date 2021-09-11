@@ -6,7 +6,7 @@ const guestbookIndex = async (req, res) => {
   const session = await getSession({ req })
   if (req.method === 'GET') {
     const [rows] = await db.query(`
-    SELECT * FROM guestbook
+    SELECT id, body, created_by, updated_at FROM guestbook
     ORDER BY updated_at DESC;
   `)
 
@@ -30,7 +30,7 @@ const guestbookIndex = async (req, res) => {
 
     const [rows] = await db.query(
       `
-      SELECT * FROM guestbook
+      SELECT id, body, created_by, updated_at FROM guestbook
       WHERE id = ?;
     `,
       [insert.insertId]
