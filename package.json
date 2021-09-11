@@ -21,6 +21,7 @@
     "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "^10.2.5",
     "date-fns": "^2.22.1",
+    "googleapis": "^85.0.0",
     "gray-matter": "^4.0.2",
     "image-size": "0.9.7",
     "micro-cookie-session": "^2.0.0-beta.1",

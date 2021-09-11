@@ -3,6 +3,7 @@ import Guestbook from '@/components/Guestbook'
 import siteMetadata from '@/data/siteMetadata'
 import { PageSeo } from '@/components/SEO'
 import Link from 'next/link'
+import PageViews from '@/components/metric/PageViews'
 
 export default function GuestbookPage() {
   return (
@@ -32,6 +33,7 @@ export default function GuestbookPage() {
           <a className="text-sm font-semibold">Lee Robinson's guestbook.</a>
         </Link>
       </p>
+      <PageViews />
     </>
   )
 }
