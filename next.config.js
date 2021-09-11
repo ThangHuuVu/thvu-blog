@@ -11,15 +11,19 @@ const SentryWebpackPluginOptions = {
 }
 
 // https://securityheaders.com
+// https://csp-evaluator.withgoogle.com/
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com;
-  child-src https://www.googletagmanager.com;
+  child-src *.youtube.com *.google.com *.twitter.com;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src * blob: data: www.googletagmanager.com;
   media-src 'none';
   connect-src *;
   font-src 'self';
+  object-src 'none;
+  require-trusted-types-for 'script';
+  worker-src 'self' *.youtube.com *.google.com *.twitter.com;
 `
 const securityHeaders = [
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
