@@ -14,14 +14,14 @@ const SentryWebpackPluginOptions = {
 // https://csp-evaluator.withgoogle.com/
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com;
   child-src *.youtube.com *.google.com *.twitter.com;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src * blob: data: www.googletagmanager.com;
   media-src 'none';
   connect-src *;
   font-src 'self';
-  object-src 'none;
+  object-src 'none';
   require-trusted-types-for 'script';
   worker-src 'self' *.youtube.com *.google.com *.twitter.com;
 `
