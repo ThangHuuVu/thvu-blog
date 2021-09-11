@@ -13,10 +13,10 @@ const SentryWebpackPluginOptions = {
 // https://securityheaders.com
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.google.com;
-  child-src *.google.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com;
+  child-src https://www.googletagmanager.com;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
-  img-src * blob: data:;
+  img-src * blob: data: www.googletagmanager.com;
   media-src 'none';
   connect-src *;
   font-src 'self';
