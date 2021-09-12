@@ -54,7 +54,7 @@ class MyDocument extends Document {
 
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
         </Head>
-        <body className="antialiased text-black bg-white dark:bg-gray-900 dark:text-white">
+        <body className="antialiased text-black bg-white dark:bg-black dark:text-white">
           <Main />
           <NextScript />
         </body>
