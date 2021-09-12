@@ -23,7 +23,7 @@ module.exports = {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        blue: colors.blueGray,
+        blue: colors.indigo,
         code: {
           green: '#b5f4a5',
           yellow: '#ffe484',

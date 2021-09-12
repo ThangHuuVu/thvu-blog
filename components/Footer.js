@@ -11,14 +11,17 @@ export default function Footer() {
           <div>{` • `}</div>
           <div>{`© ${new Date().getFullYear()}`}</div>
           <div>{` • `}</div>
-          <Link className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400" href="/">
+          <Link
+            className="text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
+            href="/"
+          >
             {siteMetadata.title}
           </Link>
         </div>
         <NowPlaying />
         <div className="mb-4 text-sm">
           <Link
-            className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+            className="text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
             href="https://github.com/timlrx/tailwind-nextjs-starter-blog"
           >
             Tailwind Nextjs Theme

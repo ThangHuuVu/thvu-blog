@@ -91,7 +91,7 @@ export default function Guestbook({ initialEntries }) {
 
   return (
     <>
-      <div className="border border-blue-200 rounded p-6 dark:border-gray-800 prose dark:prose-dark lg:prose-xl">
+      <div className="border-2 border-blue-200 dark:border-blue-800 rounded-md p-6 prose dark:prose-dark lg:prose-xl">
         <h5 className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-100">
           Sign the Guestbook {session?.user?.name ? ` as ${session?.user?.name} ` : ''}
           <span role="img" aria-label="guestbook">
