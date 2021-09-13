@@ -6,8 +6,9 @@ import fetcher from '@/lib/fetcher'
 import SuccessMessage from '@/components/SuccessMessage'
 import ErrorMessage from '@/components/ErrorMessage'
 import LoadingSpinner from '@/components/LoadingSpinner'
-import { signIn, signOut, useSession } from 'next-auth/client'
+import { signOut, useSession } from 'next-auth/client'
 import CustomLink from './Link'
+import { useRouter } from 'next/router'
 
 function GuestbookEntry({ entry, user }) {
   const [isDeleting, setIsDeleting] = useState(false)
@@ -57,6 +58,7 @@ export default function Guestbook({ initialEntries }) {
   const { error: entriesError, data: entries } = useSWR('/api/guestbook', fetcher, {
     initialData: initialEntries,
   })
+  const router = useRouter()
 
   const leaveEntry = async (e) => {
     e.preventDefault()
@@ -117,10 +119,8 @@ export default function Guestbook({ initialEntries }) {
         ) : (
           <button
             className="h-8 w-28 flex items-center justify-center my-4 font-semibold text-base bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded"
-            href="/api/auth/signin"
-            onClick={(e) => {
-              e.preventDefault()
-              signIn()
+            onClick={() => {
+              router.push('/auth/signin')
             }}
           >
             Login
