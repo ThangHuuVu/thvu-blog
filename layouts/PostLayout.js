@@ -5,6 +5,8 @@ import { BlogSeo } from '@/components/SEO'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import Image from 'next/image'
+import { useRef, useEffect, useState } from 'react'
+import ViewCounter from '../components/ViewCounter'
 
 const editUrl = (fileName) => `${siteMetadata.siteRepo}/blob/master/data/blog/${fileName}`
 const discussUrl = (slug) =>
@@ -14,13 +16,25 @@ const discussUrl = (slug) =>
 
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
+const useReadingTime = () => {
+  const [readingTime, setReadingTime] = useState(0)
+  const articleRef = useRef()
+  useEffect(() => {
+    const text = articleRef.current.innerText
+    const wpm = 238 // average for adult
+    const words = text.trim().split(/\s+/).length
+    setReadingTime(Math.ceil(words / wpm))
+  }, [])
+  return [readingTime, articleRef]
+}
 export default function PostLayout({ children, frontMatter, next, prev }) {
   const { slug, fileName, date, title, tags } = frontMatter
+  const [readingTime, articleRef] = useReadingTime()
 
   return (
     <SectionContainer>
       <BlogSeo url={`${siteMetadata.siteUrl}/blog/${frontMatter.slug}`} {...frontMatter} />
-      <article>
+      <article ref={articleRef}>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
           <header className="pt-6 xl:pb-6">
             <div className="space-y-1 text-center">
@@ -37,6 +51,10 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
               <div>
                 <PageTitle>{title}</PageTitle>
               </div>
+              <span className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                {readingTime} {readingTime == 1 ? ' minute ' : ' minutes ' + ' read - '}
+                {<ViewCounter slug={slug} />}
+              </span>
             </div>
           </header>
           <div
@@ -126,7 +144,7 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                   href="/blog"
                   className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
                 >
-                  &larr; Back to the blog
+                  &larr; Back
                 </Link>
               </div>
             </footer>
