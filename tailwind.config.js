@@ -23,7 +23,7 @@ module.exports = {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        blue: colors.blueGray,
+        blue: colors.indigo,
         'spotify-green': '#1DB954',
         code: {
           green: '#b5f4a5',
