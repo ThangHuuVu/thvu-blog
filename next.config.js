@@ -15,7 +15,7 @@ const SentryWebpackPluginOptions = {
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com;
-  child-src *.youtube.com *.google.com *.twitter.com;
+  child-src *.youtube.com *.google.com *.twitter.com  https://codepen.io;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src * blob: data: www.googletagmanager.com;
   media-src 'none';
@@ -74,6 +74,8 @@ const nextConfig = {
       'images.unsplash.com',
       // cms assets
       'www.datocms-assets.com',
+      // twitter profile picture
+      'pbs.twimg.com',
     ],
   },
   webpack5: true,
