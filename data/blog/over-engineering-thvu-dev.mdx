@@ -1,6 +1,6 @@
 ---
 title: Over-engineering thvu.dev
-date: '2021-09-12'
+date: '2021-09-13'
 tags:
   [
     'Next.js',
@@ -37,8 +37,6 @@ Hosted on [Vercel](https://vercel.com), with domain from Google Domain.
 
 ## Blogging
 
-### Writing
-
 I enhance the current writing feature with [mdx-embed](https://www.mdx-embed.com/). For me, it is always nice to have the ability to embed examples from [CodePen](https://codepen.io/). To have this I need to add CodePen to MDX components:
 
 ```js
@@ -50,14 +48,11 @@ const MDXComponents = {
 }
 ```
 
-And it is done!
-
-### For readers
-
-I add two new features for readers:
+And it is done! I also added two new features:
 
 - Real-time page view count using [planetscale](https://planetscale.com/) (More on this later in Guestbook section below)
-- Reading time. I use [238 WPM as an average for adults](https://digest.bps.org.uk/2019/06/13/most-comprehensive-review-to-date-suggests-the-average-persons-reading-speed-is-slower-than-commonly-thought/)
+- Reading time. I use [238 WPM as an average for adults](https://digest.bps.org.uk/2019/06/13/most-comprehensive-review-to-date-suggests-the-average-persons-reading-speed-is-slower-than-commonly-thought/).
+  Here's a custom hook to estimate reading time:
 
 ```js
 const useReadingTime = () => {
@@ -87,10 +82,6 @@ My tweak in the implementation is authentication for guest users. I used [next-a
 yarn add next-auth
 ```
 
-#### Custom Sign In page
-
-To override the default `/signin` page, create a custom at `pages/signin`.
-
 #### Configure providers
 
 Create a `[...nextauth].js` file in `pages/api/auth`:
@@ -114,6 +105,19 @@ Be sure to check with the design guideline to implement the login buttons correc
 | Github    | For developers                         | [Github](https://github.com/logos)                                   |
 | Line      | My current employer 😎                 | [Line](https://developers.line.biz/en/docs/line-login/login-button/) |
 
+#### Custom Sign In page
+
+To override the default `/signin` page, create a custom page and refer it in `[...nextauth].js`:
+
+```js
+export default NextAuth({
+  // ... other configs
+  pages: {
+    signIn: '/auth/signin',
+  },
+})
+```
+
 ### With Google Analytics
 
 #### View a page
@@ -124,7 +128,7 @@ Check out the Next.js official example [with-google-analytics](https://github.co
 
 I use this to display all views for my site.
 
-[This snippet](https://leerob.io/snippets/google-analytics) is pretty much everything you need. Notice that now Google is rolling out GAv4 that removed the `View` panel. Therefore, if you want the snippet to work, in your Google Console you need to create a **Universal Analytic Property** and use its ID:
+I use [this snippet](https://leerob.io/snippets/google-analytics) to get `pageviews`. Notice that now Google is rolling out GAv4 that removed the `View` panel. Therefore, if you want the snippet to work, in your Google Console you need to create a **Universal Analytic Property** and use its ID:
 
 - From your Analytics Admin, click on **Create Property**
 - Enter the property name and click on **Show advance options**
