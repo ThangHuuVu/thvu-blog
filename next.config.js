@@ -14,7 +14,7 @@ const SentryWebpackPluginOptions = {
 // https://csp-evaluator.withgoogle.com/
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.twitter.com https://www.googletagmanager.com https://www.google-analytics.com;
   child-src *.youtube.com *.google.com *.twitter.com  https://codepen.io;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src * blob: data: www.googletagmanager.com;
