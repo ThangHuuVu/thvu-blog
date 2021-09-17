@@ -19,7 +19,7 @@ export default function NavBar() {
   }
 
   return (
-    <header className="h-28 w-full sticky z-10 top-0 bg-white dark:bg-black bg-opacity-30 dark:bg-opacity-30 backdrop-filter backdrop-blur-lg firefox:bg-opacity-90 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between py-10">
+    <header className="h-28 w-full sticky z-10 top-0 bg-white dark:bg-black bg-opacity-30 dark:bg-opacity-30 backdrop-filter backdrop-blur-lg firefox:bg-opacity-100 dark:firefox:bg-opacity-100 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between py-10">
       <nav className="w-full max-w-3xl px-4 mx-auto sm:px-6 xl:max-w-5xl xl:px-0 flex items-center justify-end">
         <div className=" flex items-center text-base leading-5">
           <div className="hidden sm:block">
