@@ -18,7 +18,7 @@ const ContentSecurityPolicy = `
   child-src *.youtube.com *.google.com *.twitter.com  https://codepen.io;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src * blob: data: www.googletagmanager.com;
-  media-src 'none';
+  media-src 'self';
   connect-src *;
   font-src 'self';
   object-src 'none';
