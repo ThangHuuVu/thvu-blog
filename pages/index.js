@@ -21,7 +21,7 @@ export default function Home({ posts }) {
         description={siteMetadata.description}
         url={siteMetadata.siteUrl}
       />
-      <div className="pt-6 pb-8 space-y-2 md:space-y-5">
+      <div className=" mt-16 pt-6 pb-8 space-y-2 md:space-y-5">
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
           Hey, I'm Thắng{' '}
           <span role="img" aria-label="waving hand">
@@ -47,7 +47,7 @@ export default function Home({ posts }) {
           </p>
         )}
       </div>
-      <h1 className="mt-16 text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+      <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
         Latest blog-posts
       </h1>
       {posts.length > 0 && (
