@@ -43,7 +43,9 @@ const Card = ({ title, description, imgSrc, href, tags }) => (
             Visit &rarr;
           </Link>
         )}
-        <div className="mt-4 text-sm text-gray-700 dark:text-gray-300">{tags?.join(', ')}</div>
+        {tags && (
+          <div className="mt-4 text-sm text-gray-700 dark:text-gray-300">{tags.join(', ')}</div>
+        )}
       </div>
     </div>
   </div>

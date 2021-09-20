@@ -2,6 +2,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { PageSeo } from '@/components/SEO'
 import { getPublishedNotes } from '@/lib/notion'
 import Card from '@/components/Card'
+import Link from '@/components/Link'
 
 export default function Notes({ notionPublishes }) {
   return (
@@ -15,8 +16,8 @@ export default function Notes({ notionPublishes }) {
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
           Notes from Notion
         </h1>
-        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400 xl:text-xl">
-          My most recent Notion notes & templates.
+        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400 xl:text-xl prose dark:prose-dark">
+          My most recent <Link href={siteMetadata.notion}>Notion</Link> notes & templates.
         </p>
       </div>
       <div className="container py-12">
