@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from '@/components/Link'
 
-const Card = ({ title, description, imgSrc, href }) => (
+const Card = ({ title, description, imgSrc, href, tags }) => (
   <div className="p-4 md:w-1/2 md" style={{ maxWidth: '544px' }}>
     <div className="h-full border-2 border-gray-200 dark:border-gray-800 rounded-md overflow-hidden">
       {href ? (
@@ -42,6 +42,9 @@ const Card = ({ title, description, imgSrc, href }) => (
           >
             Visit &rarr;
           </Link>
+        )}
+        {tags && (
+          <div className="mt-4 text-sm text-gray-700 dark:text-gray-300">{tags.join(', ')}</div>
         )}
       </div>
     </div>
