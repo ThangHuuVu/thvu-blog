@@ -40,10 +40,10 @@ export default function Footer() {
               Blog
             </Link>
             <Link
-              href="/tag"
+              href="/tags"
               className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
             >
-              Tag
+              Tags
             </Link>
           </div>
           <div className="flex flex-col space-y-4 md:items-center">
@@ -92,14 +92,6 @@ export default function Footer() {
               LinkedIn
             </Link>
           </div>
-        </div>
-        <div className="mb-4 text-sm">
-          <Link
-            className="text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
-            href="https://github.com/timlrx/tailwind-nextjs-starter-blog"
-          >
-            Tailwind Next.js Theme
-          </Link>
         </div>
       </div>
     </footer>
