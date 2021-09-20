@@ -1,4 +1,5 @@
 import headerNavLinks from '@/data/headerNavLinks'
+import siteMetadata from '@/data/siteMetadata'
 import Link from './Link'
 import ThemeSwitch from './ThemeSwitch'
 import { useState } from 'react'
@@ -20,8 +21,9 @@ export default function NavBar() {
 
   return (
     <>
-      <header className="h-28 w-full sticky z-10 top-0 bg-white dark:bg-black bg-opacity-30 dark:bg-opacity-30 backdrop-filter backdrop-saturate-150 backdrop-blur-lg firefox:bg-opacity-100 dark:firefox:bg-opacity-100 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between py-10">
-        <nav className="w-full max-w-3xl px-4 mx-auto sm:px-6 xl:max-w-5xl xl:px-0 flex items-center justify-end">
+      <header className="w-full sticky z-10 top-0 bg-white dark:bg-black bg-opacity-30 dark:bg-opacity-30 backdrop-filter backdrop-saturate-150 backdrop-blur-lg firefox:bg-opacity-100 dark:firefox:bg-opacity-100 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between py-4">
+        <nav className="w-full max-w-3xl px-4 mx-auto sm:px-6 xl:max-w-5xl xl:px-0 flex items-center justify-between">
+          <div className="font-semibold block sm:h-6 sm:text-2xl ">{siteMetadata.headerTitle}</div>
           <div className="flex items-center text-base leading-5">
             <div className="hidden sm:block">
               {headerNavLinks.map((link) => (
@@ -69,7 +71,7 @@ export default function NavBar() {
       </header>
       {/* Mobile side menu */}
       <div
-        className={`md:hidden fixed w-full h-screen top-28 right-0 bg-white dark:bg-black z-10 transform ease-in-out duration-300 ${
+        className={`md:hidden fixed w-full h-screen right-0 bg-white dark:bg-black z-10 transform ease-in-out duration-300 ${
           navShow ? 'translate-x-0' : 'translate-x-full'
         } backdrop-filter bg-opacity-30 dark:bg-opacity-30 backdrop-saturate-150 backdrop-blur-lg firefox:bg-opacity-100 dark:firefox:bg-opacity-100`}
       >
