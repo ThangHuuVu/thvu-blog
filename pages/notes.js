@@ -38,7 +38,7 @@ export default function Notes({ notionPublishes }) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const results = (await getPublishedNotes()) || []
   const notionPublishes = results.map((publish) => ({
     title: publish.properties.Name.title[0].text.content,
@@ -49,5 +49,6 @@ export async function getServerSideProps() {
   }))
   return {
     props: { notionPublishes },
+    revalidate: 10,
   }
 }
