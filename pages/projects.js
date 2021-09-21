@@ -16,18 +16,18 @@ export default function Projects({ allProjects }) {
           Projects
         </h1>
         <p className="text-lg leading-7 text-gray-500 dark:text-gray-400 xl:text-xl">
-          Projects I built in my free time for my hobbies or personal needs.
+          Products I helped launch and projects I built for my hobbies or personal needs.
         </p>
       </div>
       <div className="container py-12">
         <div className="flex flex-wrap -m-4">
-          {allProjects.map((d) => (
+          {allProjects.map(({ title, description, cover, url }) => (
             <Card
-              key={d.title}
-              title={d.title}
-              description={d.description}
-              imgSrc={d.imagesrc}
-              href={d.url}
+              key={title}
+              title={title}
+              description={description}
+              imgSrc={cover.url}
+              href={url}
             />
           ))}
         </div>
