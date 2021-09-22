@@ -1,50 +1,38 @@
-import db from "@/lib/planetscale";
+import prisma from "@/lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<{ total?: number; message?: string }>
+  res: NextApiResponse<{ total?: string; message?: string }>
 ) {
+  const slug = req.query.slug.toString();
   try {
-    const [rows] = await db.query(
-      `
-      SELECT * FROM views
-      WHERE slug = ?;
-    `,
-      [req.query.slug]
-    );
-
     if (req.method === "POST") {
-      if (rows.length == 0) {
-        await db.query(
-          `
-          INSERT INTO views (slug)
-          VALUES (?);
-        `,
-          [req.query.slug]
-        );
+      const newOrUpdatedViews = await prisma.views.upsert({
+        where: { slug },
+        create: {
+          slug,
+        },
+        update: {
+          count: {
+            increment: 1,
+          },
+        },
+      });
 
-        return res.status(200).json({
-          total: 1,
-        });
-      } else {
-        await db.query(
-          `
-          UPDATE views
-          SET count = count + 1
-          WHERE slug = ?;
-        `,
-          [req.query.slug]
-        );
-
-        return res.status(200).json({
-          total: rows[0].count + 1,
-        });
-      }
+      return res.status(200).json({
+        total: newOrUpdatedViews.count.toString(),
+      });
     }
 
     if (req.method === "GET") {
-      return res.status(200).json({ total: rows[0].count });
+      const views = await prisma.views.findUnique({
+        where: {
+          slug,
+        },
+      });
+
+      return res.status(200).json({ total: views.count.toString() });
     }
   } catch (e) {
     return res.status(500).json({ message: e.message });

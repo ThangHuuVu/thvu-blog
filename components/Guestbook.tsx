@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import { format } from "date-fns";
 import useSWR, { mutate } from "swr";
-
 import fetcher from "@/lib/fetcher";
 import SuccessMessage from "@/components/SuccessMessage";
 import ErrorMessage from "@/components/ErrorMessage";
@@ -9,8 +8,15 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import { signOut, useSession } from "next-auth/client";
 import CustomLink from "./Link";
 import { useRouter } from "next/router";
+import { GuestBookEntry } from "@/lib/types/guestbook";
+import { User } from "next-auth";
 
-function GuestbookEntry({ entry, user }) {
+interface GuestbookEntryProps {
+  entry: GuestBookEntry;
+  user: User;
+}
+
+function Entry({ entry, user }: GuestbookEntryProps) {
   const [isDeleting, setIsDeleting] = useState(false);
   const deleteEntry = async (e) => {
     e.preventDefault();
@@ -50,6 +56,7 @@ function GuestbookEntry({ entry, user }) {
     </>
   );
 }
+
 enum FORM_STATE {
   "INIT",
   "LOADING",
@@ -57,16 +64,20 @@ enum FORM_STATE {
   "ERROR",
 }
 
-export default function Guestbook({ initialEntries }: { initialEntries: any }) {
+export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEntry[] }) {
   const [form, setForm] = useState<{ state: FORM_STATE; message?: string }>({
     state: FORM_STATE.INIT,
     message: "",
   });
   const inputEl = useRef(null);
   const [session] = useSession();
-  const { error: entriesError, data: entries } = useSWR("/api/guestbook", fetcher, {
-    fallbackData: initialEntries,
-  });
+  const { error: entriesError, data: entries } = useSWR<GuestBookEntry[]>(
+    "/api/guestbook",
+    fetcher,
+    {
+      fallbackData,
+    }
+  );
   const router = useRouter();
 
   const leaveEntry = async (e) => {
@@ -166,9 +177,7 @@ export default function Guestbook({ initialEntries }: { initialEntries: any }) {
           </ErrorMessage>
         )}
         {entries ? (
-          entries.map((entry) => (
-            <GuestbookEntry key={entry.id} entry={entry} user={session?.user} />
-          ))
+          entries.map((entry) => <Entry key={entry.id} entry={entry} user={session?.user} />)
         ) : (
           <LoadingSpinner />
         )}
