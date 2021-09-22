@@ -1,4 +1,3 @@
-import db from "@/lib/planetscale";
 import Guestbook from "@/components/Guestbook";
 import siteMetadata from "@/data/siteMetadata.json";
 import { PageSeo } from "@/components/SEO";
@@ -6,9 +5,11 @@ import Link from "next/link";
 import PageViews from "@/components/metric/PageViews";
 import { InferGetStaticPropsType } from "next";
 import PageTitle from "@/components/PageTitle";
+import prisma from "@/lib/prisma";
+import { GuestBookEntry } from "@/lib/types/guestbook";
 
 export default function GuestbookPage({
-  initialEntries,
+  fallbackData,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
@@ -25,7 +26,7 @@ export default function GuestbookPage({
         </p>
       </div>
       <div className="flex flex-col item-center gap-4 pt-8 pb-8">
-        <Guestbook initialEntries={initialEntries} />
+        <Guestbook fallbackData={fallbackData} />
       </div>
       <p className="text-sm text-gray-600 dark:text-gray-400 prose dark:prose-dark">
         This page is inspired by{" "}
@@ -39,19 +40,21 @@ export default function GuestbookPage({
 }
 
 export const getStaticProps = async () => {
-  const [rows] = await db.query(
-    `
-    SELECT id, body, created_by, updated_at FROM guestbook
-    ORDER BY updated_at DESC;
-  `,
-    []
-  );
-
-  const entries = Object.values(JSON.parse(JSON.stringify(rows)));
+  const entries = await prisma.guestbook.findMany({
+    orderBy: {
+      updated_at: "desc",
+    },
+    select: { id: true, body: true, created_by: true, updated_at: true },
+  });
 
   return {
     props: {
-      initialEntries: entries,
+      fallbackData: entries.map<GuestBookEntry>((entry) => ({
+        id: entry.id.toString(),
+        body: entry.body,
+        created_by: entry.created_by,
+        updated_at: entry.updated_at.toString(),
+      })),
     },
     revalidate: 60,
   };

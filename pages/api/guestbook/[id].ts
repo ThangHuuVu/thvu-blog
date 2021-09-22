@@ -1,55 +1,55 @@
-import db from "@/lib/planetscale";
 import { getSession } from "next-auth/client";
 import { withSentry } from "@sentry/nextjs";
 import type { NextApiRequest, NextApiResponse } from "next";
+import prisma from "@/lib/prisma";
+import { GuestBookEntry } from "@/lib/types/guestbook";
 
-// TODO: Type this with Prisma
-const guestbookEntries = async (req: NextApiRequest, res: NextApiResponse) => {
+const guestbookEntries = async (
+  req: NextApiRequest,
+  res: NextApiResponse<GuestBookEntry | string | {}>
+) => {
   const { user } = await getSession({ req });
   const { id } = req.query;
 
-  const [rows] = await db.query(
-    `
-    SELECT id, body, created_by, updated_at FROM guestbook
-    WHERE id = ?;
-  `,
-    [id]
-  );
-  const entry = rows[0];
+  const entry = await prisma.guestbook.findUnique({
+    where: {
+      id: Number(id),
+    },
+    select: { id: true, body: true, created_by: true, updated_at: true },
+  });
 
+  if (!user || user.name !== entry.created_by) {
+    return res.status(403).send("Unauthorized");
+  }
   if (req.method === "GET") {
-    return res.json(entry);
+    return res.json({
+      id: entry.id.toString(),
+      body: entry.body,
+      created_by: entry.created_by,
+      updated_at: entry.updated_at,
+    });
   }
 
   if (req.method === "DELETE") {
-    if (!user || user.name !== entry.created_by) {
-      return res.status(403).send("Unauthorized");
-    }
-
-    await db.query(
-      `
-      DELETE FROM guestbook
-      WHERE id = ?;
-    `,
-      [id]
-    );
+    await prisma.guestbook.delete({
+      where: {
+        id: Number(id),
+      },
+    });
     return res.status(204).json({});
   }
 
   if (req.method === "PUT") {
-    if (!user || user.name !== entry.created_by) {
-      return res.status(403).send("Unauthorized");
-    }
-
     const body = (req.body.body || "").slice(0, 500);
-    await db.query(
-      `
-      UPDATE guestbook
-      SET body = ?, updated_at = now()
-      WHERE id = ?;
-    `,
-      [body, id]
-    );
+    await prisma.guestbook.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        body,
+        updated_at: new Date().toISOString(),
+      },
+    });
 
     return res.status(201).json({
       ...entry,
