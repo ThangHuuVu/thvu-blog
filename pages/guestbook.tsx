@@ -5,6 +5,7 @@ import { PageSeo } from "@/components/SEO";
 import Link from "next/link";
 import PageViews from "@/components/metric/PageViews";
 import { InferGetStaticPropsType } from "next";
+import PageTitle from "@/components/PageTitle";
 
 export default function GuestbookPage({
   initialEntries,
@@ -17,9 +18,7 @@ export default function GuestbookPage({
         url={"https://thvu.dev/guestbook"}
       />
       <div className="flex flex-col justify-center items-start max-w-2xl pt-6 pb-8 space-y-2 md:space-y-5">
-        <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-          Guestbook
-        </h1>
+        <PageTitle>Guestbook</PageTitle>
         <p className="text-lg leading-7 text-gray-500 dark:text-gray-400 xl:text-xl">
           An artifact of the 90's webs. Leave a comment below for my future visitors. Feel free to
           write anything!

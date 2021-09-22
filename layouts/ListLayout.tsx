@@ -1,4 +1,5 @@
 import Link from "@/components/Link";
+import PageTitle from "@/components/PageTitle";
 import Tag from "@/components/Tag";
 import siteMetadata from "@/data/siteMetadata.json";
 import { useState } from "react";
@@ -13,9 +14,7 @@ export default function ListLayout({ posts, title }) {
   return (
     <>
       <div className="pt-6 pb-8 space-y-2 md:space-y-5">
-        <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-          {title}
-        </h1>
+        <PageTitle>{title}</PageTitle>
         <div className="relative max-w-lg">
           <input
             aria-label="Search articles"

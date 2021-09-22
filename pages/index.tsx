@@ -1,4 +1,5 @@
 import Link from "@/components/Link";
+import PageTitle from "@/components/PageTitle";
 import { PageSeo } from "@/components/SEO";
 import Tag from "@/components/Tag";
 import siteMetadata from "@/data/siteMetadata.json";
@@ -22,22 +23,19 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
         url={siteMetadata.siteUrl}
       />
       <div className=" mt-16 pt-6 pb-8 space-y-2 md:space-y-5">
-        <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+        <PageTitle>
           Hey, I'm Thắng{" "}
           <span role="img" aria-label="waving hand">
             👋
           </span>
-        </h1>
+        </PageTitle>
         <p className="text-lg leading-7 text-gray-500 dark:text-gray-400 prose dark:prose-dark xl:text-xl">
           I'm a software engineer located in HCMC, Vietnam{" "}
           <span role="img" aria-label="waving hand">
             🇻🇳
           </span>
-          . My specialties are Front-end engineering and{" "}
-          <Link href="https://certificate.algoexpert.io/SystemsExpert%20Certificate%20SE-6cf6929239">
-            system designs
-          </Link>
-          . While you're here, you can <Link href="/about">get acquainted</Link>, or{" "}
+          . My specialties are Front-end engineering and system designs . While you're here, you can{" "}
+          <Link href="/about">get acquainted</Link>, or{" "}
           <Link href="/guestbook">sign my guestbook</Link>!
         </p>
         {posts.length == 0 && (
