@@ -24,7 +24,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
       />
       <div className=" mt-16 pt-6 pb-8 space-y-2 md:space-y-5">
         <PageTitle>
-          Hey, I'm Thắng{" "}
+          Xin chào! My name is Thắng{" "}
           <span role="img" aria-label="waving hand">
             👋
           </span>
@@ -34,14 +34,18 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
           <span role="img" aria-label="waving hand">
             🇻🇳
           </span>
-          . My specialties are Front-end engineering and system designs . While you're here, you can{" "}
-          <Link href="/about">get acquainted</Link>, or{" "}
-          <Link href="/guestbook">sign my guestbook</Link>!
+          .{" "}
+          <Link
+            href={`mailto:${siteMetadata.email}`}
+            className="font-medium leading-6 text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+            aria-label={`Email to ${siteMetadata.email}`}
+          >
+            Get in touch &rarr;
+          </Link>
         </p>
         {posts.length == 0 && (
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400 prose dark:prose-dark xl:text-xl">
-            No posts yet. While you're here, you can <Link href="/about">get acquainted</Link>, or{" "}
-            <Link href="/guestbook">sign my guestbook</Link>!
+            No posts yet.
           </p>
         )}
       </div>
