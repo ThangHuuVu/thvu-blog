@@ -8,10 +8,10 @@ const LayoutWrapper = ({ children }: Container) => {
     <>
       <NavBar />
       <SectionContainer>
-        <div className="flex flex-col justify-between h-screen">
-          <main className="mb-auto">{children}</main>
-          <Footer />
+        <div className="flex flex-col justify-between min-h-screen">
+          <main>{children}</main>
         </div>
+        <Footer />
       </SectionContainer>
     </>
   );
