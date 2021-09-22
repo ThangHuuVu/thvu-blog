@@ -1,14 +1,14 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
-})
-const withPWA = require('next-pwa')
-const runtimeCaching = require('next-pwa/cache')
+});
+const withPWA = require('next-pwa');
+const runtimeCaching = require('next-pwa/cache');
 
-const { withSentryConfig } = require('@sentry/nextjs')
+const { withSentryConfig } = require('@sentry/nextjs');
 
 const SentryWebpackPluginOptions = {
   silent: true,
-}
+};
 
 // https://securityheaders.com
 // https://csp-evaluator.withgoogle.com/
@@ -23,7 +23,7 @@ const ContentSecurityPolicy = `
   font-src 'self';
   object-src 'none';
   worker-src 'self' *.youtube.com *.google.com *.twitter.com;
-`
+`;
 const securityHeaders = [
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
   {
@@ -61,13 +61,18 @@ const securityHeaders = [
     key: 'Permissions-Policy',
     value: 'interest-cohort=()',
   },
-]
+];
 
-const isDevelopment = process.env.NODE_ENV === 'development'
+const isDevelopment = process.env.NODE_ENV === 'development';
 
+// @ts-check
+
+/**
+ * @type {import('next').NextConfig}
+ **/
 const nextConfig = {
   reactStrictMode: true,
-  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+  pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
   images: {
     domains: [
       // project hero
@@ -85,7 +90,7 @@ const nextConfig = {
         source: '/(.*)',
         headers: securityHeaders,
       },
-    ]
+    ];
   },
   pwa: {
     dest: 'public',
@@ -105,11 +110,11 @@ const nextConfig = {
           },
         },
       ],
-    })
+    });
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
-    })
+    });
 
     if (!dev && !isServer) {
       // Replace React with Preact only in client production build
@@ -117,13 +122,13 @@ const nextConfig = {
         react: 'preact/compat',
         'react-dom/test-utils': 'preact/test-utils',
         'react-dom': 'preact/compat',
-      })
+      });
     }
 
-    return config
+    return config;
   },
-}
+};
 
 module.exports = isDevelopment
   ? nextConfig
-  : withSentryConfig(withPWA(withBundleAnalyzer(nextConfig)), SentryWebpackPluginOptions)
+  : withSentryConfig(withPWA(withBundleAnalyzer(nextConfig)), SentryWebpackPluginOptions);

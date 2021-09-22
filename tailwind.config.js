@@ -1,11 +1,11 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
-const plugin = require('tailwindcss/plugin')
+const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
+const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   mode: 'jit',
   purge: {
-    content: ['./pages/**/*.js', './components/**/*.js', './layouts/**/*.js', './lib/**/*.js'],
+    content: ['./pages/**/*.tsx', './components/**/*.tsx', './layouts/**/*.tsx', './lib/**/*.ts'],
   },
   darkMode: 'class',
   theme: {
@@ -184,13 +184,13 @@ module.exports = {
         const isFirefoxRule = postcss.atRule({
           name: '-moz-document',
           params: 'url-prefix()',
-        })
-        isFirefoxRule.append(container.nodes)
-        container.append(isFirefoxRule)
+        });
+        isFirefoxRule.append(container.nodes);
+        container.append(isFirefoxRule);
         isFirefoxRule.walkRules((rule) => {
-          rule.selector = `.${e(`firefox${separator}${rule.selector.slice(1)}`)}`
-        })
-      })
+          rule.selector = `.${e(`firefox${separator}${rule.selector.slice(1)}`)}`;
+        });
+      });
     }),
   ],
-}
+};
