@@ -1,20 +1,20 @@
 ---
 title: Over-engineering thvu.dev
-date: '2021-09-13'
+date: "2021-09-13"
 tags:
   [
-    'Next.js',
-    'Vercel',
-    'Tailwind CSS',
-    'planetscale',
-    'Serverless',
-    'next-auth',
-    'OAuth',
-    'DatoCMS',
-    'Lighthouse',
-    'PWA',
-    'Google Analytics',
-    'Sentry',
+    "Next.js",
+    "Vercel",
+    "Tailwind CSS",
+    "planetscale",
+    "Serverless",
+    "next-auth",
+    "OAuth",
+    "DatoCMS",
+    "Lighthouse",
+    "PWA",
+    "Google Analytics",
+    "Sentry",
   ]
 draft: false
 summary: Let's review how I built this site in public.
@@ -40,12 +40,12 @@ Hosted on [Vercel](https://vercel.com), with domain from Google Domain.
 I enhance the current writing feature with [mdx-embed](https://www.mdx-embed.com/). For me, it is always nice to have the ability to embed examples from [CodePen](https://codepen.io/). To have this I need to add CodePen to MDX components:
 
 ```js
-import { CodePen } from 'mdx-embed'
+import { CodePen } from "mdx-embed";
 
 const MDXComponents = {
   // ... other components
   CodePen,
-}
+};
 ```
 
 And it is done! I also added two new features:
@@ -56,16 +56,16 @@ And it is done! I also added two new features:
 
 ```js
 const useReadingTime = () => {
-  const [readingTime, setReadingTime] = useState(0)
-  const articleRef = useRef()
+  const [readingTime, setReadingTime] = useState(0);
+  const articleRef = useRef();
   useEffect(() => {
-    const text = articleRef.current.innerText
-    const wpm = 238 // average for adult
-    const words = text.trim().split(/\s+/).length
-    setReadingTime(Math.ceil(words / wpm))
-  }, [])
-  return [readingTime, articleRef]
-}
+    const text = articleRef.current.innerText;
+    const wpm = 238; // average for adult
+    const words = text.trim().split(/\s+/).length;
+    setReadingTime(Math.ceil(words / wpm));
+  }, []);
+  return [readingTime, articleRef];
+};
 ```
 
 ## <a href="/guestbook">Guestbook</a>
@@ -87,14 +87,14 @@ yarn add next-auth
 Create a `[...nextauth].js` file in `pages/api/auth`:
 
 ```js
-import NextAuth from 'next-auth'
-import Providers from 'next-auth/providers'
+import NextAuth from "next-auth";
+import Providers from "next-auth/providers";
 
 export default NextAuth({
   providers: [
     /* ...providers */
   ],
-})
+});
 ```
 
 Be sure to check with the design guideline to implement the login buttons correctly. Details on how to integrate with each provider are also available on [next-auth's documentation](https://next-auth.js.org/). Below is a summary for my providers:
@@ -113,9 +113,9 @@ To override the default `/signin` page, create a custom page and refer it in `[.
 export default NextAuth({
   // ... other configs
   pages: {
-    signIn: '/auth/signin',
+    signIn: "/auth/signin",
   },
-})
+});
 ```
 
 ### With Google Analytics
@@ -229,7 +229,7 @@ I only want Sentry in production. To do this, in my `next.config.js`:
 ```js
 module.exports = isDevelopment
   ? nextConfig
-  : withSentryConfig(nextConfig, SentryWebpackPluginOptions)
+  : withSentryConfig(nextConfig, SentryWebpackPluginOptions);
 ```
 
 > `withSentryConfig` has to be the farthest wrapper to ensure that your source maps include changes from all other Webpack plugins.
