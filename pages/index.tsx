@@ -34,7 +34,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
           <span role="img" aria-label="waving hand">
             🇻🇳
           </span>
-          . My specialties are Front-end engineering and system designs . While you're here, you can{" "}
+          . My specialties are Front-end engineering and system designs. While you're here, you can{" "}
           <Link href="/about">get acquainted</Link>, or{" "}
           <Link href="/guestbook">sign my guestbook</Link>!
         </p>
