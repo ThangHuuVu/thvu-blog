@@ -1,9 +1,9 @@
-import siteMetadata from '@/data/siteMetadata.json';
-import SocialIcon from '@/components/social-icons';
-import { PageSeo } from '@/components/SEO';
-import Image from 'next/image';
-import { getAbout } from '@/lib/cms/datocms';
-import { InferGetStaticPropsType } from 'next';
+import siteMetadata from "@/data/siteMetadata.json";
+import SocialIcon from "@/components/social-icons";
+import { PageSeo } from "@/components/SEO";
+import Image from "next/image";
+import { getAbout } from "@/lib/cms/datocms";
+import { InferGetStaticPropsType } from "next";
 
 export default function About({ about }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { name, title, location, introduction1, introduction2, profilepicture } = about;

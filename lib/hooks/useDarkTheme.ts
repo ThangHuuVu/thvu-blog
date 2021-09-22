@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useTheme } from 'next-themes';
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 
 export function useDarkTheme() {
   const [mounted, setMounted] = useState(false);
@@ -8,6 +8,6 @@ export function useDarkTheme() {
   //  Avoid Hydration Mismatch
   useEffect(() => setMounted(true), []);
 
-  const isDark = mounted && resolvedTheme === 'dark';
+  const isDark = mounted && resolvedTheme === "dark";
   return [isDark, setTheme] as const;
 }

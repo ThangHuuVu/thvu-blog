@@ -1,6 +1,6 @@
-import { getNowPlaying } from '@/lib/spotify';
-import { withSentry } from '@sentry/nextjs';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { getNowPlaying } from "@/lib/spotify";
+import { withSentry } from "@sentry/nextjs";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export interface NowPlayingSong {
   isPlaying: boolean;
@@ -19,10 +19,10 @@ async function handler(_: NextApiRequest, res: NextApiResponse<NowPlayingSong>) 
   const song = await response.json();
   const isPlaying = song.is_playing;
   const title = song.item.name;
-  const artist = song.item.artists.map((_artist) => _artist.name).join(', ');
+  const artist = song.item.artists.map((_artist) => _artist.name).join(", ");
   const songUrl = song.item.external_urls.spotify;
 
-  res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=30');
+  res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=30");
   return res.status(200).json({
     artist,
     isPlaying,

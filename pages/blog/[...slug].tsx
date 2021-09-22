@@ -1,18 +1,18 @@
-import MDXComponents from '@/components/MDXComponents';
-import PageTitle from '@/components/PageTitle';
-import PostLayout from '@/layouts/PostLayout';
-import generateRss from '@/lib/generate-rss';
-import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx';
-import fs from 'fs';
-import { InferGetStaticPropsType } from 'next';
-import hydrate from 'next-mdx-remote/hydrate';
+import MDXComponents from "@/components/MDXComponents";
+import PageTitle from "@/components/PageTitle";
+import PostLayout from "@/layouts/PostLayout";
+import generateRss from "@/lib/generate-rss";
+import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from "@/lib/mdx";
+import fs from "fs";
+import { InferGetStaticPropsType } from "next";
+import hydrate from "next-mdx-remote/hydrate";
 
 export async function getStaticPaths() {
-  const posts = getFiles('blog');
+  const posts = getFiles("blog");
   return {
     paths: posts.map((p) => ({
       params: {
-        slug: formatSlug(p).split('/'),
+        slug: formatSlug(p).split("/"),
       },
     })),
     fallback: false,
@@ -20,15 +20,15 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const allPosts = await getAllFilesFrontMatter('blog');
-  const postIndex = allPosts.findIndex((post) => formatSlug(post.slug) === params.slug.join('/'));
+  const allPosts = await getAllFilesFrontMatter("blog");
+  const postIndex = allPosts.findIndex((post) => formatSlug(post.slug) === params.slug.join("/"));
   const prev = allPosts[postIndex + 1] || null;
   const next = allPosts[postIndex - 1] || null;
-  const post = await getFileBySlug('blog', params.slug);
+  const post = await getFileBySlug("blog", params.slug);
 
   // rss
   const rss = generateRss(allPosts);
-  fs.writeFileSync('./public/feed.xml', rss);
+  fs.writeFileSync("./public/feed.xml", rss);
 
   return { props: { post, prev, next } };
 }
@@ -48,7 +48,7 @@ export default function Blog({ post, prev, next }: InferGetStaticPropsType<typeo
       ) : (
         <div className="mt-24 text-center">
           <PageTitle>
-            Under Construction{' '}
+            Under Construction{" "}
             <span role="img" aria-label="roadwork sign">
               🚧
             </span>

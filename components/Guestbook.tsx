@@ -1,14 +1,14 @@
-import { useState, useRef } from 'react';
-import { format } from 'date-fns';
-import useSWR, { mutate } from 'swr';
+import { useState, useRef } from "react";
+import { format } from "date-fns";
+import useSWR, { mutate } from "swr";
 
-import fetcher from '@/lib/fetcher';
-import SuccessMessage from '@/components/SuccessMessage';
-import ErrorMessage from '@/components/ErrorMessage';
-import LoadingSpinner from '@/components/LoadingSpinner';
-import { signOut, useSession } from 'next-auth/client';
-import CustomLink from './Link';
-import { useRouter } from 'next/router';
+import fetcher from "@/lib/fetcher";
+import SuccessMessage from "@/components/SuccessMessage";
+import ErrorMessage from "@/components/ErrorMessage";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import { signOut, useSession } from "next-auth/client";
+import CustomLink from "./Link";
+import { useRouter } from "next/router";
 
 function GuestbookEntry({ entry, user }) {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -17,10 +17,10 @@ function GuestbookEntry({ entry, user }) {
     setIsDeleting(true);
 
     await fetch(`/api/guestbook/${entry.id}`, {
-      method: 'DELETE',
+      method: "DELETE",
     });
 
-    mutate('/api/guestbook');
+    mutate("/api/guestbook");
   };
 
   return (
@@ -51,20 +51,20 @@ function GuestbookEntry({ entry, user }) {
   );
 }
 enum FORM_STATE {
-  'INIT',
-  'LOADING',
-  'SUCCESS',
-  'ERROR',
+  "INIT",
+  "LOADING",
+  "SUCCESS",
+  "ERROR",
 }
 
 export default function Guestbook({ initialEntries }: { initialEntries: any }) {
   const [form, setForm] = useState<{ state: FORM_STATE; message?: string }>({
     state: FORM_STATE.INIT,
-    message: '',
+    message: "",
   });
   const inputEl = useRef(null);
   const [session] = useSession();
-  const { error: entriesError, data: entries } = useSWR('/api/guestbook', fetcher, {
+  const { error: entriesError, data: entries } = useSWR("/api/guestbook", fetcher, {
     fallbackData: initialEntries,
   });
   const router = useRouter();
@@ -73,14 +73,14 @@ export default function Guestbook({ initialEntries }: { initialEntries: any }) {
     e.preventDefault();
     setForm({ state: FORM_STATE.LOADING });
 
-    const res = await fetch('/api/guestbook', {
+    const res = await fetch("/api/guestbook", {
       body: JSON.stringify({
         body: inputEl.current.value,
       }),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      method: 'POST',
+      method: "POST",
     });
 
     const { error } = await res.json();
@@ -92,11 +92,11 @@ export default function Guestbook({ initialEntries }: { initialEntries: any }) {
       return;
     }
 
-    inputEl.current.value = '';
-    mutate('/api/guestbook');
+    inputEl.current.value = "";
+    mutate("/api/guestbook");
     setForm({
       state: FORM_STATE.SUCCESS,
-      message: 'You did it! Thank you for signing my guestbook.',
+      message: "You did it! Thank you for signing my guestbook.",
     });
   };
 
@@ -104,7 +104,7 @@ export default function Guestbook({ initialEntries }: { initialEntries: any }) {
     <>
       <div className="border-2 border-blue-200 dark:border-blue-800 rounded-md p-6 prose dark:prose-dark lg:prose-xl">
         <h5 className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-100">
-          Sign the Guestbook {session?.user?.name ? ` as ${session?.user?.name} ` : ''}
+          Sign the Guestbook {session?.user?.name ? ` as ${session?.user?.name} ` : ""}
           <span role="img" aria-label="guestbook">
             ✍️
           </span>
@@ -122,14 +122,14 @@ export default function Guestbook({ initialEntries }: { initialEntries: any }) {
               className="flex items-center justify-center px-4 font-bold h-8 bg-gray-100 dark:bg-gray-700 text-base text-gray-900 dark:text-gray-100 rounded w-28"
               type="submit"
             >
-              {form.state === FORM_STATE.LOADING ? <LoadingSpinner /> : 'Sign'}
+              {form.state === FORM_STATE.LOADING ? <LoadingSpinner /> : "Sign"}
             </button>
           </form>
         ) : (
           <button
             className="h-8 w-28 flex items-center justify-center my-4 font-semibold text-base bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded"
             onClick={() => {
-              router.push('/auth/signin');
+              router.push("/auth/signin");
             }}
           >
             Login
@@ -143,7 +143,7 @@ export default function Guestbook({ initialEntries }: { initialEntries: any }) {
           <div />
         )}
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Your information is only used to display your name and reply by email.{' '}
+          Your information is only used to display your name and reply by email.{" "}
           {session && (
             <CustomLink
               className="font-semibold"

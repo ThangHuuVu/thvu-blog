@@ -1,9 +1,9 @@
-import siteMetadata from '@/data/siteMetadata.json';
-import { PageSeo } from '@/components/SEO';
-import { getPublishedNotes } from '@/lib/notion';
-import Card from '@/components/Card';
-import Link from '@/components/Link';
-import { InferGetStaticPropsType } from 'next';
+import siteMetadata from "@/data/siteMetadata.json";
+import { PageSeo } from "@/components/SEO";
+import { getPublishedNotes } from "@/lib/notion";
+import Card from "@/components/Card";
+import Link from "@/components/Link";
+import { InferGetStaticPropsType } from "next";
 
 interface NotionPublish {
   title: string;
@@ -50,11 +50,11 @@ export default function Notes({ notionPublishes }: InferGetStaticPropsType<typeo
 export const getStaticProps = async () => {
   const results = (await getPublishedNotes()) || [];
   const notionPublishes = results.map<NotionPublish>((publish) => ({
-    title: publish.properties.Name['title'][0].text.content,
-    description: publish.properties.Description['rich_text'][0].text.content,
-    cover: publish.cover['external'].url,
-    url: publish.properties.Page['rich_text'][0].href,
-    tags: publish.properties.Tags['multi_select'].map((tag) => tag.name),
+    title: publish.properties.Name["title"][0].text.content,
+    description: publish.properties.Description["rich_text"][0].text.content,
+    cover: publish.cover["external"].url,
+    url: publish.properties.Page["rich_text"][0].href,
+    tags: publish.properties.Tags["multi_select"].map((tag) => tag.name),
   }));
   return {
     props: { notionPublishes },

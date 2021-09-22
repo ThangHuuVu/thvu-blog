@@ -1,6 +1,6 @@
-import LoginButton from '@/components/login-button';
-import { InferGetServerSidePropsType } from 'next';
-import { getProviders, getSession } from 'next-auth/client';
+import LoginButton from "@/components/login-button";
+import { InferGetServerSidePropsType } from "next";
+import { getProviders, getSession } from "next-auth/client";
 
 export default function SignIn({
   providers,
@@ -34,7 +34,7 @@ export async function getServerSideProps(context) {
     return {
       redirect: {
         permanent: false,
-        destination: '/guestbook',
+        destination: "/guestbook",
       },
     };
   }

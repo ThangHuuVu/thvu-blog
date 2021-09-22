@@ -1,11 +1,11 @@
-import useSWR from 'swr';
+import useSWR from "swr";
 
-import fetcher from '@/lib/fetcher';
-import MusicEqualizer from './MusicEqualizer';
-import { NowPlayingSong } from 'pages/api/now-playing';
+import fetcher from "@/lib/fetcher";
+import MusicEqualizer from "./MusicEqualizer";
+import { NowPlayingSong } from "pages/api/now-playing";
 
 export default function NowPlaying() {
-  const { data } = useSWR<NowPlayingSong>('/api/now-playing', fetcher);
+  const { data } = useSWR<NowPlayingSong>("/api/now-playing", fetcher);
 
   return (
     <div className="max-w-full h-full w-max mb-2 flex items-center gap-1 sm:gap-2">
@@ -29,9 +29,9 @@ export default function NowPlaying() {
         ) : (
           <p className="text-gray-500 dark:text-gray-400 text-sm">Not playing</p>
         )}
-        <span className="mx-2 text-gray-500 dark:text-gray-400 sm:block text-sm">{' – '}</span>
+        <span className="mx-2 text-gray-500 dark:text-gray-400 sm:block text-sm">{" – "}</span>
         <p className="text-gray-500 dark:text-gray-400 max-w-max truncate  text-sm">
-          {data?.artist ?? 'Spotify'}
+          {data?.artist ?? "Spotify"}
         </p>
       </div>
     </div>

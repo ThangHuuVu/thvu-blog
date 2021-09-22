@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 const CustomLink = ({ href, ...rest }: React.LinkHTMLAttributes<HTMLAnchorElement>) => {
-  const isInternalLink = href && href.startsWith('/');
-  const isAnchorLink = href && href.startsWith('#');
+  const isInternalLink = href && href.startsWith("/");
+  const isAnchorLink = href && href.startsWith("#");
 
   if (isInternalLink || isAnchorLink) {
     return (

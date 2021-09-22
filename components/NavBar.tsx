@@ -1,18 +1,18 @@
-import headerNavLinks from '@/data/headerNavLinks';
-import siteMetadata from '@/data/siteMetadata.json';
-import Link from './Link';
-import ThemeSwitch from './ThemeSwitch';
-import { useState } from 'react';
+import headerNavLinks from "@/data/headerNavLinks";
+import siteMetadata from "@/data/siteMetadata.json";
+import Link from "./Link";
+import ThemeSwitch from "./ThemeSwitch";
+import { useState } from "react";
 
 export default function NavBar() {
   const [navShow, setNavShow] = useState(false);
   const onToggleNav = () => {
     setNavShow((status) => {
       if (status) {
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = "auto";
       } else {
         // Prevent scrolling
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = "hidden";
       }
       return !status;
     });
@@ -73,7 +73,7 @@ export default function NavBar() {
       {/* Mobile side menu */}
       <div
         className={`md:hidden fixed w-full h-screen right-0 bg-white dark:bg-black z-10 transform ease-in-out duration-300 ${
-          navShow ? 'translate-x-0' : 'translate-x-full'
+          navShow ? "translate-x-0" : "translate-x-full"
         } backdrop-filter bg-opacity-30 dark:bg-opacity-30 backdrop-saturate-150 backdrop-blur-lg firefox:bg-opacity-100 dark:firefox:bg-opacity-100`}
       >
         <nav className="h-full mt-8">

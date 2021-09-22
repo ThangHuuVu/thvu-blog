@@ -1,7 +1,7 @@
-import db from '@/lib/planetscale';
-import { getSession } from 'next-auth/client';
-import { withSentry } from '@sentry/nextjs';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import db from "@/lib/planetscale";
+import { getSession } from "next-auth/client";
+import { withSentry } from "@sentry/nextjs";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 // TODO: Type this with Prisma
 const guestbookEntries = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -17,13 +17,13 @@ const guestbookEntries = async (req: NextApiRequest, res: NextApiResponse) => {
   );
   const entry = rows[0];
 
-  if (req.method === 'GET') {
+  if (req.method === "GET") {
     return res.json(entry);
   }
 
-  if (req.method === 'DELETE') {
+  if (req.method === "DELETE") {
     if (!user || user.name !== entry.created_by) {
-      return res.status(403).send('Unauthorized');
+      return res.status(403).send("Unauthorized");
     }
 
     await db.query(
@@ -36,12 +36,12 @@ const guestbookEntries = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(204).json({});
   }
 
-  if (req.method === 'PUT') {
+  if (req.method === "PUT") {
     if (!user || user.name !== entry.created_by) {
-      return res.status(403).send('Unauthorized');
+      return res.status(403).send("Unauthorized");
     }
 
-    const body = (req.body.body || '').slice(0, 500);
+    const body = (req.body.body || "").slice(0, 500);
     await db.query(
       `
       UPDATE guestbook
@@ -57,7 +57,7 @@ const guestbookEntries = async (req: NextApiRequest, res: NextApiResponse) => {
     });
   }
 
-  return res.send('Method not allowed.');
+  return res.send("Method not allowed.");
 };
 
 export default withSentry(guestbookEntries);

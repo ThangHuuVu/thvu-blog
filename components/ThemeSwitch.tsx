@@ -1,4 +1,4 @@
-import { useDarkTheme } from '@/lib/hooks/useDarkTheme';
+import { useDarkTheme } from "@/lib/hooks/useDarkTheme";
 
 const ThemeSwitch = () => {
   const [isDark, setTheme] = useDarkTheme();
@@ -8,7 +8,7 @@ const ThemeSwitch = () => {
       aria-label="Toggle Dark Mode"
       type="button"
       className="w-8 h-8 p-1 ml-1 mr-1 rounded sm:ml-4"
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

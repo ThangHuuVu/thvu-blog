@@ -1,9 +1,9 @@
 // Icons taken from: https://simpleicons.org/
-import Mail from './mail.svg';
-import Github from './github.svg';
-import Linkedin from './linkedin.svg';
-import Twitter from './twitter.svg';
-import Codepen from './codepen.svg';
+import Mail from "./mail.svg";
+import Github from "./github.svg";
+import Linkedin from "./linkedin.svg";
+import Twitter from "./twitter.svg";
+import Codepen from "./codepen.svg";
 
 interface ComponentProps {
   [kind: string]: any;

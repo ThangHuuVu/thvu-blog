@@ -1,4 +1,4 @@
-import { Client } from '@notionhq/client';
+import { Client } from "@notionhq/client";
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
@@ -6,15 +6,15 @@ export async function getPublishedNotes() {
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DB_ID,
     filter: {
-      property: 'Published?',
+      property: "Published?",
       checkbox: {
         equals: true,
       },
     },
     sorts: [
       {
-        property: 'Modified at',
-        direction: 'ascending',
+        property: "Modified at",
+        direction: "ascending",
       },
     ],
   });

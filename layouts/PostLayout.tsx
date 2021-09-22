@@ -1,13 +1,13 @@
-import Link from '@/components/Link';
-import PageTitle from '@/components/PageTitle';
-import SectionContainer from '@/components/SectionContainer';
-import { BlogSeo } from '@/components/SEO';
-import Tag from '@/components/Tag';
-import siteMetadata from '@/data/siteMetadata.json';
-import Image from 'next/image';
-import useViewCounter from '@/lib/hooks/useViewCounter';
-import { EnhancedFrontMatter } from '@/lib/mdx';
-import { Container } from '@/lib/types/common';
+import Link from "@/components/Link";
+import PageTitle from "@/components/PageTitle";
+import SectionContainer from "@/components/SectionContainer";
+import { BlogSeo } from "@/components/SEO";
+import Tag from "@/components/Tag";
+import siteMetadata from "@/data/siteMetadata.json";
+import Image from "next/image";
+import useViewCounter from "@/lib/hooks/useViewCounter";
+import { EnhancedFrontMatter } from "@/lib/mdx";
+import { Container } from "@/lib/types/common";
 
 const editUrl = (fileName) => `${siteMetadata.siteRepo}/blob/master/data/blog/${fileName}`;
 const discussUrl = (slug) =>
@@ -38,10 +38,10 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
                   <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                     <time dateTime={date}>
                       {new Date(date).toLocaleDateString(siteMetadata.locale, {
-                        weekday: 'long',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
+                        weekday: "long",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
                       })}
                     </time>
                   </dd>
@@ -51,14 +51,14 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
                 <PageTitle>{title}</PageTitle>
               </div>
               <span className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                {readingTime} {readingTime == 1 ? ' minute ' : ' minutes ' + ' read - '}
+                {readingTime} {readingTime == 1 ? " minute " : " minutes " + " read - "}
                 {viewCount}
               </span>
             </div>
           </header>
           <div
             className="pb-8 divide-y divide-gray-200 xl:divide-y-0 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6"
-            style={{ gridTemplateRows: 'auto 1fr' }}
+            style={{ gridTemplateRows: "auto 1fr" }}
           >
             <dl className="pt-6 pb-10 xl:pt-11 xl:border-b xl:border-gray-200 xl:dark:border-gray-700">
               <dt className="sr-only">Authors</dt>
@@ -81,7 +81,7 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
                           href={siteMetadata.twitter}
                           className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
                         >
-                          {siteMetadata.twitter.replace('https://twitter.com/', '@')}
+                          {siteMetadata.twitter.replace("https://twitter.com/", "@")}
                         </Link>
                       </dd>
                     </dl>
@@ -93,10 +93,10 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
               <div className="pt-10 pb-8 prose dark:prose-dark max-w-none">{children}</div>
               <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
                 <Link href={discussUrl(slug)} rel="nofollow">
-                  {'Discuss on Twitter'}
+                  {"Discuss on Twitter"}
                 </Link>
                 {` • `}
-                <Link href={editUrl(fileName)}>{'View on GitHub'}</Link>
+                <Link href={editUrl(fileName)}>{"View on GitHub"}</Link>
               </div>
             </div>
             <footer>

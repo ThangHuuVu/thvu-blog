@@ -1,5 +1,5 @@
-import db from '@/lib/planetscale';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import db from "@/lib/planetscale";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,7 +14,7 @@ export default async function handler(
       [req.query.slug]
     );
 
-    if (req.method === 'POST') {
+    if (req.method === "POST") {
       if (rows.length == 0) {
         await db.query(
           `
@@ -43,7 +43,7 @@ export default async function handler(
       }
     }
 
-    if (req.method === 'GET') {
+    if (req.method === "GET") {
       return res.status(200).json({ total: rows[0].count });
     }
   } catch (e) {

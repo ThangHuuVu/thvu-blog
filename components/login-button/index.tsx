@@ -1,10 +1,10 @@
-import { ClientSafeProvider, signIn } from 'next-auth/client';
-import Line from './line.svg';
-import Google from './google.svg';
-import GoogleDark from './google-dark.svg';
-import Github from './github.svg';
-import GithubDark from './github-dark.svg';
-import { useDarkTheme } from '@/lib/hooks/useDarkTheme';
+import { ClientSafeProvider, signIn } from "next-auth/client";
+import Line from "./line.svg";
+import Google from "./google.svg";
+import GoogleDark from "./google-dark.svg";
+import Github from "./github.svg";
+import GithubDark from "./github-dark.svg";
+import { useDarkTheme } from "@/lib/hooks/useDarkTheme";
 
 interface StyleGuide {
   Logo: any;
@@ -18,23 +18,23 @@ const providerStyleGuides: { [key: string]: StyleGuide } = {
   github: {
     Logo: Github,
     LogoDark: GithubDark,
-    bg: 'bg-black',
-    bgDark: 'bg-white',
-    text: 'text-white',
-    textDark: 'text-black',
+    bg: "bg-black",
+    bgDark: "bg-white",
+    text: "text-white",
+    textDark: "text-black",
   },
   line: {
     Logo: Line,
-    bg: 'bg-[#00C300]',
-    text: 'text-white',
+    bg: "bg-[#00C300]",
+    text: "text-white",
   },
   google: {
     Logo: Google,
     LogoDark: GoogleDark,
-    bgDark: 'bg-[#4285F4]',
-    bg: 'bg-white',
-    text: 'text-black',
-    textDark: 'text-white',
+    bgDark: "bg-[#4285F4]",
+    bg: "bg-white",
+    text: "text-black",
+    textDark: "text-white",
   },
 };
 

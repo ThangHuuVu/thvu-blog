@@ -1,5 +1,5 @@
-import { PSDB } from 'planetscale-node';
+import { PSDB } from "planetscale-node";
 
-const db = new PSDB('main');
+const db = new PSDB("main");
 
 export default db;

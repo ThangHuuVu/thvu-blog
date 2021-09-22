@@ -1,8 +1,8 @@
-import siteMetadata from '@/data/siteMetadata.json';
-import Card from '@/components/Card';
-import { PageSeo } from '@/components/SEO';
-import { getAllProjects } from '@/lib/cms/datocms';
-import { InferGetStaticPropsType } from 'next';
+import siteMetadata from "@/data/siteMetadata.json";
+import Card from "@/components/Card";
+import { PageSeo } from "@/components/SEO";
+import { getAllProjects } from "@/lib/cms/datocms";
+import { InferGetStaticPropsType } from "next";
 
 export default function Projects({ allProjects }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (

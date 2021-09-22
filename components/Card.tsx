@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import Link from '@/components/Link';
+import Image from "next/image";
+import Link from "@/components/Link";
 
 interface CardProps {
   title: string;
@@ -10,7 +10,7 @@ interface CardProps {
 }
 
 const Card = ({ title, description, imgSrc, href, tags }: CardProps) => (
-  <div className="p-4 md:w-1/2 md" style={{ maxWidth: '544px' }}>
+  <div className="p-4 md:w-1/2 md" style={{ maxWidth: "544px" }}>
     <div className="h-full border-2 border-gray-200 dark:border-gray-800 rounded-md overflow-hidden">
       {href ? (
         <Link href={href} aria-label={`Link to ${title}`}>
@@ -52,7 +52,7 @@ const Card = ({ title, description, imgSrc, href, tags }: CardProps) => (
           </Link>
         )}
         {tags && (
-          <div className="mt-4 text-xs text-gray-700 dark:text-gray-300">{tags.join(' | ')}</div>
+          <div className="mt-4 text-xs text-gray-700 dark:text-gray-300">{tags.join(" | ")}</div>
         )}
       </div>
     </div>

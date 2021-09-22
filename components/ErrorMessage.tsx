@@ -1,4 +1,4 @@
-import { Container } from '@/lib/types/common';
+import { Container } from "@/lib/types/common";
 
 export default function ErrorMessage({ children }: Container) {
   return (

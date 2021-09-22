@@ -1,12 +1,12 @@
-import { NextSeo, ArticleJsonLd, NextSeoProps } from 'next-seo';
-import siteMetadata from '@/data/siteMetadata.json';
-import { FrontMatter } from '@/lib/mdx';
+import { NextSeo, ArticleJsonLd, NextSeoProps } from "next-seo";
+import siteMetadata from "@/data/siteMetadata.json";
+import { FrontMatter } from "@/lib/mdx";
 
 export const SEO: NextSeoProps = {
   title: siteMetadata.title,
   description: siteMetadata.description,
   openGraph: {
-    type: 'website',
+    type: "website",
     locale: siteMetadata.language,
     url: siteMetadata.siteUrl,
     title: siteMetadata.title,
@@ -23,11 +23,11 @@ export const SEO: NextSeoProps = {
   twitter: {
     handle: siteMetadata.twitter,
     site: siteMetadata.twitter,
-    cardType: 'summary_large_image',
+    cardType: "summary_large_image",
   },
   additionalMetaTags: [
     {
-      name: 'author',
+      name: "author",
       content: siteMetadata.author,
     },
   ],
@@ -68,7 +68,7 @@ export const BlogSeo = ({
   let imagesArr =
     images.length === 0
       ? [siteMetadata.socialBanner]
-      : typeof images === 'string'
+      : typeof images === "string"
       ? [images]
       : images;
 
@@ -86,7 +86,7 @@ export const BlogSeo = ({
         description={summary}
         canonical={url}
         openGraph={{
-          type: 'article',
+          type: "article",
           article: {
             publishedTime: publishedAt,
             modifiedTime: modifiedAt,
@@ -100,7 +100,7 @@ export const BlogSeo = ({
         }}
         additionalMetaTags={[
           {
-            name: 'twitter:image',
+            name: "twitter:image",
             content: featuredImages[0].url,
           },
         ]}

@@ -1,4 +1,4 @@
-import { fetchAPI } from './common';
+import { fetchAPI } from "./common";
 
 export async function getAllProjects(preview: boolean) {
   const data = await fetchAPI(
