@@ -22,7 +22,8 @@ interface PostLayoutProps extends Container {
 }
 
 export default function PostLayout({ children, frontMatter, next, prev }: PostLayoutProps) {
-  const { slug, fileName, date, title, tags, readingTime } = frontMatter;
+  const { slug, fileName, date, title, tags, readingMinutes } = frontMatter;
+  const roundedReadingMinutes = Math.round(readingMinutes);
   const viewCount = useViewCounter(slug);
 
   return (
@@ -51,7 +52,8 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
                 <PageTitle>{title}</PageTitle>
               </div>
               <span className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                {readingTime} {readingTime == 1 ? " minute " : " minutes " + " read - "}
+                {roundedReadingMinutes}{" "}
+                {roundedReadingMinutes == 1 ? " minute " : " minutes " + " read - "}
                 {viewCount}
               </span>
             </div>

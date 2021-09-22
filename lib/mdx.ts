@@ -55,7 +55,7 @@ export interface FrontMatter {
 
 export interface EnhancedFrontMatter extends FrontMatter {
   wordCount: number;
-  readingTime: number;
+  readingMinutes: number;
   slug: string | null;
   fileName: string;
 }
@@ -104,7 +104,7 @@ export async function getFileBySlug(type, slug): Promise<FileBySlug> {
     mdxSource,
     frontMatter: {
       wordCount: content.split(/\s+/gu).length,
-      readingTime: readingTime(content).time,
+      readingMinutes: readingTime(content).minutes,
       slug: slug || null,
       fileName: fs.existsSync(mdxPath) ? `${slug}.mdx` : `${slug}.md`,
       ...(data as FrontMatter),
