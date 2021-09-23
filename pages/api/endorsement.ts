@@ -9,7 +9,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       data: {
         skillId: Number(skillId),
         endorsed_by: endorseBy,
-        email: email,
+        email,
       },
     });
     return res.status(200).json(true);
