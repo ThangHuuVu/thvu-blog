@@ -21,9 +21,17 @@ interface Props {
   };
   isDark: boolean;
 }
+function getIconColor(hover, isDark) {
+  if (isDark) {
+    return hover ? "#34D399" : "#D1D5DB";
+  } else {
+    return hover ? "#047857" : "#374151";
+  }
+}
 
 export default function SkillCard({ skill, user, isDark }: Props) {
   const [state, setState] = useState<STATE>(STATE.INITIAL);
+  const [hover, setHover] = useState<boolean>(false);
   async function onEndorse(skillId: string) {
     setState(STATE.LOADING);
     const res = await fetch("/api/endorsement", {
@@ -49,8 +57,10 @@ export default function SkillCard({ skill, user, isDark }: Props) {
   return (
     <div className="mb-2" key={skill.id}>
       <button
-        className="flex items-center gap-1 text-xl font-semibold hover:text-green-700 dark:hover:text-green-300"
+        className="flex items-center gap-1 text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-green-700 dark:hover:text-green-300"
         onClick={() => onEndorse(skill.id)}
+        onMouseOver={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
         disabled={!Boolean(user) || state === STATE.SUCCESS}
       >
         {state === STATE.LOADING ? (
@@ -58,7 +68,7 @@ export default function SkillCard({ skill, user, isDark }: Props) {
         ) : (
           <ArrowButton
             // tailwind green
-            stroke={isDark ? "#34D399" : "#047857"}
+            stroke={getIconColor(hover, isDark)}
             className="inline"
           />
         )}

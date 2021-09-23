@@ -38,7 +38,7 @@ export default function LoginView({ message }: Props) {
             {message}
           </h5>
           <button
-            className="px-4 py-2 flex items-center justify-center my-4 font-semibold text-base bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-500 rounded"
+            className="px-4 py-2 flex items-center justify-center my-4 font-semibold text-base bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 rounded"
             onClick={() => {
               router.push("/auth/signin");
             }}
