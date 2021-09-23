@@ -49,7 +49,7 @@ export default function SkillCard({ skill, user, isDark }: Props) {
   return (
     <div className="mb-2" key={skill.id}>
       <button
-        className="flex items-center gap-1 text-xl font-semibold hover:text-green-700 dark:hover:text-green-300 disabled:text-gray-200 dark:disabled:text-gray-800"
+        className="flex items-center gap-1 text-xl font-semibold hover:text-green-700 dark:hover:text-green-300"
         onClick={() => onEndorse(skill.id)}
         disabled={!Boolean(user) || state === STATE.SUCCESS}
       >
