@@ -19,7 +19,7 @@ export async function getStaticProps() {
       fallbackData: skills.map<Skill>((skill) => ({
         id: skill.id.toString(),
         name: skill.name,
-        people: skill.endorsements.map((en) => en.endorsed_by),
+        people: [...new Set(skill.endorsements.map((en) => en.endorsed_by))],
       })),
     },
   };
