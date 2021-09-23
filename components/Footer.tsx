@@ -54,6 +54,12 @@ export default function Footer() {
               Projects
             </Link>
             <Link
+              href="/endorsements"
+              className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
+            >
+              Endorsements
+            </Link>
+            <Link
               href="/guestbook"
               className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
             >
