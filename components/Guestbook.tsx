@@ -1,15 +1,15 @@
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { format } from "date-fns";
 import useSWR, { mutate } from "swr";
 import fetcher from "@/lib/fetcher";
 import SuccessMessage from "@/components/SuccessMessage";
 import ErrorMessage from "@/components/ErrorMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import { signOut, useSession } from "next-auth/client";
-import CustomLink from "./Link";
+import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { GuestBookEntry } from "@/lib/types/guestbook";
 import { User } from "next-auth";
+import LoginView from "./LoginView";
 
 interface GuestbookEntryProps {
   entry: GuestBookEntry;
@@ -78,7 +78,6 @@ export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEnt
       fallbackData,
     }
   );
-  const router = useRouter();
 
   const leaveEntry = async (e) => {
     e.preventDefault();
@@ -113,14 +112,9 @@ export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEnt
 
   return (
     <>
-      <div className="border-2 border-blue-200 dark:border-blue-800 rounded-md p-6 prose dark:prose-dark lg:prose-xl">
-        <h5 className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-100">
-          Sign the Guestbook {session?.user?.name ? ` as ${session?.user?.name} ` : ""}
-          <span role="img" aria-label="guestbook">
-            ✍️
-          </span>
-        </h5>
-        {session ? (
+      <LoginView message="Login to sign the guestbook." />
+      {Boolean(session?.user) && (
+        <div className="border-2 border-blue-200 dark:border-blue-800 rounded-md p-6 prose dark:prose-dark lg:prose-xl">
           <form className="w-full flex flex-col gap-4 mt-4" onSubmit={leaveEntry}>
             <textarea
               ref={inputEl}
@@ -136,39 +130,10 @@ export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEnt
               {form.state === FORM_STATE.LOADING ? <LoadingSpinner /> : "Sign"}
             </button>
           </form>
-        ) : (
-          <button
-            className="h-8 w-28 flex items-center justify-center my-4 font-semibold text-base bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded"
-            onClick={() => {
-              router.push("/auth/signin");
-            }}
-          >
-            Login
-          </button>
-        )}
-        {form.state === FORM_STATE.ERROR ? (
-          <ErrorMessage>{form.message}</ErrorMessage>
-        ) : form.state === FORM_STATE.SUCCESS ? (
-          <SuccessMessage>{form.message}</SuccessMessage>
-        ) : (
-          <div />
-        )}
-        <p className="text-sm text-gray-600 dark:text-gray-400">
-          Your information is only used to display your name and reply by email.{" "}
-          {session && (
-            <CustomLink
-              className="font-semibold"
-              href="/api/auth/signout"
-              onClick={(e) => {
-                e.preventDefault();
-                signOut();
-              }}
-            >
-              Log out
-            </CustomLink>
-          )}
-        </p>
-      </div>
+          {form.state === FORM_STATE.ERROR && <ErrorMessage>{form.message}</ErrorMessage>}
+          {form.state === FORM_STATE.SUCCESS && <SuccessMessage>{form.message}</SuccessMessage>}
+        </div>
+      )}
       <div className="mt-4 space-y-8">
         {entriesError && (
           <ErrorMessage>

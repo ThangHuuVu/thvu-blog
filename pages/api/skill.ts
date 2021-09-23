@@ -3,7 +3,7 @@ import { Skill } from "@/lib/types/skill";
 import { withSentry } from "@sentry/nextjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-async function handler(req: NextApiRequest, res: NextApiResponse<Skill[] | boolean | string>) {
+async function handler(req: NextApiRequest, res: NextApiResponse<Skill[] | string>) {
   const skills = await prisma.skills.findMany({
     include: {
       endorsements: true,

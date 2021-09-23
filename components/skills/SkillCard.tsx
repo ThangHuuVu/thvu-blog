@@ -5,8 +5,6 @@ import SuccessMessage from "../SuccessMessage";
 import { Skill } from "@/lib/types/skill";
 import LoadingSpinner from "../LoadingSpinner";
 import ArrowButton from "./arrow-up-circle.svg";
-import { useDarkTheme } from "@/lib/hooks/useDarkTheme";
-import { Session } from "next-auth";
 
 enum STATE {
   INITIAL,
@@ -15,9 +13,17 @@ enum STATE {
   SUCCESS,
 }
 
-export default function SkillCard({ skill, user }: { skill: Skill; user: Session["user"] }) {
+interface Props {
+  skill: Skill;
+  user: {
+    email?: string;
+    name?: string;
+  };
+  isDark: boolean;
+}
+
+export default function SkillCard({ skill, user, isDark }: Props) {
   const [state, setState] = useState<STATE>(STATE.INITIAL);
-  const [isDark] = useDarkTheme();
   async function onEndorse(skillId: string) {
     setState(STATE.LOADING);
     const res = await fetch("/api/endorsement", {
@@ -42,23 +48,22 @@ export default function SkillCard({ skill, user }: { skill: Skill; user: Session
 
   return (
     <div className="mb-2" key={skill.id}>
-      {state === STATE.LOADING ? (
-        <LoadingSpinner />
-      ) : (
-        <button
-          className="flex items-center gap-1 text-xl font-semibold hover:text-green-700 dark:hover:text-green-300 disabled:text-gray-500"
-          onClick={() => onEndorse(skill.id)}
-          disabled={!Boolean(user) || state === STATE.SUCCESS}
-        >
+      <button
+        className="flex items-center gap-1 text-xl font-semibold hover:text-green-700 dark:hover:text-green-300 disabled:text-gray-200 dark:disabled:text-gray-800"
+        onClick={() => onEndorse(skill.id)}
+        disabled={!Boolean(user) || state === STATE.SUCCESS}
+      >
+        {state === STATE.LOADING ? (
+          <LoadingSpinner />
+        ) : (
           <ArrowButton
             // tailwind green
             stroke={isDark ? "#34D399" : "#047857"}
             className="inline"
           />
-          <span>{skill.name}</span>
-        </button>
-      )}
-
+        )}
+        <span>{skill.name}</span>
+      </button>
       {skill.people.length > 0 && (
         <span>
           <strong>{skill.people.length}</strong>{" "}
