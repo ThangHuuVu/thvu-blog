@@ -1,10 +1,13 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
+  referentialIntegrity = "prisma"
 }
 
 model guestbook {
@@ -18,4 +21,20 @@ model guestbook {
 model views {
   slug  String @id @db.VarChar(128)
   count BigInt @default(1)
+}
+
+model skills {
+  id           BigInt         @id @default(autoincrement())
+  name         String         @db.VarChar(255)
+  endorsements endorsements[]
+
+  @@unique([name])
+}
+
+model endorsements {
+  id          BigInt  @id @default(autoincrement())
+  endorsed_by String  @db.VarChar(255)
+  email       String  @db.VarChar(255)
+  skill       skills? @relation(fields: [skillId], references: [id])
+  skillId     BigInt?
 }

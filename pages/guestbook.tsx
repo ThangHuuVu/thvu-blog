@@ -25,7 +25,7 @@ export default function GuestbookPage({
           write anything!
         </p>
       </div>
-      <div className="flex flex-col item-center gap-4 pt-8 pb-8">
+      <div className="flex flex-col item-center gap-4 pb-8">
         <Guestbook fallbackData={fallbackData} />
       </div>
       <p className="text-sm text-gray-600 dark:text-gray-400 prose dark:prose-dark">
