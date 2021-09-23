@@ -19,7 +19,7 @@ export default function Skills({ fallbackData }: Props) {
 
   return (
     <div className="prose dark:prose-dark lg:prose-xl">
-      <LoginView message="Login to leave endorsements." />
+      <LoginView message="Login to give endorsements." />
       <div className="mb-10">
         <p>Click on a skill you think I'm good at!</p>
         {error && (
