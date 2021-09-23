@@ -42,3 +42,4 @@ public/*.js.map
 
 # Sentry
 .sentryclirc
+.pscale.yml
