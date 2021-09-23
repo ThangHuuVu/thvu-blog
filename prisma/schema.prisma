@@ -27,11 +27,14 @@ model skills {
   id           BigInt         @id @default(autoincrement())
   name         String         @db.VarChar(255)
   endorsements endorsements[]
+
+  @@unique([name])
 }
 
 model endorsements {
   id          BigInt  @id @default(autoincrement())
   endorsed_by String  @db.VarChar(255)
+  email       String  @db.VarChar(255)
   skill       skills? @relation(fields: [skillId], references: [id])
   skillId     BigInt?
 }
