@@ -9,7 +9,10 @@
     "serve": "next start",
     "analyze": "env ANALYZE=true next build",
     "prepare": "husky install",
-    "lint": "npx next lint"
+    "lint": "npx next lint",
+    "prisma:generate": "npx prisma generate",
+    "pscale:shadow": "pscale conenct thvu-blog shadow --port 3310",
+    "pscale:main": "pscale conenct thvu-blog main --port 3319"
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.5.0",
