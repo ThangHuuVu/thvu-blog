@@ -1,4 +1,4 @@
-import siteMetadata from "@/data/siteMetadata.json";
+import siteMetadata from "@/data/siteMetadata";
 
 const generateRssItem = (post) => `
   <item>

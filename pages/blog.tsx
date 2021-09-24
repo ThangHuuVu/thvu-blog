@@ -1,7 +1,7 @@
 import { getAllFilesFrontMatter } from "@/lib/mdx";
-import siteMetadata from "@/data/siteMetadata.json";
+import siteMetadata from "@/data/siteMetadata";
 import ListLayout from "@/layouts/ListLayout";
-import { PageSeo } from "@/components/SEO";
+import { PageSEO } from "@/components/SEO";
 import { InferGetStaticPropsType } from "next";
 
 export async function getStaticProps() {
@@ -13,11 +13,7 @@ export async function getStaticProps() {
 export default function Blog({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
-      <PageSeo
-        title={`Blog - ${siteMetadata.author}`}
-        description={siteMetadata.description}
-        url={`${siteMetadata.siteUrl}/blog`}
-      />
+      <PageSEO title={`Blog - ${siteMetadata.author}`} description={siteMetadata.description} />
       <ListLayout posts={posts} title="All Posts" />
     </>
   );

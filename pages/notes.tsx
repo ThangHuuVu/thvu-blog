@@ -1,5 +1,5 @@
-import siteMetadata from "@/data/siteMetadata.json";
-import { PageSeo } from "@/components/SEO";
+import siteMetadata from "@/data/siteMetadata";
+import { PageSEO } from "@/components/SEO";
 import { getPublishedNotes } from "@/lib/notion";
 import Card from "@/components/Card";
 import Link from "@/components/Link";
@@ -17,7 +17,7 @@ interface NotionPublish {
 export default function Notes({ notionPublishes }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
-      <PageSeo
+      <PageSEO
         title={`Notes from Notion - ${siteMetadata.author}`}
         description={siteMetadata.description}
         url={`${siteMetadata.siteUrl}/notes`}

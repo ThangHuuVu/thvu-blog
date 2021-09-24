@@ -1,9 +1,9 @@
 import Link from "@/components/Link";
 import PageTitle from "@/components/PageTitle";
 import SectionContainer from "@/components/SectionContainer";
-import { BlogSeo } from "@/components/SEO";
+import { BlogSEO } from "@/components/SEO";
 import Tag from "@/components/Tag";
-import siteMetadata from "@/data/siteMetadata.json";
+import siteMetadata from "@/data/siteMetadata";
 import Image from "next/image";
 import useViewCounter from "@/lib/hooks/useViewCounter";
 import { EnhancedFrontMatter } from "@/lib/mdx";
@@ -28,7 +28,7 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
 
   return (
     <SectionContainer>
-      <BlogSeo url={`${siteMetadata.siteUrl}/blog/${frontMatter.slug}`} {...frontMatter} />
+      <BlogSEO url={`${siteMetadata.siteUrl}/blog/${frontMatter.slug}`} {...frontMatter} />
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
           <header className="pt-6 xl:pb-6">

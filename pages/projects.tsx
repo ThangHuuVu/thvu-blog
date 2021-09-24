@@ -1,6 +1,6 @@
-import siteMetadata from "@/data/siteMetadata.json";
+import siteMetadata from "@/data/siteMetadata";
 import Card from "@/components/Card";
-import { PageSeo } from "@/components/SEO";
+import { PageSEO } from "@/components/SEO";
 import { getAllProjects } from "@/lib/cms/datocms";
 import { InferGetStaticPropsType } from "next";
 import PageTitle from "@/components/PageTitle";
@@ -8,7 +8,7 @@ import PageTitle from "@/components/PageTitle";
 export default function Projects({ allProjects }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
-      <PageSeo
+      <PageSEO
         title={`Projects - ${siteMetadata.author}`}
         description={siteMetadata.description}
         url={`${siteMetadata.siteUrl}/projects`}
