@@ -1,68 +1,90 @@
-import { NextSeo, ArticleJsonLd, NextSeoProps } from "next-seo";
-import siteMetadata from "@/data/siteMetadata.json";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import siteMetadata from "@/data/siteMetadata";
 import { FrontMatter } from "@/lib/mdx";
 
-export const SEO: NextSeoProps = {
-  title: siteMetadata.title,
-  description: siteMetadata.description,
-  openGraph: {
-    type: "website",
-    locale: siteMetadata.language,
-    url: siteMetadata.siteUrl,
-    title: siteMetadata.title,
-    description: siteMetadata.description,
-    images: [
-      {
-        url: `${siteMetadata.siteUrl}${siteMetadata.socialBanner}`,
-        alt: siteMetadata.title,
-        width: 1200,
-        height: 600,
-      },
-    ],
-  },
-  twitter: {
-    handle: siteMetadata.twitter,
-    site: siteMetadata.twitter,
-    cardType: "summary_large_image",
-  },
-  additionalMetaTags: [
-    {
-      name: "author",
-      content: siteMetadata.author,
-    },
-  ],
-};
-
-interface PageSeoProps {
+const CommonSEO = ({
+  title,
+  description,
+  ogType,
+  ogImage,
+  twImage,
+}: {
   title: string;
   description: string;
-  url: string;
-}
-
-export const PageSeo = ({ title, description, url }: PageSeoProps) => {
+  ogType: string;
+  ogImage: string | { url: string }[];
+  twImage: string;
+}) => {
+  const router = useRouter();
   return (
-    <NextSeo
-      title={`${title}`}
+    <Head>
+      <title>{title}</title>
+      <meta name="robots" content="follow, index" />
+      <meta name="description" content={description} />
+      <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
+      <meta property="og:type" content={ogType} />
+      <meta property="og:site_name" content={siteMetadata.title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:title" content={title} />
+      {typeof ogImage === "string" ? (
+        <meta property="og:image" content={ogImage} key={ogImage} />
+      ) : (
+        ogImage.map(({ url }) => <meta property="og:image" content={url} key={url} />)
+      )}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content={siteMetadata.twitter} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={twImage} />
+    </Head>
+  );
+};
+interface SEOProps {
+  title: string;
+  description: string;
+}
+export const PageSEO = ({ title, description }: SEOProps) => {
+  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner;
+  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner;
+  return (
+    <CommonSEO
+      title={title}
       description={description}
-      canonical={url}
-      openGraph={{
-        url,
-        title,
-        description,
-      }}
+      ogType="website"
+      ogImage={ogImageUrl}
+      twImage={twImageUrl}
     />
   );
 };
 
-export const BlogSeo = ({
-  title,
-  summary,
-  date,
-  lastModified,
-  url,
-  tags,
-  images = [],
-}: FrontMatter) => {
+export const TagSEO = ({ title, description }: SEOProps) => {
+  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner;
+  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner;
+  const router = useRouter();
+  return (
+    <>
+      <CommonSEO
+        title={title}
+        description={description}
+        ogType="website"
+        ogImage={ogImageUrl}
+        twImage={twImageUrl}
+      />
+      <Head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${description} - RSS feed`}
+          href={`${siteMetadata.siteUrl}${router.asPath}/feed.xml`}
+        />
+      </Head>
+    </>
+  );
+};
+
+export const BlogSEO = ({ title, summary, date, lastModified, url, images = [] }: FrontMatter) => {
+  const router = useRouter();
   const publishedAt = new Date(date).toISOString();
   const modifiedAt = new Date(lastModified || date).toISOString();
   let imagesArr =
@@ -72,50 +94,58 @@ export const BlogSeo = ({
       ? [images]
       : images;
 
-  const featuredImages = imagesArr.map<{ url: string; alt: string }>((img) => {
+  const featuredImages = imagesArr.map((img) => {
     return {
+      "@type": "ImageObject",
       url: `${siteMetadata.siteUrl}${img}`,
-      alt: title,
     };
   });
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    headline: title,
+    image: featuredImages,
+    datePublished: publishedAt,
+    dateModified: modifiedAt,
+    author: siteMetadata.author,
+    publisher: {
+      "@type": "Organization",
+      name: siteMetadata.author,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteMetadata.siteUrl}${siteMetadata.siteLogo}`,
+      },
+    },
+    description: summary,
+  };
+
+  const twImageUrl = featuredImages[0].url;
+
   return (
     <>
-      <NextSeo
-        title={`${title} – ${siteMetadata.title}`}
-        description={summary}
-        canonical={url}
-        openGraph={{
-          type: "article",
-          article: {
-            publishedTime: publishedAt,
-            modifiedTime: modifiedAt,
-            authors: [`${siteMetadata.siteUrl}/about`],
-            tags,
-          },
-          url,
-          title,
-          description: summary,
-          images: featuredImages,
-        }}
-        additionalMetaTags={[
-          {
-            name: "twitter:image",
-            content: featuredImages[0].url,
-          },
-        ]}
-      />
-      <ArticleJsonLd
-        authorName={siteMetadata.author}
-        dateModified={modifiedAt}
-        datePublished={publishedAt}
-        description={summary}
-        images={featuredImages.map((image) => image.url)}
-        publisherName={siteMetadata.author}
-        publisherLogo={siteMetadata.image}
+      <CommonSEO
         title={title}
-        url={url}
+        description={summary}
+        ogType="article"
+        ogImage={featuredImages}
+        twImage={twImageUrl}
       />
+      <Head>
+        {date && <meta property="article:published_time" content={publishedAt} />}
+        {lastModified && <meta property="article:modified_time" content={modifiedAt} />}
+        <link rel="canonical" href={`${siteMetadata.siteUrl}${router.asPath}`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData, null, 2),
+          }}
+        />
+      </Head>
     </>
   );
 };

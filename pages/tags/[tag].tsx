@@ -1,5 +1,5 @@
-import { PageSeo } from "@/components/SEO";
-import siteMetadata from "@/data/siteMetadata.json";
+import { TagSEO } from "@/components/SEO";
+import siteMetadata from "@/data/siteMetadata";
 import ListLayout from "@/layouts/ListLayout";
 import generateRss from "@/lib/generate-rss";
 import { getAllFilesFrontMatter } from "@/lib/mdx";
@@ -44,10 +44,9 @@ export default function Tag({ posts, tag }: InferGetStaticPropsType<typeof getSt
   const title = tag[0].toUpperCase() + tag.split(" ").join("-").slice(1);
   return (
     <>
-      <PageSeo
+      <TagSEO
         title={`${tag} - ${siteMetadata.title}`}
         description={`${tag} tags - ${siteMetadata.title}`}
-        url={`${siteMetadata.siteUrl}/tags/${tag}`}
       />
       <ListLayout posts={posts} title={title} />
     </>

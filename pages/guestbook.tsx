@@ -1,6 +1,6 @@
 import Guestbook from "@/components/Guestbook";
-import siteMetadata from "@/data/siteMetadata.json";
-import { PageSeo } from "@/components/SEO";
+import siteMetadata from "@/data/siteMetadata";
+import { PageSEO } from "@/components/SEO";
 import Link from "next/link";
 import PageViews from "@/components/metric/PageViews";
 import { InferGetStaticPropsType } from "next";
@@ -13,10 +13,9 @@ export default function GuestbookPage({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
-      <PageSeo
+      <PageSEO
         title={`Guestbook – ${siteMetadata.author}`}
         description={"Share some wisdom with my future visitors."}
-        url={"https://thvu.dev/guestbook"}
       />
       <div className="flex flex-col justify-center items-start max-w-2xl pt-6 pb-8 space-y-2 md:space-y-5">
         <PageTitle>Guestbook</PageTitle>

@@ -1,6 +1,6 @@
-import siteMetadata from "@/data/siteMetadata.json";
+import siteMetadata from "@/data/siteMetadata";
 import SocialIcon from "@/components/social-icons";
-import { PageSeo } from "@/components/SEO";
+import { PageSEO } from "@/components/SEO";
 import Image from "next/image";
 import { getAbout } from "@/lib/cms/datocms";
 import { InferGetStaticPropsType } from "next";
@@ -11,10 +11,9 @@ export default function About({ about }: InferGetStaticPropsType<typeof getStati
 
   return (
     <>
-      <PageSeo
+      <PageSEO
         title={`About - ${siteMetadata.author}`}
         description={`About me - ${siteMetadata.author}`}
-        url={`${siteMetadata.siteUrl}/about`}
       />
       <div className="pt-6 pb-8 space-y-2 md:space-y-5">
         <PageTitle>About</PageTitle>
