@@ -23,6 +23,8 @@ images: []
 
 Read on to learn how I bootstrapped this site from template starter to the current over-engineered state. I called it over-engineered because I think I over-killed the site by optimizing the Lighthouse score, CSP headers, and all the service integrations I squeeze in it 😅
 
+<TOCInline toc={props.toc} exclude="Overview" asDisclosure />
+
 # Get started
 
 ## Template
@@ -48,25 +50,7 @@ const MDXComponents = {
 };
 ```
 
-And it is done! I also added two new features:
-
-- Real-time page view count using [planetscale](https://planetscale.com/) (More on this later in Guestbook section below)
-- Reading time. I use [238 WPM as an average for adults](https://digest.bps.org.uk/2019/06/13/most-comprehensive-review-to-date-suggests-the-average-persons-reading-speed-is-slower-than-commonly-thought/).
-  Here's a custom hook to estimate reading time:
-
-```js
-const useReadingTime = () => {
-  const [readingTime, setReadingTime] = useState(0);
-  const articleRef = useRef();
-  useEffect(() => {
-    const text = articleRef.current.innerText;
-    const wpm = 238; // average for adult
-    const words = text.trim().split(/\s+/).length;
-    setReadingTime(Math.ceil(words / wpm));
-  }, []);
-  return [readingTime, articleRef];
-};
-```
+And it is done! I also added a new feature, which is Real-time page view count using [planetscale](https://planetscale.com/) (More on this later in Guestbook section below)
 
 ## <a href="/guestbook">Guestbook</a>
 
@@ -88,7 +72,6 @@ Create a `[...nextauth].js` file in `pages/api/auth`:
 
 ```js
 import NextAuth from "next-auth";
-import Providers from "next-auth/providers";
 
 export default NextAuth({
   providers: [
@@ -172,14 +155,7 @@ The end result ✨
 
 The generated site already has a very high Lighthouse score. I added PWA and _perfected_ the bars. Lighthouse report is available [here](https://googlechrome.github.io/lighthouse/viewer/?gist=fabc591d26e4f40c2d4446ed962a629d).
 
-<blockquote className="twitter-tweet" data-dnt="true" data-theme="dark">
-  <p lang="en" dir="ltr">
-    So I used <a href="https://twitter.com/timlrxx?ref_src=twsrc%5Etfw">@timlrxx</a>’s awesome
-    template to generate my site, added pwa and perfected the lighthouse score 🤣🤣 talk about
-    overengineering <a href="https://t.co/Ntw8sQc7Ei">pic.twitter.com/Ntw8sQc7Ei</a>
-  </p>
-  &mdash; Thang Vu (@thanghvu) <a href="https://twitter.com/thanghvu/status/1434148959602176000?ref_src=twsrc%5Etfw">September 4, 2021</a>
-</blockquote> <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+<Tweet tweetLink="thanghvu/status/1434148959602176000" />
 What I improved compared to the starter project:
 
 - PWA: Better icons, manifest
