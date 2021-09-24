@@ -1,7 +1,7 @@
 import LoginButton from "@/components/login-button";
 import PageTitle from "@/components/PageTitle";
 import { InferGetServerSidePropsType } from "next";
-import { getProviders, getSession } from "next-auth/client";
+import { getProviders, getSession } from "next-auth/react";
 
 export default function SignIn({
   providers,

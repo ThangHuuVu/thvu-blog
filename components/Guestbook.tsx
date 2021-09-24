@@ -5,15 +5,14 @@ import fetcher from "@/lib/fetcher";
 import SuccessMessage from "@/components/SuccessMessage";
 import ErrorMessage from "@/components/ErrorMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import { useSession } from "next-auth/client";
-import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import { GuestBookEntry } from "@/lib/types/guestbook";
-import { User } from "next-auth";
+import { DefaultSession } from "next-auth";
 import LoginView from "./LoginView";
 
 interface GuestbookEntryProps {
   entry: GuestBookEntry;
-  user: User;
+  user: DefaultSession["user"];
 }
 
 function Entry({ entry, user }: GuestbookEntryProps) {
@@ -70,7 +69,7 @@ export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEnt
     message: "",
   });
   const inputEl = useRef(null);
-  const [session] = useSession();
+  const { data: session } = useSession();
   const { error: entriesError, data: entries } = useSWR<GuestBookEntry[]>(
     "/api/guestbook",
     fetcher,

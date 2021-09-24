@@ -1,7 +1,7 @@
 import fetcher from "@/lib/fetcher";
 import { useDarkTheme } from "@/lib/hooks/useDarkTheme";
 import { Skill } from "@/lib/types/skill";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import React from "react";
 import SkillCard from "./SkillCard";
 import useSWR from "swr";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function Skills({ fallbackData }: Props) {
-  const [session] = useSession();
+  const { data: session } = useSession();
   const [isDark] = useDarkTheme();
   const { data: skills, error } = useSWR<Skill[]>("/api/skill", fetcher, { fallbackData });
 
