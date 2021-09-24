@@ -3,10 +3,8 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { MDXProvider } from "@mdx-js/react";
 import { ThemeProvider } from "next-themes";
-import { DefaultSeo } from "next-seo";
 import Head from "next/head";
 import { SessionProvider } from "next-auth/react";
-import { SEO } from "@/components/SEO";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import MDXComponents from "@/components/MDXComponents";
 import { pageView } from "@/lib/gtag";
@@ -35,7 +33,6 @@ export default function App({ Component, pageProps }: AppProps) {
               content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
             />
           </Head>
-          <DefaultSeo {...SEO} />
           <LayoutWrapper>
             <Component {...rest} />
           </LayoutWrapper>
