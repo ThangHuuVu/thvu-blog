@@ -81,7 +81,7 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
                       <dd>
                         <Link
                           href={siteMetadata.twitter}
-                          className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                         >
                           {siteMetadata.twitter.replace("https://twitter.com/", "@")}
                         </Link>
@@ -122,7 +122,7 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
                         <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                           Previous Article
                         </h2>
-                        <div className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">
+                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
                           <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
                         </div>
                       </div>
@@ -132,7 +132,7 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
                         <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                           Next Article
                         </h2>
-                        <div className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">
+                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
                           <Link href={`/blog/${next.slug}`}>{next.title}</Link>
                         </div>
                       </div>
@@ -143,7 +143,7 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
               <div className="pt-4 xl:pt-8">
                 <Link
                   href="/blog"
-                  className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                  className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                 >
                   &larr; Back
                 </Link>

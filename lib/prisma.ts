@@ -1,10 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 
-declare const global: NodeJS.Global &
-  typeof globalThis & {
-    prisma: PrismaClient;
-  };
-
 let prisma: PrismaClient;
 
 if (process.env.NODE_ENV === "production") {

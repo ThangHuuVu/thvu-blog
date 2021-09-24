@@ -31,7 +31,7 @@ export default function LoginView({ message }: Props) {
           Logged in as <strong>{session.user.name}.</strong> <LogoutButton />
         </div>
       ) : (
-        <div className="mb-10 border-2 border-blue-200 dark:border-blue-800 rounded-md p-6">
+        <div className="mb-10 border-2 border-primary-200 dark:border-primary-800 rounded-md p-6">
           <h5 className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-100">
             {message}
           </h5>
