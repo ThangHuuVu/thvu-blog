@@ -1,11 +1,9 @@
-import MDXComponents from "@/components/MDXComponents";
 import PageTitle from "@/components/PageTitle";
-import PostLayout from "@/layouts/PostLayout";
 import generateRss from "@/lib/generate-rss";
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from "@/lib/mdx";
 import fs from "fs";
 import { InferGetStaticPropsType } from "next";
-import hydrate from "next-mdx-remote/hydrate";
+import { MDXLayoutRenderer } from "@/components/MDXComponents";
 
 export async function getStaticPaths() {
   const posts = getFiles("blog");
@@ -32,19 +30,21 @@ export async function getStaticProps({ params }) {
 
   return { props: { post, prev, next } };
 }
+const DEFAULT_LAYOUT = "PostLayout";
 
 export default function Blog({ post, prev, next }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { mdxSource, frontMatter } = post;
-  const content = hydrate(mdxSource, {
-    components: MDXComponents,
-  });
-
+  const { mdxSource, toc, frontMatter } = post;
   return (
     <>
-      {frontMatter.draft !== true ? (
-        <PostLayout frontMatter={frontMatter} prev={prev} next={next}>
-          {content}
-        </PostLayout>
+      {!frontMatter.draft ? (
+        <MDXLayoutRenderer
+          layout={frontMatter.layout || DEFAULT_LAYOUT}
+          toc={toc}
+          mdxSource={mdxSource}
+          frontMatter={frontMatter}
+          prev={prev}
+          next={next}
+        />
       ) : (
         <div className="mt-24 text-center">
           <PageTitle>

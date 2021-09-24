@@ -1,29 +1,20 @@
-import MDXComponents from "@/components/MDXComponents";
 import fs from "fs";
+import { bundleMDX } from "mdx-bundler";
 import matter from "gray-matter";
-import renderToString from "next-mdx-remote/render-to-string";
-import { MdxRemote } from "next-mdx-remote/types";
 import path from "path";
 import readingTime from "reading-time";
-import visit from "unist-util-visit";
-import imgToJsx from "./img-to-jsx";
 import getAllFilesRecursively from "./utils/files";
-
+// Remark packages
+import remarkGfm from "remark-gfm";
+import remarkFootnotes from "remark-footnotes";
+import remarkCodeTitles from "./remark/code-title";
+import remarkTocHeadings from "./remark/toc-headings";
+import remarkImgToJsx from "./remark/img-to-jsx";
+// Rehype packages
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrismPlus from "rehype-prism-plus";
 const root = process.cwd();
-
-const tokenClassNames = {
-  tag: "text-code-red",
-  "attr-name": "text-code-yellow",
-  "attr-value": "text-code-green",
-  deleted: "text-code-red",
-  inserted: "text-code-green",
-  punctuation: "text-code-white",
-  keyword: "text-code-purple",
-  string: "text-code-green",
-  function: "text-code-blue",
-  boolean: "text-code-red",
-  comment: "text-gray-400 italic",
-};
 
 export function getFiles(type: string) {
   const prefixPaths = path.join(root, "data", type);
@@ -45,69 +36,101 @@ export function dateSortDesc(a, b) {
 export interface FrontMatter {
   title: string;
   summary: string;
-  date: string;
+  date: string | null;
   url: string;
   tags: string[];
   images: string[];
   lastModified: string;
   draft: boolean;
+  layout: string;
 }
 
 export interface EnhancedFrontMatter extends FrontMatter {
-  wordCount: number;
   readingMinutes: number;
   slug: string | null;
   fileName: string;
 }
 
+type TOC = {
+  value: string;
+  url: string;
+  depth: any;
+};
+
 type FileBySlug = {
-  mdxSource: MdxRemote.Source;
+  mdxSource: string;
+  toc: TOC[];
   frontMatter: EnhancedFrontMatter;
 };
 
 export async function getFileBySlug(type, slug): Promise<FileBySlug> {
-  const mdxPath = path.join(root, "data", type, `${slug.join("/")}.mdx`);
-  const mdPath = path.join(root, "data", type, `${slug.join("/")}.md`);
+  const mdxPath = path.join(root, "data", type, `${slug}.mdx`);
+  const mdPath = path.join(root, "data", type, `${slug}.md`);
   const source = fs.existsSync(mdxPath)
     ? fs.readFileSync(mdxPath, "utf8")
     : fs.readFileSync(mdPath, "utf8");
 
-  const { data, content } = matter(source);
-  const mdxSource = await renderToString(content, {
-    components: MDXComponents,
-    mdxOptions: {
-      remarkPlugins: [
-        require("remark-slug"),
-        require("remark-autolink-headings"),
-        require("remark-code-titles"),
-        require("remark-math"),
-        imgToJsx,
-      ],
-      rehypePlugins: [
-        require("rehype-katex"),
-        require("@mapbox/rehype-prism"),
-        () => {
-          return (tree) => {
-            visit(tree, "element", (node, index, parent) => {
-              let [token, type] = (node.properties as any).className || [];
-              if (token === "token") {
-                (node.properties as any).className = [tokenClassNames[type]];
-              }
-            });
-          };
-        },
-      ],
+  // https://github.com/kentcdodds/mdx-bundler#nextjs-esbuild-enoent
+  if (process.platform === "win32") {
+    process.env.ESBUILD_BINARY_PATH = path.join(
+      process.cwd(),
+      "node_modules",
+      "esbuild",
+      "esbuild.exe"
+    );
+  } else {
+    process.env.ESBUILD_BINARY_PATH = path.join(
+      process.cwd(),
+      "node_modules",
+      "esbuild",
+      "bin",
+      "esbuild"
+    );
+  }
+
+  let toc = [];
+
+  const { frontmatter, code } = await bundleMDX(source, {
+    // mdx imports can be automatically source from the components directory
+    cwd: path.join(process.cwd(), "components"),
+    xdmOptions(options) {
+      // this is the recommended way to add custom remark/rehype plugins:
+      // The syntax might look weird, but it protects you in case we add/remove
+      // plugins in the future.
+      options.remarkPlugins = [
+        ...(options.remarkPlugins ?? []),
+        [remarkTocHeadings, { exportRef: toc }],
+        remarkGfm,
+        remarkCodeTitles,
+        [remarkFootnotes, { inlineNotes: true }],
+        remarkImgToJsx,
+      ] as any;
+      options.rehypePlugins = [
+        ...(options.rehypePlugins ?? []),
+        rehypeSlug,
+        rehypeAutolinkHeadings,
+        [rehypePrismPlus, { ignoreMissing: true }],
+      ];
+      return options;
+    },
+    esbuildOptions: (options) => {
+      options.loader = {
+        ...options.loader,
+        ".js": "jsx",
+      };
+      return options;
     },
   });
 
   return {
-    mdxSource,
+    mdxSource: code,
+    toc,
     frontMatter: {
-      wordCount: content.split(/\s+/gu).length,
-      readingMinutes: readingTime(content).minutes,
+      readingMinutes: readingTime(code).minutes,
       slug: slug || null,
       fileName: fs.existsSync(mdxPath) ? `${slug}.mdx` : `${slug}.md`,
-      ...(data as FrontMatter),
+      ...(frontmatter as FrontMatter),
+      date: frontmatter.date ? new Date(frontmatter.date).toISOString() : null,
     },
   };
 }
