@@ -23,9 +23,9 @@ interface Props {
 }
 function getIconColor(hover, isDark) {
   if (isDark) {
-    return hover ? "#34D399" : "#D1D5DB";
+    return hover ? "#D1D5DB" : "#34D399";
   } else {
-    return hover ? "#047857" : "#374151";
+    return hover ? "#374151" : "#047857";
   }
 }
 
@@ -57,7 +57,7 @@ export default function SkillCard({ skill, user, isDark }: Props) {
   return (
     <div className="mb-2" key={skill.id}>
       <button
-        className="flex items-center gap-1 text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-green-700 dark:hover:text-green-300"
+        className="flex items-center gap-1 text-lg font-semibold hover:text-gray-700 dark:hover:text-gray-300 text-green-700 dark:text-green-300 disabled:hover:cursor-not-allowed"
         onClick={() => onEndorse(skill.id)}
         onMouseOver={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
