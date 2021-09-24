@@ -14,7 +14,6 @@ export default function About({ about }: InferGetStaticPropsType<typeof getStati
       <PageSEO
         title={`About - ${siteMetadata.author}`}
         description={`About me - ${siteMetadata.author}`}
-        url={`${siteMetadata.siteUrl}/about`}
       />
       <div className="pt-6 pb-8 space-y-2 md:space-y-5">
         <PageTitle>About</PageTitle>

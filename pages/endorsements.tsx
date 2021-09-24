@@ -32,7 +32,6 @@ export default function EndorsementsPage({
       <PageSEO
         title={`Endorsements – ${siteMetadata.author}`}
         description={"THVu's Endorsements"}
-        url={"https://thvu.dev/endorsements"}
       />
 
       <div className="flex flex-col justify-center items-start max-w-2xl pt-6 pb-8 space-y-2 md:space-y-5">

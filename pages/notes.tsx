@@ -20,7 +20,6 @@ export default function Notes({ notionPublishes }: InferGetStaticPropsType<typeo
       <PageSEO
         title={`Notes from Notion - ${siteMetadata.author}`}
         description={siteMetadata.description}
-        url={`${siteMetadata.siteUrl}/notes`}
       />
       <div className="pt-6 pb-8 space-y-2 md:space-y-5">
         <PageTitle>Notes from Notion</PageTitle>

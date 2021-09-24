@@ -8,11 +8,7 @@ import PageTitle from "@/components/PageTitle";
 export default function Projects({ allProjects }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
-      <PageSEO
-        title={`Projects - ${siteMetadata.author}`}
-        description={siteMetadata.description}
-        url={`${siteMetadata.siteUrl}/projects`}
-      />
+      <PageSEO title={`Projects - ${siteMetadata.author}`} description={siteMetadata.description} />
       <div className="pt-6 pb-8 space-y-2 md:space-y-5">
         <PageTitle>Projects</PageTitle>
         <p className="text-lg leading-7 text-gray-500 dark:text-gray-400 xl:text-xl">

@@ -17,11 +17,7 @@ export const getStaticProps = async () => {
 export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
-      <PageSEO
-        title={siteMetadata.title}
-        description={siteMetadata.description}
-        url={siteMetadata.siteUrl}
-      />
+      <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <div className=" mt-16 pt-6 pb-8 space-y-2 md:space-y-5">
         <PageTitle>
           Xin chào! My name is Thắng{" "}
