@@ -1,5 +1,5 @@
 import React from "react";
-import { signIn, signOut, useSession } from "next-auth/client";
+import { signIn, signOut, useSession } from "next-auth/react";
 import CustomLink from "./Link";
 
 interface Props {
@@ -22,7 +22,7 @@ function LogoutButton() {
 }
 
 export default function LoginView({ message }: Props) {
-  const [session] = useSession();
+  const { data: session } = useSession();
 
   return (
     <div className="prose dark:prose-dark lg:prose-xl">

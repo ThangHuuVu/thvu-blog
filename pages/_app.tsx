@@ -5,7 +5,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { ThemeProvider } from "next-themes";
 import { DefaultSeo } from "next-seo";
 import Head from "next/head";
-import { Provider } from "next-auth/client";
+import { SessionProvider } from "next-auth/react";
 import { SEO } from "@/components/SEO";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import MDXComponents from "@/components/MDXComponents";
@@ -23,9 +23,11 @@ export default function App({ Component, pageProps }: AppProps) {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, [router.events]);
+  const { session, ...rest } = pageProps;
+
   return (
     <ThemeProvider attribute="class">
-      <Provider session={pageProps.session}>
+      <SessionProvider session={session}>
         <MDXProvider components={MDXComponents}>
           <Head>
             <meta
@@ -35,10 +37,10 @@ export default function App({ Component, pageProps }: AppProps) {
           </Head>
           <DefaultSeo {...SEO} />
           <LayoutWrapper>
-            <Component {...pageProps} />
+            <Component {...rest} />
           </LayoutWrapper>
         </MDXProvider>
-      </Provider>
+      </SessionProvider>
     </ThemeProvider>
   );
 }

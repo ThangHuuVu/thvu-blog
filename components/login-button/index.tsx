@@ -1,4 +1,4 @@
-import { ClientSafeProvider, signIn } from "next-auth/client";
+import { ClientSafeProvider, signIn } from "next-auth/react";
 import Line from "./line.svg";
 import Google from "./google.svg";
 import GoogleDark from "./google-dark.svg";
