@@ -22,7 +22,65 @@ class MyDocument extends Document {
           />
           <link
             rel="preload"
-            href="/fonts/inter-var-latin.woff2"
+            href="/fonts/be-vietnam-pro-v2-vietnamese_latin-regular.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
+            href="/fonts/be-vietnam-pro-v2-vietnamese_latin-100.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
+            href="/fonts/be-vietnam-pro-v2-vietnamese_latin-200.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
+            href="/fonts/be-vietnam-pro-v2-vietnamese_latin-300.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/be-vietnam-pro-v2-vietnamese_latin-500.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
+            href="/fonts/be-vietnam-pro-v2-vietnamese_latin-600.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/be-vietnam-pro-v2-vietnamese_latin-700.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/be-vietnam-pro-v2-vietnamese_latin-700italic.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/be-vietnam-pro-v2-vietnamese_latin-800.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
+            href="/fonts/be-vietnam-pro-v2-vietnamese_latin-900.woff2"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"

@@ -1,5 +1,6 @@
 import "@/css/tailwind.css";
 import "@/css/prism.css";
+import "@/css/font.css";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "next-themes";
