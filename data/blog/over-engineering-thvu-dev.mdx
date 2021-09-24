@@ -6,10 +6,9 @@ tags:
     "Next.js",
     "Vercel",
     "Tailwind CSS",
-    "planetscale",
+    "PlanetScale",
     "Serverless",
-    "next-auth",
-    "OAuth",
+    "NextAuth.js",
     "DatoCMS",
     "Lighthouse",
     "PWA",
@@ -50,11 +49,11 @@ const MDXComponents = {
 };
 ```
 
-And it is done! I also added a new feature, which is Real-time page view count using [planetscale](https://planetscale.com/) (More on this later in Guestbook section below)
+And it is done! I also added a new feature, which is Real-time page view count using [PlanetScale](https://planetscale.com/) (More on this later in Guestbook section below)
 
 ## <a href="/guestbook">Guestbook</a>
 
-This feature is inspired by [Lee Robinson's guestbook](https://leerob.io/guestbook) and was fun to work with. I learned from him how to set up and use [planetscale for serverless database](https://leerob.io/blog/mysql-planetscale) (previously using [redis with Upstash](https://leerob.io/blog/serverless-redis-nextjs)).
+This feature is inspired by [Lee Robinson's guestbook](https://leerob.io/guestbook) and was fun to work with. I learned from him how to set up and use [PlanetScale for serverless database](https://leerob.io/blog/mysql-planetscale) (previously using [redis with Upstash](https://leerob.io/blog/serverless-redis-nextjs)).
 
 My tweak in the implementation is authentication for guest users. I used [next-auth](https://next-auth.js.org/) to integrate with Github, Google, and Line to provide authentication.
 
