@@ -24,7 +24,7 @@ module.exports = {
         sans: ["Be Vietnam Pro", ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        primary: colors.lime,
+        primary: colors.pink,
         "spotify-green": "#1DB954",
       },
       typography: (theme) => ({
