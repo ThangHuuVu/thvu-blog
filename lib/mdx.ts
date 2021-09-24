@@ -14,6 +14,7 @@ import remarkImgToJsx from "./remark/img-to-jsx";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrismPlus from "rehype-prism-plus";
+import { TocHeading } from "@/components/TOCInline";
 const root = process.cwd();
 
 export function getFiles(type: string) {
@@ -51,15 +52,9 @@ export interface EnhancedFrontMatter extends FrontMatter {
   fileName: string;
 }
 
-type TOC = {
-  value: string;
-  url: string;
-  depth: any;
-};
-
 type FileBySlug = {
   mdxSource: string;
-  toc: TOC[];
+  toc: TocHeading[];
   frontMatter: EnhancedFrontMatter;
 };
 
@@ -117,6 +112,7 @@ export async function getFileBySlug(type, slug): Promise<FileBySlug> {
       options.loader = {
         ...options.loader,
         ".js": "jsx",
+        ".ts": "tsx",
       };
       return options;
     },

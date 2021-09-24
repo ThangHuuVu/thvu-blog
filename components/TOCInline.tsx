@@ -1,24 +1,24 @@
-/**
- * @typedef TocHeading
- * @prop {string} value
- * @prop {number} depth
- * @prop {string} url
- */
+import { Container } from "@/lib/types/common";
+
+export type TocHeading = {
+  value: string;
+  depth: number;
+  url: string;
+};
+
+interface TOCInlineProps extends Container {
+  toc: TocHeading[];
+  indentDepth?: number;
+  fromHeading?: number;
+  toHeading?: number;
+  asDisclosure?: boolean;
+  exclude?: string | string[];
+}
 
 /**
  * Generates an inline table of contents
  * Exclude titles matching this string (new RegExp('^(' + string + ')$', 'i')).
  * If an array is passed the array gets joined with a pipe (new RegExp('^(' + array.join('|') + ')$', 'i')).
- *
- * @param {{
- *  toc: TocHeading[],
- *  indentDepth?: number,
- *  fromHeading?: number,
- *  toHeading?: number,
- *  asDisclosure?: boolean,
- *  exclude?: string|string[]
- * }} props
- *
  */
 const TOCInline = ({
   toc,
@@ -27,7 +27,7 @@ const TOCInline = ({
   toHeading = 6,
   asDisclosure = false,
   exclude = "",
-}) => {
+}: TOCInlineProps) => {
   const re = Array.isArray(exclude)
     ? new RegExp("^(" + exclude.join("|") + ")$", "i")
     : new RegExp("^(" + exclude + ")$", "i");

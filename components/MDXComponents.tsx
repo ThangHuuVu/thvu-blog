@@ -1,17 +1,22 @@
 import Image from "next/image";
-import { getMDXComponent } from "mdx-bundler/client";
+import { ComponentMap, getMDXComponent } from "mdx-bundler/client";
 import CustomLink from "./Link";
 import TOCInline from "./TOCInline";
 import Pre from "./Pre";
 import { CodePen } from "mdx-embed";
 import { useMemo } from "react";
+import { Container } from "@/lib/types/common";
 
-const wrapper = ({ components, layout, ...rest }) => {
+interface WrapperProps extends Container {
+  layout: string;
+}
+
+const wrapper = ({ layout, ...rest }: WrapperProps) => {
   const Layout = require(`../layouts/${layout}`).default;
   return <Layout {...rest} />;
 };
 
-export const MDXComponents: any = {
+export const MDXComponents: ComponentMap = {
   Image,
   CodePen,
   TOCInline,
