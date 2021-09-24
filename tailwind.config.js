@@ -24,8 +24,7 @@ module.exports = {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        primary: colors.indigo,
-        blue: colors.indigo,
+        primary: colors.lime,
         "spotify-green": "#1DB954",
       },
       typography: (theme) => ({
@@ -33,11 +32,11 @@ module.exports = {
           css: {
             color: theme("colors.gray.700"),
             a: {
-              color: theme("colors.blue.500"),
+              color: theme("colors.primary.500"),
               "&:hover": {
-                color: theme("colors.blue.600"),
+                color: theme("colors.primary.600"),
               },
-              code: { color: theme("colors.blue.400") },
+              code: { color: theme("colors.primary.400") },
             },
             h1: {
               fontWeight: "700",
@@ -90,11 +89,11 @@ module.exports = {
           css: {
             color: theme("colors.gray.300"),
             a: {
-              color: theme("colors.blue.500"),
+              color: theme("colors.primary.500"),
               "&:hover": {
-                color: theme("colors.blue.400"),
+                color: theme("colors.primary.400"),
               },
-              code: { color: theme("colors.blue.400") },
+              code: { color: theme("colors.primary.400") },
             },
             h1: {
               fontWeight: "700",

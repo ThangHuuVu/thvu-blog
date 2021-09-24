@@ -43,7 +43,7 @@ export default function LoginButton({ provider }: { provider: ClientSafeProvider
   return (
     <div key={provider.name}>
       <button
-        className={`w-56 h-12 flex items-center gap-3 text-sm font-medium leading-5 transition-colors duration-150 border border-transparent rounded-lg shadow focus:outline-none focus:shadow-outline-blue
+        className={`w-56 h-12 flex items-center gap-3 text-sm font-medium leading-5 transition-colors duration-150 border border-transparent rounded-lg shadow focus:outline-none focus:shadow-outline-primary
          ${isDark && bgDark ? bgDark : bg}
          ${isDark && textDark ? textDark : text} `}
         onClick={() => signIn(provider.id)}

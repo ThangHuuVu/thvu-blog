@@ -33,7 +33,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
           .{" "}
           <Link
             href={`mailto:${siteMetadata.email}`}
-            className="font-medium leading-6 text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+            className="font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
             aria-label={`Email to ${siteMetadata.email}`}
           >
             Get in touch &rarr;
@@ -92,7 +92,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
                       <div className="text-base font-medium leading-6">
                         <Link
                           href={`/blog/${slug}`}
-                          className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                           aria-label={`Read "${title}"`}
                         >
                           Read more &rarr;
@@ -110,7 +110,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
         <div className="flex justify-end text-base font-medium leading-6">
           <Link
             href="/blog"
-            className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
             aria-label="all posts"
           >
             All Posts &rarr;
