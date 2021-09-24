@@ -3,7 +3,7 @@ import { ComponentMap, getMDXComponent } from "mdx-bundler/client";
 import CustomLink from "./Link";
 import TOCInline from "./TOCInline";
 import Pre from "./Pre";
-import { CodePen } from "mdx-embed";
+import { CodePen, Tweet } from "mdx-embed";
 import { useMemo } from "react";
 import { Container } from "@/lib/types/common";
 
@@ -19,6 +19,7 @@ const wrapper = ({ layout, ...rest }: WrapperProps) => {
 export const MDXComponents: ComponentMap = {
   Image,
   CodePen,
+  Tweet,
   TOCInline,
   a: CustomLink,
   pre: Pre,
