@@ -3,7 +3,7 @@ import React from "react";
 
 export default function SuccessMessage({ children }: Container) {
   return (
-    <p className="flex items-center text-sm font-bold text-green-700 dark:text-green-400 my-1 sm:my-2">
+    <p className="flex items-center text-sm font-bold text-success-700 dark:text-success-400 my-1 sm:my-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"

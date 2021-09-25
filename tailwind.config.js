@@ -1,5 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
-const colors = require("tailwindcss/colors");
+const colors = require("./designs/colors");
 const plugin = require("tailwindcss/plugin");
 
 module.exports = {
@@ -23,10 +23,7 @@ module.exports = {
       fontFamily: {
         sans: ["Be Vietnam Pro", ...defaultTheme.fontFamily.sans],
       },
-      colors: {
-        primary: colors.pink,
-        "spotify-green": "#1DB954",
-      },
+      colors,
       typography: (theme) => ({
         DEFAULT: {
           css: {

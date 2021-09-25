@@ -22,7 +22,7 @@ export default function NavBar() {
     <>
       <header className="w-full sticky z-10 top-0 bg-white dark:bg-black bg-opacity-30 dark:bg-opacity-30 backdrop-filter backdrop-saturate-150 backdrop-blur-lg firefox:bg-opacity-100 dark:firefox:bg-opacity-100 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between py-4">
         <nav className="w-full max-w-3xl px-4 mx-auto sm:px-6 xl:max-w-5xl xl:px-0 flex items-center justify-between">
-          <div className="block sm:h-6 sm:text-2xl font-bold italic">
+          <div className="block sm:h-6 sm:text-2xl font-bold italic hover:text-primary-600 dark:hover:text-primary-400">
             <Link href="/">{siteMetadata.headerTitle}</Link>
           </div>
           <div className="flex items-center text-base leading-5">
@@ -31,7 +31,7 @@ export default function NavBar() {
                 <Link
                   key={link.title}
                   href={link.href}
-                  className="p-1 font-medium text-gray-900 sm:p-4 dark:text-gray-100"
+                  className="p-1 sm:p-4 font-medium text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
                 >
                   {link.title}
                 </Link>
@@ -81,7 +81,7 @@ export default function NavBar() {
             <div key={link.title} className="px-12 py-4">
               <Link
                 href={link.href}
-                className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
+                className="text-2xl font-bold tracking-widest text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
                 onClick={onToggleNav}
               >
                 {link.title}

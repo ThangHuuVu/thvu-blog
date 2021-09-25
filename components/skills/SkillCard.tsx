@@ -5,6 +5,7 @@ import SuccessMessage from "../SuccessMessage";
 import { Skill } from "@/lib/types/skill";
 import LoadingSpinner from "../LoadingSpinner";
 import ArrowButton from "./arrow-up-circle.svg";
+import colors from "../../designs/colors";
 
 enum STATE {
   INITIAL,
@@ -22,10 +23,11 @@ interface Props {
   isDark: boolean;
 }
 function getIconColor(hover, isDark) {
+  console.log(isDark);
   if (isDark) {
-    return hover ? "#D1D5DB" : "#34D399";
+    return hover ? colors.primary["400"] : "#fff";
   } else {
-    return hover ? "#374151" : "#047857";
+    return hover ? colors.primary["600"] : "#000";
   }
 }
 
@@ -55,9 +57,9 @@ export default function SkillCard({ skill, user, isDark }: Props) {
   }
 
   return (
-    <div className="mb-2" key={skill.id}>
+    <div className="mb-2 ">
       <button
-        className="flex items-center gap-1 text-lg font-semibold hover:text-gray-700 dark:hover:text-gray-300 text-green-700 dark:text-green-300 disabled:hover:cursor-not-allowed"
+        className="flex items-center gap-1 text-lg font-semibold text-black dark:text-white hover:text-primary-600 dark:hover:text-primary-400 disabled:hover:cursor-not-allowed"
         onClick={() => onEndorse(skill.id)}
         onMouseOver={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -66,11 +68,7 @@ export default function SkillCard({ skill, user, isDark }: Props) {
         {state === STATE.LOADING ? (
           <LoadingSpinner />
         ) : (
-          <ArrowButton
-            // tailwind green
-            stroke={getIconColor(hover, isDark)}
-            className="inline"
-          />
+          <ArrowButton stroke={getIconColor(hover, isDark)} className="inline" />
         )}
         <span>{skill.name}</span>
       </button>
