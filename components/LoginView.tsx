@@ -31,12 +31,12 @@ export default function LoginView({ message }: Props) {
           Logged in as <strong>{session.user.name}.</strong> <LogoutButton />
         </div>
       ) : (
-        <div className="mb-10 border-2 border-primary-200 dark:border-primary-800 rounded-md p-6">
+        <div className="mb-10 border-2 border-gray-400 dark:border-gray-600 rounded-md p-6">
           <h5 className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-100">
             {message}
           </h5>
           <button
-            className="px-4 py-2 flex items-center justify-center my-4 font-semibold text-base bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 rounded"
+            className="px-4 py-2 flex items-center justify-center my-4 font-semibold text-base bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 rounded"
             onClick={() => {
               signIn();
             }}

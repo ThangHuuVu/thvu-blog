@@ -2,7 +2,7 @@ import { Container } from "@/lib/types/common";
 
 export default function ErrorMessage({ children }: Container) {
   return (
-    <p className="flex items-center text-sm font-bold text-red-800 dark:text-red-400 my-1 sm:my-2">
+    <p className="flex items-center text-sm font-bold text-danger-800 dark:text-danger-400 my-1 sm:my-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"

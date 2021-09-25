@@ -12,7 +12,7 @@ export default function Footer() {
           <div>{`© ${new Date().getFullYear()}`}</div>
           <div>{` • `}</div>
           <Link
-            className="text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
+            className="text-black dark:text-white hover:text-primary-600 dark:hover:text-primary-400"
             href="/"
           >
             {siteMetadata.title}
@@ -21,79 +21,76 @@ export default function Footer() {
         <NowPlaying />
         <div className="w-full max-w-xl grid grid-cols-1 gap-4 pb-4 sm:grid-cols-3 mx-auto mt-4">
           <div className="flex flex-col space-y-4 md:items-center">
-            <Link
-              href="/"
-              className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
-            >
+            <Link className="text-sm hover:text-primary-600 dark:hover:text-primary-400" href="/">
               Home
             </Link>
             <Link
+              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/about"
-              className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
             >
               About
             </Link>
             <Link
+              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/blog"
-              className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
             >
               Blog
             </Link>
             <Link
+              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/tags"
-              className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
             >
               Tags
             </Link>
           </div>
           <div className="flex flex-col space-y-4 md:items-center">
             <Link
+              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/projects"
-              className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
             >
               Projects
             </Link>
             <Link
+              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/endorsements"
-              className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
             >
               Endorsements
             </Link>
             <Link
+              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/guestbook"
-              className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
             >
               Guestbook
             </Link>
             <Link
+              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/notes"
-              className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
             >
               Notes
             </Link>
           </div>
           <div className="flex flex-col space-y-4 md:items-center">
             <Link
+              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href={siteMetadata.twitter}
-              className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
             >
               Twitter
             </Link>
             <Link
+              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href={siteMetadata.github}
-              className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
             >
               GitHub
             </Link>
             <Link
+              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href={siteMetadata.codepen}
-              className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
             >
               CodePen
             </Link>
             <Link
+              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href={siteMetadata.linkedin}
-              className="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-100"
             >
               LinkedIn
             </Link>
