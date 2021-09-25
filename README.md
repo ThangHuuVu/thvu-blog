@@ -1,13 +1,14 @@
 # www.thvu.dev
 
 Tech I used to build this site:
+
 - TypeScript
 - Next.js
-- next-auth
+- NextAuth.js
 - next-pwa
 - Prisma
-- planetscale
-- Datocms (with Graphql)
+- PlanetScale
+- DatoCMS (with Graphql)
 - MDX
 - Tailwind CSS
 - Sentry
