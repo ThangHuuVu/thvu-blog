@@ -1,5 +1,4 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
-const colors = require("./designs/colors");
 const plugin = require("tailwindcss/plugin");
 
 module.exports = {
@@ -23,7 +22,72 @@ module.exports = {
       fontFamily: {
         sans: ["Be Vietnam Pro", ...defaultTheme.fontFamily.sans],
       },
-      colors,
+      colors: {
+        // Generated from https://colors.eva.design/
+        primary: {
+          100: "#FDD1D9",
+          200: "#FBA4BC",
+          300: "#F575A5",
+          400: "#EB519B",
+          500: "#DE1D8D",
+          600: "#BE1588",
+          700: "#9F0E7F",
+          800: "#800972",
+          900: "#6A0568",
+        },
+        success: {
+          100: "#E4FCDB",
+          200: "#C3FAB9",
+          300: "#99F193",
+          400: "#74E377",
+          500: "#49D159",
+          600: "#35B34F",
+          700: "#249647",
+          800: "#17793D",
+          900: "#0E6437",
+        },
+        // info: {
+        //   100: "#CCFCFF",
+        //   200: "#99F2FF",
+        //   300: "#66E2FF",
+        //   400: "#3FCEFF",
+        //   500: "#00AEFF",
+        //   600: "#0087DB",
+        //   700: "#0065B7",
+        //   800: "#004793",
+        //   900: "#00337A",
+        // },
+        // warning: {
+        //   100: "#FEF1CF",
+        //   200: "#FDE09F",
+        //   300: "#FBC96F",
+        //   400: "#F8B24B",
+        //   500: "#F48E11",
+        //   600: "#D1700C",
+        //   700: "#AF5508",
+        //   800: "#8D3D05",
+        //   900: "#752D03",
+        // },
+        danger: {
+          100: "#FFDCD3",
+          200: "#FFB1A8",
+          300: "#FF7D7C",
+          400: "#FF5C6A",
+          500: "#FF264D",
+          600: "#DB1B50",
+          700: "#B7134F",
+          800: "#930C4A",
+          900: "#7A0747",
+        },
+        "spotify-green": "#1DB954",
+        // https://coolors.co/2d00f7-6a00f4-8900f2-a100f2-b100e8-bc00dd-d100d1-db00b6-e500a4-f20089
+        "gradient-1-start": "#F20089",
+        "gradient-1-end": "#D100D1",
+        "gradient-2-start": "#D100D1",
+        "gradient-2-end": "#A100F2",
+        "gradient-3-start": "#A100F2",
+        "gradient-3-end": "#2D00F7",
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {
@@ -153,7 +217,7 @@ module.exports = {
             height: "0.75rem",
           },
         },
-        "fade-foreground-1": {
+        "gradient-foreground-1": {
           "0%, 16.667%, 100%": {
             opacity: 1,
           },
@@ -161,7 +225,7 @@ module.exports = {
             opacity: 0,
           },
         },
-        "fade-background-1": {
+        "gradient-background-1": {
           "0%, 16.667%, 100%": {
             opacity: 0,
           },
@@ -169,7 +233,7 @@ module.exports = {
             opacity: 1,
           },
         },
-        "fade-foreground-2": {
+        "gradient-foreground-2": {
           "0%, 100%": {
             opacity: 0,
           },
@@ -180,7 +244,7 @@ module.exports = {
             opacity: 0,
           },
         },
-        "fade-background-2": {
+        "gradient-background-2": {
           "0%, to": {
             opacity: 1,
           },
@@ -191,7 +255,7 @@ module.exports = {
             opacity: 1,
           },
         },
-        "fade-foreground-3": {
+        "gradient-foreground-3": {
           "0%, 50%, 100%": {
             opacity: 0,
           },
@@ -199,7 +263,7 @@ module.exports = {
             opacity: 1,
           },
         },
-        "fade-background-3": {
+        "gradient-background-3": {
           "0%, 58.333%, 91.667%, 100%": {
             opacity: 1,
           },
@@ -211,12 +275,12 @@ module.exports = {
       animation: {
         shrink: "shrink 1.5s infinite",
         expand: "expand 1.5s infinite",
-        "faded-background-1": "fade-background-1 8s infinite",
-        "faded-foreground-1": "fade-foreground-1 8s infinite",
-        "faded-background-2": "fade-background-2 8s infinite",
-        "faded-foreground-2": "fade-foreground-2 8s infinite",
-        "faded-background-3": "fade-background-3 8s infinite",
-        "faded-foreground-3": "fade-foreground-3 8s infinite",
+        "gradient-background-anim-1": "gradient-background-1 8s infinite",
+        "gradient-foreground-anim-1": "gradient-foreground-1 8s infinite",
+        "gradient-background-anim-2": "gradient-background-2 8s infinite",
+        "gradient-foreground-anim-2": "gradient-foreground-2 8s infinite",
+        "gradient-background-anim-3": "gradient-background-3 8s infinite",
+        "gradient-foreground-anim-3": "gradient-foreground-3 8s infinite",
       },
     },
   },

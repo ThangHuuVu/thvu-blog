@@ -1,5 +1,4 @@
 import Link from "@/components/Link";
-import PageTitle from "@/components/PageTitle";
 import { PageSEO } from "@/components/SEO";
 import Tag from "@/components/Tag";
 import Hero from "@/components/Hero";
@@ -20,33 +19,11 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <Hero />
-      <div className=" mt-16 pt-6 pb-8 space-y-2 md:space-y-5">
-        <PageTitle>
-          Xin chào! My name is Thắng{" "}
-          <span role="img" aria-label="waving hand">
-            👋
-          </span>
-        </PageTitle>
+      {posts.length == 0 && (
         <p className="text-lg leading-7 text-gray-500 dark:text-gray-400 prose dark:prose-dark xl:text-xl">
-          I'm a software engineer located in HCMC, Vietnam{" "}
-          <span role="img" aria-label="waving hand">
-            🇻🇳
-          </span>
-          .{" "}
-          <Link
-            href={`mailto:${siteMetadata.email}`}
-            className="font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-            aria-label={`Email to ${siteMetadata.email}`}
-          >
-            Get in touch &rarr;
-          </Link>
+          No posts yet.
         </p>
-        {posts.length == 0 && (
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400 prose dark:prose-dark xl:text-xl">
-            No posts yet.
-          </p>
-        )}
-      </div>
+      )}
       <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
         Latest blog-posts
       </h1>
