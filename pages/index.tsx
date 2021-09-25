@@ -2,6 +2,7 @@ import Link from "@/components/Link";
 import PageTitle from "@/components/PageTitle";
 import { PageSEO } from "@/components/SEO";
 import Tag from "@/components/Tag";
+import Hero from "@/components/Hero";
 import siteMetadata from "@/data/siteMetadata";
 import { getAllFilesFrontMatter } from "@/lib/mdx";
 import { InferGetStaticPropsType } from "next";
@@ -18,6 +19,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
+      <Hero />
       <div className=" mt-16 pt-6 pb-8 space-y-2 md:space-y-5">
         <PageTitle>
           Xin chào! My name is Thắng{" "}

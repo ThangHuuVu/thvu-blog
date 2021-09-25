@@ -56,6 +56,12 @@ const colors = {
     900: "#7A0747",
   },
   "spotify-green": "#1DB954",
+  "gradient-1-start": "#007CF0",
+  "gradient-1-end": "#00DFD8",
+  "gradient-2-start": "#7928CA",
+  "gradient-2-end": "#FF0080",
+  "gradient-3-start": "#FF4D4D",
+  "gradient-3-end": "#F9CB28",
 };
 
 module.exports = colors;

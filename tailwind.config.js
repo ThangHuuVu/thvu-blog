@@ -153,10 +153,70 @@ module.exports = {
             height: "0.75rem",
           },
         },
+        "fade-foreground-1": {
+          "0%, 16.667%, 100%": {
+            opacity: 1,
+          },
+          "33.333%, 83.333%": {
+            opacity: 0,
+          },
+        },
+        "fade-background-1": {
+          "0%, 16.667%, 100%": {
+            opacity: 0,
+          },
+          "25%, 91.667%": {
+            opacity: 1,
+          },
+        },
+        "fade-foreground-2": {
+          "0%, 100%": {
+            opacity: 0,
+          },
+          "33.333%, 50%": {
+            opacity: 1,
+          },
+          "16.667%, 66.667%": {
+            opacity: 0,
+          },
+        },
+        "fade-background-2": {
+          "0%, to": {
+            opacity: 1,
+          },
+          "33.333%, 50%": {
+            opacity: 0,
+          },
+          "25%, 58.333%": {
+            opacity: 1,
+          },
+        },
+        "fade-foreground-3": {
+          "0%, 50%, 100%": {
+            opacity: 0,
+          },
+          "66.667%, 83.333%": {
+            opacity: 1,
+          },
+        },
+        "fade-background-3": {
+          "0%, 58.333%, 91.667%, 100%": {
+            opacity: 1,
+          },
+          "66.667%, 83.333%": {
+            opacity: 0,
+          },
+        },
       },
       animation: {
         shrink: "shrink 1.5s infinite",
         expand: "expand 1.5s infinite",
+        "faded-background-1": "fade-background-1 8s infinite",
+        "faded-foreground-1": "fade-foreground-1 8s infinite",
+        "faded-background-2": "fade-background-2 8s infinite",
+        "faded-foreground-2": "fade-foreground-2 8s infinite",
+        "faded-background-3": "fade-background-3 8s infinite",
+        "faded-foreground-3": "fade-foreground-3 8s infinite",
       },
     },
   },
