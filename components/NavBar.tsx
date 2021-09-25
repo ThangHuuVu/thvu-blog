@@ -31,7 +31,7 @@ export default function NavBar() {
                 <Link
                   key={link.title}
                   href={link.href}
-                  className="p-1 sm:p-4 font-medium text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
+                  className="p-1 sm:p-4 font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
                 >
                   {link.title}
                 </Link>
@@ -81,7 +81,7 @@ export default function NavBar() {
             <div key={link.title} className="px-12 py-4">
               <Link
                 href={link.href}
-                className="text-2xl font-bold tracking-widest text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
+                className="text-2xl font-bold tracking-widest text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
                 onClick={onToggleNav}
               >
                 {link.title}

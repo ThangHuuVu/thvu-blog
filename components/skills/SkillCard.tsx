@@ -5,7 +5,6 @@ import SuccessMessage from "../SuccessMessage";
 import { Skill } from "@/lib/types/skill";
 import LoadingSpinner from "../LoadingSpinner";
 import ArrowButton from "./arrow-up-circle.svg";
-import colors from "../../designs/colors";
 
 enum STATE {
   INITIAL,
@@ -20,26 +19,16 @@ interface Props {
     email?: string;
     name?: string;
   };
-  isDark: boolean;
-}
-function getIconColor(hover, isDark) {
-  console.log(isDark);
-  if (isDark) {
-    return hover ? colors.primary["400"] : "#fff";
-  } else {
-    return hover ? colors.primary["600"] : "#000";
-  }
 }
 
-export default function SkillCard({ skill, user, isDark }: Props) {
+export default function SkillCard({ skill, user }: Props) {
   const [state, setState] = useState<STATE>(STATE.INITIAL);
-  const [hover, setHover] = useState<boolean>(false);
   async function onEndorse(skillId: string) {
     setState(STATE.LOADING);
     const res = await fetch("/api/endorsement", {
       body: JSON.stringify({
         skillId,
-        endorseBy: user?.name || "Test user",
+        endorseBy: user?.name,
         email: user?.email || "not@provided.com",
       }),
       headers: {
@@ -57,20 +46,18 @@ export default function SkillCard({ skill, user, isDark }: Props) {
   }
 
   return (
-    <div className="mb-2 ">
+    <div className="mb-4">
       <button
-        className="flex items-center gap-1 text-lg font-semibold text-black dark:text-white hover:text-primary-600 dark:hover:text-primary-400 disabled:hover:cursor-not-allowed"
+        className="flex items-center text-md rounded-lg px-2 py-1 font-semibold text-white bg-primary-400 dark:bg-primary-600 hover:bg-gray-700 disabled:bg-gray-700 dark:hover:bg-gray-600 dark:disabled:bg-gray-600 disabled:hover:cursor-not-allowed"
         onClick={() => onEndorse(skill.id)}
-        onMouseOver={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
         disabled={!Boolean(user) || state === STATE.SUCCESS}
       >
         {state === STATE.LOADING ? (
           <LoadingSpinner />
         ) : (
-          <ArrowButton stroke={getIconColor(hover, isDark)} className="inline" />
+          <ArrowButton className="inline stroke-current mr-1" />
         )}
-        <span>{skill.name}</span>
+        {skill.name}
       </button>
       {skill.people.length > 0 && (
         <span>

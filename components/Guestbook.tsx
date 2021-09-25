@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react";
 import { GuestBookEntry } from "@/lib/types/guestbook";
 import { DefaultSession } from "next-auth";
 import LoginView from "./LoginView";
+import Button from "./Button";
 
 interface GuestbookEntryProps {
   entry: GuestBookEntry;
@@ -117,6 +118,7 @@ export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEnt
       <LoginView message="Login to sign the guestbook." />
       {Boolean(session?.user) && (
         <div className="border-2 border-gray-400 dark:border-gray-600 rounded-md p-6 prose dark:prose-dark lg:prose-xl">
+          <p>Leave a message!</p>
           <form className="w-full my-4" onSubmit={leaveEntry}>
             <textarea
               ref={inputEl}
@@ -125,12 +127,9 @@ export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEnt
               required
               className="px-4 py-2 my-4 focus:ring-primary-500 focus:border-primary-500 block w-full border-gray-300 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
             />
-            <button
-              className="px-4 py-2 rounded flex items-center justify-center px-4 font-bold h-8 text-base bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
-              type="submit"
-            >
+            <Button type="submit">
               {form.state === FORM_STATE.LOADING ? <LoadingSpinner /> : "Sign"}
-            </button>
+            </Button>
           </form>
           {form.state === FORM_STATE.ERROR && <ErrorMessage>{form.message}</ErrorMessage>}
           {form.state === FORM_STATE.SUCCESS && <SuccessMessage>{form.message}</SuccessMessage>}
