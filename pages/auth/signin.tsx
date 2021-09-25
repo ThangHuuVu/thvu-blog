@@ -14,9 +14,7 @@ export default function SignIn({
       <div className="space-y-2 flex justify-items-center items-center flex-col xl:space-y-0">
         <div className="p-8 prose dark:prose-dark max-w-none">
           <div className="flex gap-4 flex-col justify-between items-center">
-            <p className=" text-center sm:text-left">
-              To leave a comment, please sign in with one of these providers:
-            </p>
+            <p className=" text-center sm:text-left">Sign in with one of these providers:</p>
             {Object.values(providers).map((provider) => {
               return <LoginButton key={provider.id} provider={provider} />;
             })}

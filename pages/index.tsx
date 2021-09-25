@@ -25,7 +25,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
             👋
           </span>
         </PageTitle>
-        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400 prose dark:prose-dark xl:text-xl">
+        <p className="text-lg leading-7 dark:text-gray-400 prose dark:prose-dark xl:text-xl">
           I'm a software engineer located in HCMC, Vietnam{" "}
           <span role="img" aria-label="waving hand">
             🇻🇳
