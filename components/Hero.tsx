@@ -4,7 +4,7 @@ import PageTitle from "./PageTitle";
 
 export default function Hero() {
   return (
-    <div className="w-full h-screen pb-16">
+    <div className="w-full h-screen pb-16 flex flex-col justify-around">
       <h1 className="my-28 py-14 text-6xl sm:text-9xl leading-none tracking-tightest font-extrabold text-center">
         <span
           data-content="Blogs."
