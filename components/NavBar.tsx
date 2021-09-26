@@ -27,15 +27,17 @@ export default function NavBar() {
           </div>
           <div className="flex items-center text-base leading-5">
             <div className="hidden sm:block">
-              {headerNavLinks.map((link) => (
-                <Link
-                  key={link.title}
-                  href={link.href}
-                  className="p-1 sm:p-4 font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                >
-                  {link.title}
-                </Link>
-              ))}
+              {headerNavLinks
+                .filter((l) => !l.onlyMobile)
+                .map((link) => (
+                  <Link
+                    key={link.title}
+                    href={link.href}
+                    className="p-1 sm:p-4 font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
+                  >
+                    {link.title}
+                  </Link>
+                ))}
             </div>
             <ThemeSwitch />
             <div className="sm:hidden">
@@ -81,7 +83,7 @@ export default function NavBar() {
             <div key={link.title} className="px-12 py-4">
               <Link
                 href={link.href}
-                className="text-2xl font-bold tracking-widest text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
+                className="text-2xl font-bold text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
                 onClick={onToggleNav}
               >
                 {link.title}
