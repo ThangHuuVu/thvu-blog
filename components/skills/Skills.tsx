@@ -2,7 +2,7 @@ import fetcher from "@/lib/fetcher";
 import { Skill } from "@/lib/types/skill";
 import { useSession } from "next-auth/react";
 import React from "react";
-import SkillCard from "./SkillCard";
+import SkillBadge from "./SkillBadge";
 import useSWR from "swr";
 import LoginView from "../LoginView";
 import ErrorMessage from "../ErrorMessage";
@@ -25,12 +25,14 @@ export default function Skills({ fallbackData }: Props) {
             later
           </ErrorMessage>
         )}
-        <div className="mt-10">
+        <div className="mt-10 space-y-4">
           <h5 className="text-2xl font-bold leading-8 tracking-tight">Skills</h5>
           {Boolean(session) && <p>Click on a skill you think I'm good at!</p>}
-          {skills.map((skill) => (
-            <SkillCard key={skill.id} skill={skill} user={session?.user} />
-          ))}
+          <div className="grid grid-cols-1 sm:grid-cols-3 grid-flow-row auto-rows-auto gap-2">
+            {skills.map((skill) => (
+              <SkillBadge key={skill.id} skill={skill} user={session?.user} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
