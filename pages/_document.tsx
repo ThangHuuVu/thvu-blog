@@ -74,6 +74,13 @@ class MyDocument extends Document {
           />
           <link
             rel="preload"
+            href="/fonts/be-vietnam-pro-v2-vietnamese_latin-800italic.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
             href="/fonts/be-vietnam-pro-v2-vietnamese_latin-800.woff2"
             as="font"
             type="font/woff2"
