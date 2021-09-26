@@ -19,7 +19,7 @@ export default function NowPlaying() {
       <div className="flex max-w-full truncate">
         {data?.isPlaying && data?.songUrl ? (
           <a
-            className="text-sm max-w-max truncate text-spotify-green"
+            className="text-sm max-w-max truncate hover:text-spotify-green"
             href={data.songUrl}
             target="_blank"
             rel="noopener noreferrer"

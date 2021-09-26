@@ -48,7 +48,7 @@ export default function SkillCard({ skill, user }: Props) {
   return (
     <div className="mb-4">
       <button
-        className="flex items-center text-md rounded-lg px-2 py-1 font-semibold text-white bg-primary-400 dark:bg-primary-600 hover:bg-gray-700 disabled:bg-gray-700 dark:hover:bg-gray-600 dark:disabled:bg-gray-600 disabled:hover:cursor-not-allowed"
+        className="flex items-center text-lg rounded-lg px-2 py-1 font-semibold text-white bg-primary-400 dark:bg-primary-600 hover:bg-gray-700 disabled:bg-gray-700 dark:hover:bg-gray-600 dark:disabled:bg-gray-600 disabled:hover:cursor-not-allowed"
         onClick={() => onEndorse(skill.id)}
         disabled={!Boolean(user) || state === STATE.SUCCESS}
       >
