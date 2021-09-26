@@ -19,6 +19,9 @@ module.exports = {
         13: "3.25rem",
         14: "3.5rem",
       },
+      letterSpacing: {
+        tightest: "-.075em",
+      },
       fontFamily: {
         sans: ["Be Vietnam Pro", ...defaultTheme.fontFamily.sans],
       },
