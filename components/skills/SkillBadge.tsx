@@ -45,12 +45,21 @@ export default function SkillBadge({ skill, user }: Props) {
     mutate("/api/skill-category");
     setState(STATE.SUCCESS);
   }
+  const isUserEndorsed = skill?.people?.find((p) => p === user?.name);
 
   return (
     <div className="space-y-4">
-      <div className="text-base flex items-center">
+      <div className="text-base font-semibold flex items-center">
         {state === STATE.LOADING ? (
           <LoadingSpinner />
+        ) : isUserEndorsed ? (
+          <button
+            className="disabled:hover:cursor-not-allowed font-semibold text-primary-600 dark:text-primary-400"
+            title="You already endorsed this skill."
+            disabled
+          >
+            <DoneIcon className="w-8 h-8 inline fill-current " />
+          </button>
         ) : (
           <button
             className="disabled:hover:cursor-not-allowed font-semibold text-primary-600 dark:text-primary-400 hover:text-gray-700 dark:hover:text-gray-300 disabled:text-gray-700 dark:disabled:text-gray-300 "
@@ -64,7 +73,7 @@ export default function SkillBadge({ skill, user }: Props) {
       </div>
 
       {skill.people.length > 0 && (
-        <p className="text-base text-gray-600 dark:text-gray-400">
+        <p className="text-sm text-gray-600 dark:text-gray-400">
           <strong className="text-black dark:text-white">{skill.people.length}</strong>{" "}
           {`${skill.name} endorsement${skill.people.length > 1 ? "s" : ""}`} from{" "}
           <span className="text-black dark:text-white">{skill.people.join(", ")}</span>

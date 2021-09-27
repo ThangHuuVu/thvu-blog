@@ -29,8 +29,7 @@ export default function Skills({ fallbackData }: Props) {
         )}
         <div className="mt-10 space-y-4">
           <h5 className="text-2xl font-bold leading-8 tracking-tight">Skills</h5>
-          {Boolean(session) && <p>Click on a skill you think I'm good at!</p>}
-          <div className="space-y-8">
+          <div className="space-y-8 divide-y divide-gray-200 dark:divide-gray-800">
             {categories.map((category) => (
               <div key={category.name}>
                 <h4>{category.name}</h4>
