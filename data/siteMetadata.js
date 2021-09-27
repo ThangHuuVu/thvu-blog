@@ -1,5 +1,5 @@
 const siteMetadata = {
-  title: "THVu",
+  title: "THVu - Thang Huu Vu",
   author: "Thang Huu Vu",
   headerTitle: "THVu",
   description: "THVu's site",

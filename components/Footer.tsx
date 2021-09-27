@@ -7,10 +7,9 @@ export default function Footer() {
     <footer>
       <div className="flex flex-col items-center">
         <div className="flex mb-2 space-x-2 text-sm text-gray-500 dark:text-gray-400">
-          <div>{siteMetadata.author}</div>
-          <div>{` • `}</div>
+          <div>Copyright</div>
           <div>{`© ${new Date().getFullYear()}`}</div>
-          <div>{` • `}</div>
+          <div>-</div>
           <Link
             className="text-black dark:text-white hover:text-primary-600 dark:hover:text-primary-400"
             href="/"
