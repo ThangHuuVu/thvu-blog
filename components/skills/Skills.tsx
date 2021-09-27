@@ -1,5 +1,5 @@
 import fetcher from "@/lib/fetcher";
-import { Skill } from "@/lib/types/skill";
+import { Skill, SkillCategory } from "@/lib/types/skill";
 import { useSession } from "next-auth/react";
 import React from "react";
 import SkillBadge from "./SkillBadge";
@@ -8,12 +8,14 @@ import LoginView from "../LoginView";
 import ErrorMessage from "../ErrorMessage";
 
 interface Props {
-  fallbackData: Skill[];
+  fallbackData: SkillCategory[];
 }
 
 export default function Skills({ fallbackData }: Props) {
   const { data: session } = useSession();
-  const { data: skills, error } = useSWR<Skill[]>("/api/skill", fetcher, { fallbackData });
+  const { data: categories, error } = useSWR<SkillCategory[]>("/api/skill-category", fetcher, {
+    fallbackData,
+  });
 
   return (
     <div className="prose dark:prose-dark lg:prose-xl">
@@ -28,9 +30,16 @@ export default function Skills({ fallbackData }: Props) {
         <div className="mt-10 space-y-4">
           <h5 className="text-2xl font-bold leading-8 tracking-tight">Skills</h5>
           {Boolean(session) && <p>Click on a skill you think I'm good at!</p>}
-          <div className="grid grid-cols-1 sm:grid-cols-3 grid-flow-row auto-rows-auto gap-2">
-            {skills.map((skill) => (
-              <SkillBadge key={skill.id} skill={skill} user={session?.user} />
+          <div className="space-y-8">
+            {categories.map((category) => (
+              <div key={category.name}>
+                <h4>{category.name}</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 grid-flow-row auto-rows-auto gap-2">
+                  {category?.skills?.map((skill) => (
+                    <SkillBadge key={skill.id} skill={skill} user={session?.user} />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>
