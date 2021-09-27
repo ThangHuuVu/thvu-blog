@@ -5,9 +5,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     const { skillId, endorseBy, email } = req.body;
-    await prisma.endorsements.create({
+    await prisma.endorsement.create({
       data: {
-        skillId: Number(skillId),
+        skill_id: Number(skillId),
         endorsed_by: endorseBy,
         email,
       },

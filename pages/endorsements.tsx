@@ -5,21 +5,28 @@ import PageTitle from "@/components/PageTitle";
 import Skills from "@/components/skills/Skills";
 import { InferGetStaticPropsType } from "next";
 import prisma from "@/lib/prisma";
-import { Skill } from "@/lib/types/skill";
+import { Skill, SkillCategory } from "@/lib/types/skill";
 
 export async function getStaticProps() {
-  const skills = await prisma.skills.findMany({
+  const skillsByCategory = await prisma.skillCategory.findMany({
     include: {
-      endorsements: true,
+      skills_in_category: {
+        include: {
+          endorsements: true,
+        },
+      },
     },
   });
 
   return {
     props: {
-      fallbackData: skills.map<Skill>((skill) => ({
-        id: skill.id.toString(),
-        name: skill.name,
-        people: [...new Set(skill.endorsements.map((en) => en.endorsed_by))],
+      fallbackData: skillsByCategory.map<SkillCategory>((category) => ({
+        name: category.name,
+        skills: category.skills_in_category.map<Skill>((skill) => ({
+          id: skill.id.toString(),
+          name: skill.name,
+          people: [...new Set(skill.endorsements.map((en) => en.endorsed_by))],
+        })),
       })),
     },
   };

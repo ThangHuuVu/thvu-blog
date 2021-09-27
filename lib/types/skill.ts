@@ -3,3 +3,8 @@ export type Skill = {
   name: string;
   people: string[];
 };
+
+export type SkillCategory = {
+  name: string;
+  skills: Skill[];
+};

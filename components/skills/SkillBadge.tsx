@@ -4,6 +4,8 @@ import ErrorMessage from "../ErrorMessage";
 import SuccessMessage from "../SuccessMessage";
 import { Skill } from "@/lib/types/skill";
 import LoadingSpinner from "../LoadingSpinner";
+import ButtonIcon from "./plus-square-outline.svg";
+import DoneIcon from "./checkmark-circle-outline.svg";
 
 enum STATE {
   INITIAL,
@@ -20,7 +22,7 @@ interface Props {
   };
 }
 
-export default function SkillCard({ skill, user }: Props) {
+export default function SkillBadge({ skill, user }: Props) {
   const [state, setState] = useState<STATE>(STATE.INITIAL);
   async function onEndorse(skillId: string) {
     setState(STATE.LOADING);
@@ -40,35 +42,45 @@ export default function SkillCard({ skill, user }: Props) {
       setState(STATE.ERROR);
       return;
     }
-    mutate("/api/skill");
+    mutate("/api/skill-category");
     setState(STATE.SUCCESS);
   }
+  const isUserEndorsed = skill?.people?.find((p) => p === user?.name);
 
   return (
-    <div className="flex flex-col">
-      {state === STATE.LOADING ? (
-        <LoadingSpinner />
-      ) : (
-        <button
-          className="truncate flex items-center w-full rounded-lg px-4 py-2 text-lg font-semibold text-white bg-primary-400 dark:bg-primary-600 hover:bg-gray-700 disabled:bg-gray-700 dark:hover:bg-gray-600 dark:disabled:bg-gray-600 disabled:hover:cursor-not-allowed"
-          onClick={() => onEndorse(skill.id)}
-          disabled={!Boolean(user) || state === STATE.SUCCESS}
-        >
-          {skill.name}
-        </button>
-      )}
+    <div className="space-y-4">
+      <div className="text-base font-semibold flex items-center">
+        {state === STATE.LOADING ? (
+          <LoadingSpinner />
+        ) : isUserEndorsed ? (
+          <button
+            className="disabled:hover:cursor-not-allowed font-semibold text-primary-600 dark:text-primary-400"
+            title="You already endorsed this skill."
+            disabled
+          >
+            <DoneIcon className="w-8 h-8 inline fill-current " />
+          </button>
+        ) : (
+          <button
+            className="disabled:hover:cursor-not-allowed font-semibold text-primary-600 dark:text-primary-400 hover:text-gray-700 dark:hover:text-gray-300 disabled:text-gray-700 dark:disabled:text-gray-300 "
+            disabled={!Boolean(user)}
+            onClick={() => onEndorse(skill.id)}
+          >
+            <ButtonIcon className="w-8 h-8 inline fill-current " />
+          </button>
+        )}
+        <span className="ml-2">{skill.name}</span>
+      </div>
 
       {skill.people.length > 0 && (
-        <p className="text-base text-gray-600 dark:text-gray-400">
+        <p className="text-sm text-gray-600 dark:text-gray-400">
           <strong className="text-black dark:text-white">{skill.people.length}</strong>{" "}
           {`${skill.name} endorsement${skill.people.length > 1 ? "s" : ""}`} from{" "}
           <span className="text-black dark:text-white">{skill.people.join(", ")}</span>
         </p>
       )}
       {state === STATE.ERROR && <ErrorMessage>An unexpected error occurred.</ErrorMessage>}
-      {state === STATE.SUCCESS && (
-        <SuccessMessage>{`Thank you for your endorsement on ${skill.name}!`}</SuccessMessage>
-      )}
+      {state === STATE.SUCCESS && <SuccessMessage>Thank you for your endorsement!</SuccessMessage>}
     </div>
   );
 }
