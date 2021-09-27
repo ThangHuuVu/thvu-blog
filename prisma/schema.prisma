@@ -10,40 +10,49 @@ datasource db {
   referentialIntegrity = "prisma"
 }
 
-model guestbook {
+model Guestbook {
   id         BigInt   @id @default(autoincrement())
   email      String   @db.VarChar(255)
   body       String   @db.VarChar(1024)
   created_by String   @db.VarChar(255)
   updated_at DateTime @default(now()) @db.DateTime(6)
+
+  @@map(name: "guestbook")
 }
 
-model views {
+model View {
   slug  String @id @db.VarChar(128)
   count BigInt @default(1)
+
+  @@map(name: "views")
 }
 
 model SkillCategory {
-  id                 BigInt   @id @default(autoincrement())
-  name               String   @db.VarChar(255)
-  skills_in_category skills[]
+  id                 BigInt  @id @default(autoincrement())
+  name               String  @db.VarChar(255)
+  skills_in_category Skill[]
+
+  @@map(name: "skill_categories")
 }
 
-model skills {
-  id           BigInt         @id @default(autoincrement())
-  name         String         @db.VarChar(255)
-  endorsements endorsements[]
-
+model Skill {
+  id           BigInt        @id @default(autoincrement())
+  name         String        @db.VarChar(255)
+  endorsements Endorsement[]
 
   skill_category    SkillCategory? @relation(fields: [skill_category_id], references: [id])
   skill_category_id BigInt?
+
   @@unique([name])
+  @@map(name: "skills")
 }
 
-model endorsements {
+model Endorsement {
   id          BigInt  @id @default(autoincrement())
   endorsed_by String  @db.VarChar(255)
   email       String  @db.VarChar(255)
-  skill       skills? @relation(fields: [skillId], references: [id])
-  skillId     BigInt?
+  skill       Skill?  @relation(fields: [skill_id], references: [id])
+  skill_id    BigInt?
+
+  @@map(name: "endorsements")
 }
