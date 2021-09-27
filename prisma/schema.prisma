@@ -23,11 +23,20 @@ model views {
   count BigInt @default(1)
 }
 
+model SkillCategory {
+  id                 BigInt   @id @default(autoincrement())
+  name               String   @db.VarChar(255)
+  skills_in_category skills[]
+}
+
 model skills {
   id           BigInt         @id @default(autoincrement())
   name         String         @db.VarChar(255)
   endorsements endorsements[]
 
+
+  skill_category    SkillCategory? @relation(fields: [skill_category_id], references: [id])
+  skill_category_id BigInt?
   @@unique([name])
 }
 
