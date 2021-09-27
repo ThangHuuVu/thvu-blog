@@ -13,4 +13,4 @@ Tech I used to build this site:
 - Tailwind CSS
 - Sentry
 
-Read through [Over-engineering thvu.dev](https://www.thvu.dev/blog/over-engineering-thvu-dev) to learn how I built this site.
+Read through [Over-engineering thvu.dev](https://www.thvu.dev/blog/over-engineering-thvu-dev) to learn how I composed this site from public.
