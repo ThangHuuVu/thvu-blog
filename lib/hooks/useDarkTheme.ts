@@ -9,5 +9,5 @@ export function useDarkTheme() {
   useEffect(() => setMounted(true), []);
 
   const isDark = mounted && resolvedTheme === "dark";
-  return [isDark, setTheme] as const;
+  return [isDark, mounted, setTheme] as const;
 }
