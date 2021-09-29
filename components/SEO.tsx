@@ -45,22 +45,18 @@ interface SEOProps {
   description: string;
 }
 export const PageSEO = ({ title, description }: SEOProps) => {
-  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner;
-  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner;
   return (
     <CommonSEO
       title={title}
       description={description}
       ogType="website"
-      ogImage={ogImageUrl}
-      twImage={twImageUrl}
+      ogImage={siteMetadata.socialBanner}
+      twImage={siteMetadata.socialBanner}
     />
   );
 };
 
 export const TagSEO = ({ title, description }: SEOProps) => {
-  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner;
-  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner;
   const router = useRouter();
   return (
     <>
@@ -68,8 +64,8 @@ export const TagSEO = ({ title, description }: SEOProps) => {
         title={title}
         description={description}
         ogType="website"
-        ogImage={ogImageUrl}
-        twImage={twImageUrl}
+        ogImage={siteMetadata.socialBanner}
+        twImage={siteMetadata.socialBanner}
       />
       <Head>
         <link
