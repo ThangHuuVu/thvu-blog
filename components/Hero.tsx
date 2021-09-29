@@ -7,13 +7,13 @@ export default function Hero() {
     <div className="w-full h-screen pb-16 flex flex-col justify-around">
       <h1 className="my-28 sm:my-10 select-none py-14 text-6xl sm:text-9xl leading-none tracking-tightest font-extrabold text-center">
         <span
-          data-content="Blogs."
+          data-content="Blog."
           className={`relative block before:content-[attr(data-content)] dark:before:content-[attr(data-content)] before:w-full before:z-0 before:block before:absolute before:top-0 before:bottom-0 before:left-0 before:text-center before:text-black dark:before:text-white before:animate-gradient-background-anim-1`}
         >
           <span
             className={`relative z-10 px-2 text-transparent bg-clip-text bg-gradient-to-br from-gradient-1-start to-gradient-1-end animate-gradient-foreground-anim-1`}
           >
-            Blogs.
+            Blog.
           </span>
         </span>
         <span
