@@ -2,9 +2,15 @@ import Link from "@/components/Link";
 import PageTitle from "@/components/PageTitle";
 import Tag from "@/components/Tag";
 import siteMetadata from "@/data/siteMetadata";
+import { FrontMatter } from "@/lib/mdx";
 import { useState } from "react";
 
-export default function ListLayout({ posts, title }) {
+interface Props {
+  posts: FrontMatter[];
+  title: string;
+}
+
+export default function ListLayout({ posts, title }: Props) {
   const [searchValue, setSearchValue] = useState("");
   const filteredBlogPosts = posts.filter((frontMatter) => {
     const searchContent = frontMatter.title + frontMatter.summary + frontMatter.tags.join(" ");
@@ -42,7 +48,7 @@ export default function ListLayout({ posts, title }) {
       <ul>
         {!filteredBlogPosts.length && "No posts found."}
         {filteredBlogPosts.map((frontMatter) => {
-          const { slug, date, title, summary, tags } = frontMatter;
+          const { slug, date, title, summary, tags, viewCount } = frontMatter;
           return (
             <li key={slug} className="py-4">
               <article className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
@@ -56,6 +62,7 @@ export default function ListLayout({ posts, title }) {
                         day: "numeric",
                       })}
                     </time>
+                    <div className="text-sm">{viewCount} views</div>
                   </dd>
                 </dl>
                 <div className="space-y-3 xl:col-span-3">

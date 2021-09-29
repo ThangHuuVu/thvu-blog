@@ -43,12 +43,13 @@ export interface FrontMatter {
   images: string[];
   lastModified: string;
   draft: boolean;
+  slug: string | null;
+  viewCount?: string;
   layout: string;
 }
 
 export interface EnhancedFrontMatter extends FrontMatter {
   readingMinutes: number;
-  slug: string | null;
   fileName: string;
 }
 
@@ -131,7 +132,7 @@ export async function getFileBySlug(type, slug): Promise<FileBySlug> {
   };
 }
 
-export async function getAllFilesFrontMatter(folder: string) {
+export async function getAllFilesFrontMatter(folder: string): Promise<FrontMatter[]> {
   const prefixPaths = path.join(root, "data", folder);
 
   const files = getAllFilesRecursively(prefixPaths);
