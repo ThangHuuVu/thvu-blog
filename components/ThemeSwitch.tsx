@@ -9,7 +9,7 @@ const ThemeSwitch = () => {
       <Switch
         checked={isDark}
         onChange={() => setTheme(isDark ? "light" : "dark")}
-        className={`${isDark ? "bg-gray-800" : "bg-gray-200"}
+        className={`${isDark ? "bg-gray-700" : "bg-gray-200"}
           relative inline-flex flex-shrink-0 h-6 w-11 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
       >
         <span className="sr-only">Use setting</span>
@@ -17,16 +17,16 @@ const ThemeSwitch = () => {
           aria-hidden="true"
           className={`${
             isDark
-              ? "translate-x-5 bg-gray-200 border-gray-800"
-              : "translate-x-0 bg-gray-800 border-gray-200"
+              ? "translate-x-5 bg-gray-800 border-transparent"
+              : "translate-x-0 bg-gray-200 border-transparent"
           }
-            pointer-events-none inline-block h-6 w-6 rounded-full border-2 shadow-lg transform ring-0 transition ease-in-out duration-200`}
+            pointer-events-none inline-block h-6 w-6 rounded-full border shadow-lg transform ring-0 transition ease-in-out duration-200`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="text-gray-200 dark:text-gray-800"
+            className="text-gray-800 dark:text-gray-200"
           >
             {isDark ? (
               <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
