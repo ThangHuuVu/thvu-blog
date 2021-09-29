@@ -38,8 +38,9 @@ const providerStyleGuides: { [key: string]: StyleGuide } = {
 };
 
 export default function LoginButton({ provider }: { provider: ClientSafeProvider }) {
-  const [isDark] = useDarkTheme();
+  const [isDark, mounted] = useDarkTheme();
   const { Logo, LogoDark, bg, bgDark, text, textDark } = providerStyleGuides[provider.id];
+  if (!mounted) return null;
   return (
     <div key={provider.name}>
       <button
