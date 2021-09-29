@@ -26,13 +26,13 @@ export default async function handler(
     }
 
     if (req.method === "GET") {
-      const views = await prisma.view.findUnique({
+      const view = await prisma.view.findUnique({
         where: {
           slug,
         },
       });
 
-      return res.status(200).json({ total: views.count.toString() });
+      return res.status(200).json({ total: view.count.toString() });
     }
   } catch (e) {
     return res.status(500).json({ message: e.message });

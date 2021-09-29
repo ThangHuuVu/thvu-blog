@@ -5,11 +5,18 @@ import Hero from "@/components/Hero";
 import siteMetadata from "@/data/siteMetadata";
 import { getAllFilesFrontMatter } from "@/lib/mdx";
 import { InferGetStaticPropsType } from "next";
+import prisma from "@/lib/prisma";
 
 const MAX_DISPLAY = 5;
 
 export const getStaticProps = async () => {
   const posts = await getAllFilesFrontMatter("blog");
+  const viewCountBySlug = (await prisma.view.findMany()).reduce((obj, view) => {
+    obj[view.slug] = view.count.toString();
+    return obj;
+  }, {});
+
+  posts.forEach((post) => (post.viewCount = viewCountBySlug[post.slug]));
 
   return { props: { posts } };
 };
@@ -30,7 +37,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
       {posts.length > 0 && (
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
-            const { slug, date, title, summary, tags } = frontMatter;
+            const { slug, date, title, summary, tags, viewCount } = frontMatter;
             return (
               <li key={slug} className="py-12">
                 <article>
@@ -45,6 +52,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
                             day: "numeric",
                           })}
                         </time>
+                        <div className="text-sm">{viewCount} views</div>
                       </dd>
                     </dl>
                     <div className="space-y-5 xl:col-span-3">
