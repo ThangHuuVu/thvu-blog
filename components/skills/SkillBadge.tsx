@@ -54,7 +54,7 @@ export default function SkillBadge({ skill, user }: Props) {
           <LoadingSpinner />
         ) : isUserEndorsed ? (
           <button
-            className="disabled:hover:cursor-not-allowed font-semibold text-primary-600 dark:text-primary-400"
+            className="disabled:hover:cursor-not-allowed font-semibold text-success-700 dark:text-success-400"
             title="You already endorsed this skill."
             disabled
           >
