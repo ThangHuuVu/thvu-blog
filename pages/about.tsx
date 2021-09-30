@@ -47,16 +47,18 @@ export default function About({ about }: InferGetStaticPropsType<typeof getStati
         </div>
         <div className="pt-8 pb-8 prose dark:prose-dark max-w-none xl:col-span-2">
           <StructuredText data={content} />
-          <p className="text-gray-700 dark:text-gray:300">
-            Last updated at{" "}
-            <time dateTime={updatedAt}>
-              {new Date(updatedAt).toLocaleDateString(siteMetadata.locale, {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
-          </p>
+          <div className="mt-14">
+            <p className="text-gray-300 dark:text-gray-700">
+              Last updated at{" "}
+              <time dateTime={updatedAt}>
+                {new Date(updatedAt).toLocaleDateString(siteMetadata.locale, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+            </p>
+          </div>
         </div>
       </div>
     </>
