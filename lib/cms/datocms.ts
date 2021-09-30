@@ -28,8 +28,10 @@ export async function getAbout(preview) {
         name
         title
         location
-        introduction1
-        introduction2
+        updatedAt
+          content {
+            value
+          }
         profilepicture {
           blurhash
           alt
