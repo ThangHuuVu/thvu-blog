@@ -5,9 +5,10 @@ import Image from "next/image";
 import { getAbout } from "@/lib/cms/datocms";
 import { InferGetStaticPropsType } from "next";
 import PageTitle from "@/components/PageTitle";
+import { StructuredText } from "react-datocms";
 
 export default function About({ about }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { name, title, location, introduction1, introduction2, profilepicture } = about;
+  const { name, title, location, profilepicture, content, updatedAt } = about;
 
   return (
     <>
@@ -45,8 +46,19 @@ export default function About({ about }: InferGetStaticPropsType<typeof getStati
           </div>
         </div>
         <div className="pt-8 pb-8 prose dark:prose-dark max-w-none xl:col-span-2">
-          <p>{introduction1}</p>
-          <p>{introduction2}</p>
+          <div>
+            <StructuredText data={content} />
+            <p className="text-gray-700 dark:text-gray:300">
+              Last updated at{" "}
+              <time dateTime={updatedAt}>
+                {new Date(updatedAt).toLocaleDateString(siteMetadata.locale, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+            </p>
+          </div>
         </div>
       </div>
     </>
