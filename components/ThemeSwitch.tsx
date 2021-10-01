@@ -19,7 +19,7 @@ const ThemeSwitch = () => {
           fill="currentColor"
           className={`${
             isDark ? "translate-x-6" : "translate-x-0"
-          } border-2 border-transparent absolute h-6 w-6 text-gray-900 dark:text-gray-100`}
+          } border-2 border-transparent absolute h-6 w-6 text-gray-900 dark:text-gray-100 transition ease-in-out duration-200`}
         >
           {isDark ? (
             <path
