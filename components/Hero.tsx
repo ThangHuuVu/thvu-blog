@@ -8,31 +8,25 @@ export default function Hero() {
       <h1 className="my-28 sm:my-10 select-none py-14 text-6xl sm:text-9xl leading-none tracking-tightest font-extrabold text-center">
         <span
           data-content="Blog."
-          className={`relative block before:content-[attr(data-content)] dark:before:content-[attr(data-content)] before:w-full before:z-0 before:block before:absolute before:top-0 before:bottom-0 before:left-0 before:text-center before:text-black dark:before:text-white before:animate-gradient-background-anim-1`}
+          className="relative block before:content-[attr(data-content)] dark:before:content-[attr(data-content)] before:w-full before:z-0 before:block before:absolute before:top-0 before:bottom-0 before:left-0 before:text-center before:text-black dark:before:text-white before:animate-gradient-background-anim-1"
         >
-          <span
-            className={`relative z-10 px-2 text-transparent bg-clip-text bg-gradient-to-br from-gradient-1-start to-gradient-1-end animate-gradient-foreground-anim-1`}
-          >
+          <span className="relative z-10 px-2 text-transparent bg-clip-text bg-gradient-to-br from-gradient-1-start to-gradient-1-end animate-gradient-foreground-anim-1">
             Blog.
           </span>
         </span>
         <span
           data-content="Showcase."
-          className={`relative block italic before:content-[attr(data-content)] dark:before:content-[attr(data-content)] before:w-full before:z-0 before:block before:absolute before:top-0 before:bottom-0 before:left-0 before:text-center before:text-black dark:before:text-white before:animate-gradient-background-anim-2`}
+          className="relative block font-thin italic before:content-[attr(data-content)] dark:before:content-[attr(data-content)] before:w-full before:z-0 before:block before:absolute before:top-0 before:bottom-0 before:left-0 before:text-center before:text-black dark:before:text-white before:animate-gradient-background-anim-2"
         >
-          <span
-            className={`relative z-10 px-2 text-transparent bg-clip-text bg-gradient-to-br from-gradient-2-start to-gradient-2-end animate-gradient-foreground-anim-2`}
-          >
+          <span className="relative z-10 px-2 text-transparent bg-clip-text bg-gradient-to-br from-gradient-2-start to-gradient-2-end animate-gradient-foreground-anim-2">
             Showcase.
           </span>
         </span>
         <span
           data-content="Portfolio."
-          className={`relative block before:content-[attr(data-content)] dark:before:content-[attr(data-content)] before:w-full before:z-0 before:block before:absolute before:top-0 before:bottom-0 before:left-0 before:text-center before:text-black dark:before:text-white before:animate-gradient-background-anim-3`}
+          className="relative block before:content-[attr(data-content)] dark:before:content-[attr(data-content)] before:w-full before:z-0 before:block before:absolute before:top-0 before:bottom-0 before:left-0 before:text-center before:text-black dark:before:text-white before:animate-gradient-background-anim-3"
         >
-          <span
-            className={`relative z-10 px-2 text-transparent bg-clip-text bg-gradient-to-br from-gradient-3-start to-gradient-3-end animate-gradient-foreground-anim-3`}
-          >
+          <span className="relative z-10 px-2 text-transparent bg-clip-text bg-gradient-to-br from-gradient-3-start to-gradient-3-end animate-gradient-foreground-anim-3">
             Portfolio.
           </span>
         </span>

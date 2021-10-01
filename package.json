@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "next-remote-watch ./data",
-    "dev": "TAILWIND_MODE=watch next dev",
+    "dev": "yarn run clean && TAILWIND_MODE=watch next dev",
     "build": "next build && node ./scripts/generate-sitemap",
+    "clean": "rm -rf ./.next",
     "serve": "next start",
     "analyze": "env ANALYZE=true next build",
     "prepare": "husky install",
