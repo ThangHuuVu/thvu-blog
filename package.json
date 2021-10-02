@@ -14,7 +14,8 @@
     "prisma:generate": "npx prisma generate",
     "prisma:studio": "npx prisma studio",
     "pscale:shadow": "pscale connect thvu-blog shadow --port 3310",
-    "pscale:main": "pscale connect thvu-blog main --port 3309"
+    "pscale:main": "pscale connect thvu-blog main --port 3309",
+    "compose": "node ./scripts/compose.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
