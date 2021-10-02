@@ -12,7 +12,7 @@ export async function getStaticProps() {
     return obj;
   }, {});
 
-  posts.forEach((post) => (post.viewCount = viewCountBySlug[post.slug]));
+  posts.forEach((post) => (post.viewCount = viewCountBySlug[post.slug] || "0"));
 
   return { props: { posts } };
 }
