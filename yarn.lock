@@ -1118,6 +1118,11 @@
   resolved "https://registry.yarnpkg.com/@napi-rs/triples/-/triples-1.0.3.tgz#76d6d0c3f4d16013c61e45dfca5ff1e6c31ae53c"
   integrity sha512-jDJTpta+P4p1NZTFVLHJ/TLFVYVcOqv6l8xwOeBKNPMgY/zDYH/YH7SJbvrr/h1RcS9GzbPcLKGzpuK9cV56UA==
 
+"@next-auth/prisma-adapter@^0.5.2-next.15":
+  version "0.5.2-next.15"
+  resolved "https://registry.yarnpkg.com/@next-auth/prisma-adapter/-/prisma-adapter-0.5.2-next.15.tgz#ea418cbc7cdcd93f3a293b87e45194765a178c18"
+  integrity sha512-kHB4v4fHzKLJ19wSzn3/uvKoJxpXee/iDdIbrYBLgMCxL4qpUizcuETD+qd2jW3saIXTCmcFiX6++eSarKkGPg==
+
 "@next/bundle-analyzer@11.1.2":
   version "11.1.2"
   resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-11.1.2.tgz#7892c86f58028399000f402a5c7ca8aecb65686f"
