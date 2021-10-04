@@ -25,6 +25,15 @@ module.exports = {
       fontFamily: {
         sans: ["Be Vietnam Pro", ...defaultTheme.fontFamily.sans],
       },
+      gradientColorStops: {
+        // https://coolors.co/2d00f7-6a00f4-8900f2-a100f2-b100e8-bc00dd-d100d1-db00b6-e500a4-f20089
+        "gradient-1-start": "#F20089",
+        "gradient-1-end": "#D100D1",
+        "gradient-2-start": "#D100D1",
+        "gradient-2-end": "#A100F2",
+        "gradient-3-start": "#A100F2",
+        "gradient-3-end": "#2D00F7",
+      },
       colors: {
         // Generated from https://colors.eva.design/
         primary: {
@@ -83,13 +92,6 @@ module.exports = {
           900: "#7A0747",
         },
         "spotify-green": "#1DB954",
-        // https://coolors.co/2d00f7-6a00f4-8900f2-a100f2-b100e8-bc00dd-d100d1-db00b6-e500a4-f20089
-        "gradient-1-start": "#F20089",
-        "gradient-1-end": "#D100D1",
-        "gradient-2-start": "#D100D1",
-        "gradient-2-end": "#A100F2",
-        "gradient-3-start": "#A100F2",
-        "gradient-3-end": "#2D00F7",
       },
       typography: (theme) => ({
         DEFAULT: {
@@ -278,12 +280,12 @@ module.exports = {
       animation: {
         shrink: "shrink 1.5s infinite",
         expand: "expand 1.5s infinite",
-        "gradient-background-anim-1": "gradient-background-1 8s infinite",
-        "gradient-foreground-anim-1": "gradient-foreground-1 8s infinite",
-        "gradient-background-anim-2": "gradient-background-2 8s infinite",
-        "gradient-foreground-anim-2": "gradient-foreground-2 8s infinite",
-        "gradient-background-anim-3": "gradient-background-3 8s infinite",
-        "gradient-foreground-anim-3": "gradient-foreground-3 8s infinite",
+        "gradient-background-1": "gradient-background-1 8s infinite",
+        "gradient-foreground-1": "gradient-foreground-1 8s infinite",
+        "gradient-background-2": "gradient-background-2 8s infinite",
+        "gradient-foreground-2": "gradient-foreground-2 8s infinite",
+        "gradient-background-3": "gradient-background-3 8s infinite",
+        "gradient-foreground-3": "gradient-foreground-3 8s infinite",
       },
     },
   },
