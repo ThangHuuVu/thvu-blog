@@ -69,7 +69,7 @@ model Account {
   expires_at               Int?
   token_type               String?
   scope                    String?
-  id_token                 String?
+  id_token                 String? @db.VarChar(2048)
   session_state            String?
   oauth_token_secret       String?
   oauth_token              String?
