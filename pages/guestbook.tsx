@@ -1,4 +1,4 @@
-import Guestbook from "@/components/Guestbook";
+import Guestbook from "@/components/guestbook/Guestbook";
 import siteMetadata from "@/data/siteMetadata";
 import { PageSEO } from "@/components/SEO";
 import Link from "next/link";
@@ -43,7 +43,7 @@ export const getStaticProps = async () => {
     orderBy: {
       updated_at: "desc",
     },
-    select: { id: true, body: true, created_by: true, updated_at: true },
+    select: { id: true, body: true, created_by: true, updated_at: true, user: true },
   });
 
   return {
@@ -53,6 +53,11 @@ export const getStaticProps = async () => {
         body: entry.body,
         created_by: entry.created_by,
         updated_at: entry.updated_at.toString(),
+        user: {
+          id: entry.user.id,
+          name: entry.user.name,
+          image: entry.user.image,
+        },
       })),
     },
     revalidate: 60,

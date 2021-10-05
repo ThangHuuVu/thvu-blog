@@ -6,6 +6,8 @@ import { Skill } from "@/lib/types/skill";
 import LoadingSpinner from "../LoadingSpinner";
 import ButtonIcon from "./plus-square-outline.svg";
 import DoneIcon from "./checkmark-circle-outline.svg";
+import DefaultAvatar from "../guestbook/person-outline.svg";
+import Image from "next/image";
 
 enum STATE {
   INITIAL,
@@ -74,9 +76,24 @@ export default function SkillBadge({ skill, user }: Props) {
       {skill.users.length > 0 && (
         <p className="text-sm text-gray-600 dark:text-gray-400">
           <strong className="text-black dark:text-white">{skill.users.length}</strong>{" "}
-          {`${skill.name} endorsement${skill.users.length > 1 ? "s" : ""}`} from{" "}
-          <span className="text-black dark:text-white">
-            {skill.users.map((user) => user.name).join(", ")}
+          {`${skill.name} endorsement${skill.users.length > 1 ? "s" : ""}:`}
+          <span className="mx-2">
+            {skill.users.map((user) => (
+              <span key={user.id} className="ml-[-0.25rem]">
+                {user.image ? (
+                  <Image
+                    src={user.image}
+                    alt={user.name}
+                    title={user.name}
+                    width={20}
+                    height={20}
+                    className="rounded-full"
+                  />
+                ) : (
+                  <DefaultAvatar className="w-5 h-5 rounded-full fill-current text-primary-600 dark:text-primary-400" />
+                )}
+              </span>
+            ))}
           </span>
         </p>
       )}

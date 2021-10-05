@@ -81,6 +81,10 @@ const nextConfig = {
       "www.datocms-assets.com",
       // twitter profile picture
       "pbs.twimg.com",
+      // google avatar
+      "lh3.googleusercontent.com",
+      // github avatar
+      "avatars.githubusercontent.com",
     ],
   },
   webpack5: true,
