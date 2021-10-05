@@ -18,10 +18,10 @@ export default NextAuth({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
     }),
-    // LineProvider({
-    //   clientId: process.env.LINE_CHANNEL_ID,
-    //   clientSecret: process.env.LINE_CHANNEL_SECRET,
-    // }),
+    LineProvider({
+      clientId: process.env.LINE_CHANNEL_ID,
+      clientSecret: process.env.LINE_CHANNEL_SECRET,
+    }),
   ],
   pages: {
     signIn: "/auth/signin",
