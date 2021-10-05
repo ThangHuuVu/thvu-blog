@@ -17,6 +17,7 @@ enum STATE {
 interface Props {
   skill: Skill;
   user: {
+    id?: string;
     email?: string;
     name?: string;
   };
@@ -29,8 +30,6 @@ export default function SkillBadge({ skill, user }: Props) {
     const res = await fetch("/api/endorsement", {
       body: JSON.stringify({
         skillId,
-        endorseBy: user?.name,
-        email: user?.email || "not@provided.com",
       }),
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +44,7 @@ export default function SkillBadge({ skill, user }: Props) {
     mutate("/api/skill-category");
     setState(STATE.SUCCESS);
   }
-  const isUserEndorsed = skill?.people?.find((p) => p === user?.name);
+  const isUserEndorsed = skill?.users?.find((p) => p.id === user?.id);
 
   return (
     <div className="space-y-4">
@@ -72,11 +71,13 @@ export default function SkillBadge({ skill, user }: Props) {
         <span className="ml-2">{skill.name}</span>
       </div>
 
-      {skill.people.length > 0 && (
+      {skill.users.length > 0 && (
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          <strong className="text-black dark:text-white">{skill.people.length}</strong>{" "}
-          {`${skill.name} endorsement${skill.people.length > 1 ? "s" : ""}`} from{" "}
-          <span className="text-black dark:text-white">{skill.people.join(", ")}</span>
+          <strong className="text-black dark:text-white">{skill.users.length}</strong>{" "}
+          {`${skill.name} endorsement${skill.users.length > 1 ? "s" : ""}`} from{" "}
+          <span className="text-black dark:text-white">
+            {skill.users.map((user) => user.name).join(", ")}
+          </span>
         </p>
       )}
       {state === STATE.ERROR && <ErrorMessage>An unexpected error occurred.</ErrorMessage>}
