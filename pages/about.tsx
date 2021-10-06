@@ -26,7 +26,7 @@ export default function About({ about }: InferGetStaticPropsType<typeof getStati
             width={192}
             height={192}
             alt={profilepicture.alt}
-            className="rounded-lg"
+            className="rounded-full sm:rounded-lg"
             placeholder="blur"
             blurDataURL={profilepicture.blurUpThumb}
           />
