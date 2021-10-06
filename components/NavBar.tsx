@@ -68,8 +68,8 @@ export default function NavBar() {
       </header>
       {/* Mobile side menu */}
       <div
-        className={`md:hidden fixed w-full h-screen right-0 bg-white dark:bg-black z-20 transform ease-in-out duration-300 ${
-          navShow ? "translate-x-0" : "translate-x-full"
+        className={`md:hidden fixed w-full h-screen right-0 bg-white dark:bg-black z-20 transform ease-in-out duration-500 ${
+          navShow ? "translate-x-0" : " -translate-x-full"
         } backdrop-filter bg-opacity-30 dark:bg-opacity-30 backdrop-saturate-150 backdrop-blur-lg firefox:bg-opacity-100 dark:firefox:bg-opacity-100`}
       >
         <nav className="h-full mt-8">
