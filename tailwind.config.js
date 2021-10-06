@@ -12,7 +12,6 @@ module.exports = {
       spacing: {
         "9/16": "56.25%",
         0.75: "0.1875rem",
-        tight: "-0.5rem",
       },
       lineHeight: {
         11: "2.75rem",
@@ -22,6 +21,9 @@ module.exports = {
       },
       letterSpacing: {
         tightest: "-.075em",
+      },
+      fontSize: {
+        "8.5xl": "7rem",
       },
       fontFamily: {
         sans: ["Be Vietnam Pro", ...defaultTheme.fontFamily.sans],
