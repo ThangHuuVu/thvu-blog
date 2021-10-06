@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { Skill, SkillCategory } from "@/lib/types/skill";
+import { Skill, SkillCategory, User } from "@/lib/types/skill";
 import { withSentry } from "@sentry/nextjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -9,7 +9,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse<SkillCategory[]
       include: {
         skills_in_category: {
           include: {
-            endorsements: true,
+            endorsements: {
+              include: {
+                user: true,
+              },
+            },
           },
         },
       },
@@ -20,7 +24,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse<SkillCategory[]
         skills: category.skills_in_category.map<Skill>((skill) => ({
           id: skill.id.toString(),
           name: skill.name,
-          people: [...new Set(skill.endorsements.map((en) => en.endorsed_by))],
+          users: skill.endorsements
+            .filter((en) => en.userId)
+            .map<User>((en) => ({
+              id: en.user.id,
+              name: en.user.name,
+              image: en.user.image,
+            })),
         })),
       }))
     );

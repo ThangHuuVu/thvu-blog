@@ -35,7 +35,12 @@ export default function Skills({ fallbackData }: Props) {
                 <h4>{category.name}</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 grid-flow-row auto-rows-auto gap-2">
                   {category?.skills?.map((skill) => (
-                    <SkillBadge key={skill.id} skill={skill} user={session?.user} />
+                    <SkillBadge
+                      key={skill.id}
+                      skill={skill}
+                      user={session?.user}
+                      currentUserId={session?.id as string}
+                    />
                   ))}
                 </div>
               </div>

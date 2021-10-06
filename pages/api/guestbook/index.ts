@@ -13,19 +13,23 @@ const handler = async (
       orderBy: {
         updated_at: "desc",
       },
-      select: { id: true, body: true, created_by: true, updated_at: true },
+      select: { id: true, body: true, updated_at: true, user: true },
     });
 
     return res.json(
       entries.map<GuestBookEntry>((entry) => ({
         id: entry.id.toString(),
         body: entry.body,
-        created_by: entry.created_by,
         updated_at: entry.updated_at.toString(),
+        user: {
+          id: entry.user.id,
+          name: entry.user.name,
+          image: entry.user.image,
+        },
       }))
     );
   }
-  const { user } = await getSession({ req });
+  const { user, id } = await getSession({ req });
   if (!user) {
     return res.status(403).send("Unauthorized");
   }
@@ -34,17 +38,20 @@ const handler = async (
     const body = (req.body.body || "").slice(0, 500);
     const newEntry = await prisma.guestbook.create({
       data: {
-        email: user.email || "not@provided.com",
         body,
-        created_by: user.name,
+        userId: id.toString(),
       },
     });
 
     return res.status(200).json({
       id: newEntry.id.toString(),
       body: newEntry.body,
-      created_by: newEntry.created_by,
       updated_at: newEntry.updated_at.toString(),
+      user: {
+        id: id.toString(),
+        name: user.name,
+        image: user.image,
+      },
     });
   }
 

@@ -6,6 +6,8 @@ import { Skill } from "@/lib/types/skill";
 import LoadingSpinner from "../LoadingSpinner";
 import ButtonIcon from "./plus-square-outline.svg";
 import DoneIcon from "./checkmark-circle-outline.svg";
+import DefaultAvatar from "../guestbook/person-outline.svg";
+import Image from "next/image";
 
 enum STATE {
   INITIAL,
@@ -17,20 +19,19 @@ enum STATE {
 interface Props {
   skill: Skill;
   user: {
-    email?: string;
+    image?: string;
     name?: string;
   };
+  currentUserId: string;
 }
 
-export default function SkillBadge({ skill, user }: Props) {
+export default function SkillBadge({ skill, user, currentUserId }: Props) {
   const [state, setState] = useState<STATE>(STATE.INITIAL);
   async function onEndorse(skillId: string) {
     setState(STATE.LOADING);
     const res = await fetch("/api/endorsement", {
       body: JSON.stringify({
         skillId,
-        endorseBy: user?.name,
-        email: user?.email || "not@provided.com",
       }),
       headers: {
         "Content-Type": "application/json",
@@ -45,13 +46,15 @@ export default function SkillBadge({ skill, user }: Props) {
     mutate("/api/skill-category");
     setState(STATE.SUCCESS);
   }
-  const isUserEndorsed = skill?.people?.find((p) => p === user?.name);
+  const isUserEndorsed = skill?.users?.find((u) => u.id === currentUserId);
 
   return (
     <div className="space-y-4">
       <div className="text-base font-semibold flex items-center">
         {state === STATE.LOADING ? (
-          <LoadingSpinner />
+          <div className="h-8 w-8 flex items-center justify-center">
+            <LoadingSpinner />
+          </div>
         ) : isUserEndorsed ? (
           <button
             className="disabled:hover:cursor-not-allowed font-semibold text-success-700 dark:text-success-400"
@@ -71,12 +74,28 @@ export default function SkillBadge({ skill, user }: Props) {
         )}
         <span className="ml-2">{skill.name}</span>
       </div>
-
-      {skill.people.length > 0 && (
+      <div className="flex items-center gap-1">
+        {skill.users.map((user) => (
+          <span title={user.name} key={user.id} className="w-8 h-8">
+            {user.image ? (
+              <Image
+                src={user.image}
+                alt={user.name}
+                width={32}
+                height={32}
+                className="rounded-full"
+              />
+            ) : (
+              <DefaultAvatar className="w-8 h-8 p-1 rounded-full fill-current text-primary-600 dark:text-primary-400 border-2 border-solid border-primary-600 dark:border-primary-400" />
+            )}
+          </span>
+        ))}
+      </div>
+      {skill.users.length > 0 && (
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          <strong className="text-black dark:text-white">{skill.people.length}</strong>{" "}
-          {`${skill.name} endorsement${skill.people.length > 1 ? "s" : ""}`} from{" "}
-          <span className="text-black dark:text-white">{skill.people.join(", ")}</span>
+          <strong className="text-black dark:text-white">{skill.users.length}</strong>{" "}
+          {`${skill.name} endorsement${skill.users.length > 1 ? "s" : ""} from:`}
+          <span className="mx-2">{skill.users.map((u) => u.name).join(", ")}</span>
         </p>
       )}
       {state === STATE.ERROR && <ErrorMessage>An unexpected error occurred.</ErrorMessage>}
