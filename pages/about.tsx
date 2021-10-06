@@ -20,13 +20,13 @@ export default function About({ about }: InferGetStaticPropsType<typeof getStati
         <PageTitle>About</PageTitle>
       </div>
       <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
-        <div className="flex flex-col items-center pt-8 xl:sticky xl:top-8">
+        <div className="flex flex-col items-center xl:items-start pt-8 xl:sticky xl:top-12">
           <Image
             src={profilepicture.url}
             width={192}
             height={192}
             alt={profilepicture.alt}
-            className="rounded-full"
+            className="rounded-full xl:rounded-lg"
             placeholder="blur"
             blurDataURL={profilepicture.blurUpThumb}
           />

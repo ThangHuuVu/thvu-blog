@@ -4,8 +4,8 @@ import PageTitle from "./PageTitle";
 
 export default function Hero() {
   return (
-    <div className="w-full h-screen pb-16 flex flex-col justify-around">
-      <h1 className="my-28 sm:my-10 text-center select-none py-14 text-7xl sm:text-9xl leading-none tracking-tightest font-extrabold">
+    <div className="w-full h-screen flex flex-col justify-center">
+      <h1 className="my-28 sm:my-10 text-center select-none py-14 text-6xl sm:text-9xl leading-none tracking-tightest font-extrabold">
         <span
           data-content="Blog."
           className="relative block before:content-[attr(data-content)] dark:before:content-[attr(data-content)] before:w-full before:block before:absolute before:top-0 before:bottom-0 before:left-0 before:px-2 before:text-center before:text-black dark:before:text-white before:animate-gradient-background-1"
@@ -33,14 +33,14 @@ export default function Hero() {
       </h1>
       <div className="space-y-2 md:space-y-5">
         <PageTitle>
-          Xin chào! My name is Thắng{" "}
-          <span role="img" aria-label="waving hand">
+          Xin chào! I'm Thắng{" "}
+          <span role="img" aria-label="waving hand" className="wave">
             👋
           </span>
         </PageTitle>
         <p className="text-lg leading-7 prose text-gray-500 max-w-none dark:text-gray-400">
-          I'm a software engineer located in HCMC, Vietnam{" "}
-          <span role="img" aria-label="waving hand">
+          I'm a seasoned software engineer located in HCMC, Vietnam{" "}
+          <span role="img" aria-label="vietnam flag">
             🇻🇳
           </span>
           .{" "}

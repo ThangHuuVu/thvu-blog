@@ -32,7 +32,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
         </p>
       )}
       <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-        Latest blog-posts
+        Latest blog posts
       </h1>
       {posts.length > 0 && (
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
