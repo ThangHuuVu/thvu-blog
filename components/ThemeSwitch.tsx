@@ -5,7 +5,7 @@ const ThemeSwitch = () => {
   const [isDark, mounted, setTheme] = useDarkTheme();
   if (!mounted) return <div className="w-12 ml-4" />;
   return (
-    <div className="flex items-center ml-4 mr-1">
+    <div className="flex items-center">
       <Switch
         checked={isDark}
         onChange={() => setTheme(isDark ? "light" : "dark")}
