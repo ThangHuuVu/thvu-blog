@@ -8,24 +8,23 @@ const guestbookEntries = async (
   req: NextApiRequest,
   res: NextApiResponse<GuestBookEntry | string | {}>
 ) => {
-  const { user } = await getSession({ req });
+  const { user, id: userId } = await getSession({ req });
   const { id } = req.query;
 
   const entry = await prisma.guestbook.findUnique({
     where: {
       id: Number(id),
     },
-    select: { id: true, body: true, created_by: true, updated_at: true },
+    select: { id: true, body: true, updated_at: true, user: true, userId: true },
   });
 
-  if (!user || user.name !== entry.created_by) {
+  if (!user || userId !== entry.userId) {
     return res.status(403).send("Unauthorized");
   }
   if (req.method === "GET") {
     return res.json({
       id: entry.id.toString(),
       body: entry.body,
-      created_by: entry.created_by,
       updated_at: entry.updated_at,
     });
   }

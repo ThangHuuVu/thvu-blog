@@ -10,8 +10,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     await prisma.endorsement.create({
       data: {
         skill_id: Number(skillId),
-        endorsed_by: user.name,
-        email: user.email || "",
         userId: id.toString(),
       },
     });
