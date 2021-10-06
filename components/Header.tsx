@@ -20,10 +20,10 @@ function useIsScrollTop() {
   return isTop;
 }
 
-function useToggleNav() {
-  const [navShow, setNavShow] = useState(false);
-  const onToggleNav = () => {
-    setNavShow((status) => {
+function useToggleMenu() {
+  const [menuShow, setMenuShow] = useState(false);
+  const onMenuToggle = () => {
+    setMenuShow((status) => {
       if (status) {
         document.body.style.overflow = "auto";
       } else {
@@ -33,11 +33,11 @@ function useToggleNav() {
       return !status;
     });
   };
-  return [navShow, onToggleNav] as const;
+  return [menuShow, onMenuToggle] as const;
 }
 
-export default function NavBar() {
-  const [navShow, onToggleNav] = useToggleNav();
+export default function Header() {
+  const [menuShow, onMenuToggle] = useToggleMenu();
   const isTop = useIsScrollTop();
 
   return (
@@ -60,7 +60,7 @@ export default function NavBar() {
                 ))}
             </div>
             <div className="sm:hidden flex items-center">
-              <MenuButton onClick={onToggleNav} isOpened={navShow} />
+              <MenuButton onClick={onMenuToggle} isOpened={menuShow} />
             </div>
           </div>
           <ThemeSwitch />
@@ -69,7 +69,7 @@ export default function NavBar() {
       {/* Mobile side menu */}
       <div
         className={`md:hidden fixed w-full h-screen right-0 bg-white dark:bg-black z-20 transform ease-in-out duration-500 ${
-          navShow ? "translate-x-0" : " -translate-x-full"
+          menuShow ? "translate-x-0" : " -translate-x-full"
         } backdrop-filter bg-opacity-30 dark:bg-opacity-30 backdrop-saturate-150 backdrop-blur-lg firefox:bg-opacity-100 dark:firefox:bg-opacity-100`}
       >
         <nav className="h-full mt-8">
@@ -78,7 +78,7 @@ export default function NavBar() {
               <Link
                 href={link.href}
                 className="text-2xl font-bold text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                onClick={onToggleNav}
+                onClick={onMenuToggle}
               >
                 {link.title}
               </Link>
