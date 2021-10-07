@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
-import { Skill, SkillCategory, User } from "@/lib/types/skill";
+import { Skill, SkillCategory } from "@/lib/types/skill";
+import { User } from "@/lib/types/User";
 import { withSentry } from "@sentry/nextjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 

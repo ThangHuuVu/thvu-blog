@@ -85,6 +85,8 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       // github avatar
       "avatars.githubusercontent.com",
+      // notion file url
+      "s3.us-west-2.amazonaws.com",
     ],
   },
   webpack5: true,

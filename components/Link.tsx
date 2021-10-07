@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 
 const CustomLink = ({ href, ...rest }: React.LinkHTMLAttributes<HTMLAnchorElement>) => {
   const isInternalLink = href && href.startsWith("/");
