@@ -1,5 +1,4 @@
 import { Container } from "@/lib/types/common";
-import React from "react";
 
 export default function SuccessMessage({ children }: Container) {
   return (

@@ -1,4 +1,4 @@
-import { User } from "./skill";
+import { User } from "./User";
 
 export type GuestBookEntry = {
   id: string;

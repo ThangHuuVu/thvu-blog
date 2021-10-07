@@ -1,11 +1,11 @@
 import { PageSEO } from "@/components/SEO";
-import React from "react";
 import siteMetadata from "@/data/siteMetadata";
 import PageTitle from "@/components/PageTitle";
 import Skills from "@/components/skills/Skills";
 import { InferGetStaticPropsType } from "next";
 import prisma from "@/lib/prisma";
-import { Skill, SkillCategory, User } from "@/lib/types/skill";
+import { Skill, SkillCategory } from "@/lib/types/skill";
+import { User } from "@/lib/types/User";
 
 export async function getStaticProps() {
   const skillsByCategory = await prisma.skillCategory.findMany({
