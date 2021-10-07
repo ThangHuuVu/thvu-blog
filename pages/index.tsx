@@ -41,7 +41,7 @@ export default function Home({ recentPosts }: InferGetStaticPropsType<typeof get
               <Link
                 key={slug}
                 href={`/blog/${slug}`}
-                className=" w-full flex flex-col justify-between row-span-1 p-4 border-4 border-solid rounded-lg border-gray-800 dark:border-gray-200 transform hover:scale-[1.02] hover:border-primary-600 dark:hover:border-primary-400"
+                className=" w-full flex flex-col justify-between row-span-1 p-4 border-2 border-solid rounded-lg border-gray-800 dark:border-gray-200 transform hover:scale-101 hover:border-primary-600 dark:hover:border-primary-400"
               >
                 <h4 className="text-lg font-bold leading-4 tracking-tight">{title}</h4>
                 <div className="pt-4 text-sm prose text-gray-800 max-w-none dark:text-gray-200 flex items-center gap-1">
