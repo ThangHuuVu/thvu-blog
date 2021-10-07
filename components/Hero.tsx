@@ -1,5 +1,5 @@
 import siteMetadata from "@/data/siteMetadata";
-import CustomLink from "./CustomLink";
+import Link from "next/link";
 import PageTitle from "./PageTitle";
 
 export default function Hero() {
@@ -39,18 +39,16 @@ export default function Hero() {
           </span>
         </PageTitle>
         <p className="text-lg leading-7 prose text-gray-500 max-w-none dark:text-gray-400">
-          I'm a seasoned software engineer located in HCMC, Vietnam{" "}
+          I'm a software engineer located in HCMC, Vietnam{" "}
           <span role="img" aria-label="vietnam flag">
             🇻🇳
           </span>
           .{" "}
-          <CustomLink
-            href={`mailto:${siteMetadata.email}`}
-            className="font-medium leading-6 "
-            aria-label={`Email to ${siteMetadata.email}`}
-          >
-            Get in touch
-          </CustomLink>
+          <Link href={`mailto:${siteMetadata.email}`}>
+            <a className="font-medium leading-6 " aria-label={`Email to ${siteMetadata.email}`}>
+              Get in touch &rarr;
+            </a>
+          </Link>
         </p>
       </div>
     </div>
