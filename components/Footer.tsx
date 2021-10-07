@@ -1,4 +1,4 @@
-import Link from "./Link";
+import CustomLink from "./CustomLink";
 import siteMetadata from "@/data/siteMetadata";
 import NowPlaying from "@/components/NowPlaying";
 
@@ -9,84 +9,87 @@ export default function Footer() {
         <nav className="w-full max-w-2xl xl:max-w-3xl flex flex-col gap-4 sm:gap-0 sm:flex-row justify-between mx-auto mt-4 pb-8">
           <div className="flex flex-col space-y-4 md:items-start">
             <p className="text-sm font-bold">Portfolio</p>
-            <Link className="text-sm hover:text-primary-600 dark:hover:text-primary-400" href="/">
+            <CustomLink
+              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
+              href="/"
+            >
               Home
-            </Link>
-            <Link
+            </CustomLink>
+            <CustomLink
               className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/about"
             >
               About
-            </Link>
+            </CustomLink>
           </div>
           <div className="flex flex-col space-y-4 md:items-start">
             <p className="text-sm font-bold">Writing</p>
-            <Link
+            <CustomLink
               className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/blog"
             >
               Blog
-            </Link>
-            <Link
+            </CustomLink>
+            <CustomLink
               className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/tags"
             >
               Tags
-            </Link>
-            <Link
+            </CustomLink>
+            <CustomLink
               className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/notes"
             >
               Notes
-            </Link>
+            </CustomLink>
           </div>
           <div className="flex flex-col space-y-4 md:items-start">
             <p className="text-sm font-bold">Showcase</p>
-            <Link
+            <CustomLink
               className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/projects"
             >
               Projects
-            </Link>
-            <Link
+            </CustomLink>
+            <CustomLink
               className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/endorsements"
             >
               Endorsements
-            </Link>
-            <Link
+            </CustomLink>
+            <CustomLink
               className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/guestbook"
             >
               Guestbook
-            </Link>
+            </CustomLink>
           </div>
           <div className="flex flex-col space-y-4 md:items-start">
             <p className="text-sm font-bold">Social</p>
-            <Link
+            <CustomLink
               className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href={siteMetadata.twitter}
             >
               Twitter
-            </Link>
-            <Link
+            </CustomLink>
+            <CustomLink
               className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href={siteMetadata.github}
             >
               GitHub
-            </Link>
-            <Link
+            </CustomLink>
+            <CustomLink
               className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href={siteMetadata.codepen}
             >
               CodePen
-            </Link>
-            <Link
+            </CustomLink>
+            <CustomLink
               className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href={siteMetadata.linkedin}
             >
               LinkedIn
-            </Link>
+            </CustomLink>
           </div>
         </nav>
         <NowPlaying />
@@ -94,12 +97,12 @@ export default function Footer() {
           <div>Copyright</div>
           <div>{`© ${new Date().getFullYear()}`}</div>
           <div>-</div>
-          <Link
+          <CustomLink
             className="text-black dark:text-white hover:text-primary-600 dark:hover:text-primary-400"
             href="/"
           >
             {siteMetadata.title}
-          </Link>
+          </CustomLink>
         </div>
       </div>
     </footer>

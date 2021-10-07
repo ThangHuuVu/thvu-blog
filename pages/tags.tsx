@@ -1,4 +1,4 @@
-import Link from "@/components/Link";
+import Link from "@/components/CustomLink";
 import { PageSEO } from "@/components/SEO";
 import Tag from "@/components/Tag";
 import siteMetadata from "@/data/siteMetadata";

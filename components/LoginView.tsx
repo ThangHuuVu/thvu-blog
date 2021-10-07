@@ -1,5 +1,5 @@
 import { signIn, signOut, useSession } from "next-auth/react";
-import CustomLink from "./Link";
+import CustomLink from "./CustomLink";
 import Button from "./Button";
 
 interface Props {

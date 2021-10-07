@@ -7,6 +7,7 @@ import { InferGetStaticPropsType } from "next";
 import PageTitle from "@/components/PageTitle";
 import prisma from "@/lib/prisma";
 import { GuestBookEntry } from "@/lib/types/guestbook";
+import CustomLink from "@/components/CustomLink";
 
 export default function GuestbookPage({
   fallbackData,
@@ -29,9 +30,7 @@ export default function GuestbookPage({
       </div>
       <p className="text-sm text-gray-600 dark:text-gray-400 prose dark:prose-dark">
         This page is inspired by{" "}
-        <Link href="https://leerob.io/guestbook">
-          <a className="text-sm font-semibold">Lee Robinson's guestbook.</a>
-        </Link>
+        <CustomLink href="https://leerob.io/guestbook">Lee Robinson's guestbook.</CustomLink>
       </p>
       <PageViews />
     </>

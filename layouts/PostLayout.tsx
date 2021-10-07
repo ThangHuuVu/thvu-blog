@@ -1,4 +1,4 @@
-import Link from "@/components/Link";
+import Link from "@/components/CustomLink";
 import PageTitle from "@/components/PageTitle";
 import SectionContainer from "@/components/SectionContainer";
 import { BlogSEO } from "@/components/SEO";
