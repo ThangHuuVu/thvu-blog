@@ -30,7 +30,6 @@ export const getStaticProps = async ({ preview = false }) => {
       guestbookEntryCount,
       projectCount: allProjects.length,
     },
-    revalidate: 60,
   };
 };
 
