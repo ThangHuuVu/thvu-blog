@@ -34,14 +34,14 @@ export default function Home({ recentPosts }: InferGetStaticPropsType<typeof get
         Latest blog posts
       </h1>
       {recentPosts.length > 0 && (
-        <div className="py-12 grid grid-cols-1 grid-rows-2 grid-flow-row sm:grid-rows-1 sm:grid-cols-2 justify-between gap-8">
+        <div className="py-8 grid grid-cols-1 grid-rows-2 grid-flow-row sm:grid-rows-1 sm:grid-cols-2 justify-between gap-4">
           {recentPosts.map((frontMatter) => {
             const { slug, title, viewCount } = frontMatter;
             return (
               <Link
                 key={slug}
                 href={`/blog/${slug}`}
-                className=" w-full flex flex-col justify-between row-span-1 p-4 border-2 border-solid rounded-lg border-gray-800 dark:border-gray-200 transform hover:scale-101 hover:border-primary-600 dark:hover:border-primary-400"
+                className=" w-full flex flex-col justify-between row-span-1 p-4 border-2 border-solid rounded-lg border-gray-200 dark:border-gray-800 transform hover:scale-101 hover:border-primary-600 dark:hover:border-primary-400"
               >
                 <h4 className="text-lg font-bold leading-4 tracking-tight">{title}</h4>
                 <div className="pt-4 text-sm prose text-gray-800 max-w-none dark:text-gray-200 flex items-center gap-1">
