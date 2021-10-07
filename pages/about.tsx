@@ -51,16 +51,13 @@ export default function About({ about }: InferGetStaticPropsType<typeof getStati
           <StructuredText
             data={content}
             customRules={[
-              renderRule(isLink, ({ node }) => {
-                console.log(node);
-                return (
-                  <CustomLink href={node.url}>
-                    {node.children.map((child) => {
-                      return <child.type key={child.value}>{child.value}</child.type>;
-                    })}
-                  </CustomLink>
-                );
-              }),
+              renderRule(isLink, ({ node }) => (
+                <CustomLink href={node.url}>
+                  {node.children.map((child) => {
+                    return <child.type key={child.value}>{child.value}</child.type>;
+                  })}
+                </CustomLink>
+              )),
             ]}
           />
           <div className="mt-14">
