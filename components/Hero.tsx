@@ -1,5 +1,5 @@
 import siteMetadata from "@/data/siteMetadata";
-import Link from "./Link";
+import CustomLink from "./CustomLink";
 import PageTitle from "./PageTitle";
 
 export default function Hero() {
@@ -44,13 +44,13 @@ export default function Hero() {
             🇻🇳
           </span>
           .{" "}
-          <Link
+          <CustomLink
             href={`mailto:${siteMetadata.email}`}
-            className="font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+            className="font-medium leading-6 "
             aria-label={`Email to ${siteMetadata.email}`}
           >
-            Get in touch &rarr;
-          </Link>
+            Get in touch
+          </CustomLink>
         </p>
       </div>
     </div>

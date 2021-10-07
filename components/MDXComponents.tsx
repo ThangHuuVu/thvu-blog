@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ComponentMap, getMDXComponent } from "mdx-bundler/client";
-import CustomLink from "./Link";
+import CustomLink from "./CustomLink";
 import TOCInline from "./TOCInline";
 import Pre from "./Pre";
 import { CodePen, Tweet } from "mdx-embed";

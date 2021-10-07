@@ -152,6 +152,12 @@ module.exports = {
             "ul li:before": {
               backgroundColor: theme("colors.gray.500"),
             },
+            "ul li > :last-child": {
+              margin: 0,
+            },
+            "ul li > :first-child": {
+              margin: 0,
+            },
             strong: { color: theme("colors.gray.600") },
             blockquote: {
               color: theme("colors.gray.900"),
@@ -196,6 +202,12 @@ module.exports = {
             },
             "ul li:before": {
               backgroundColor: theme("colors.gray.400"),
+            },
+            "ul li > :last-child": {
+              margin: 0,
+            },
+            "ul li > :first-child": {
+              margin: 0,
             },
             strong: { color: theme("colors.gray.100") },
             thead: {

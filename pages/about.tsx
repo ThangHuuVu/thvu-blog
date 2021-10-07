@@ -5,7 +5,9 @@ import Image from "next/image";
 import { getAbout } from "@/lib/cms/datocms";
 import { InferGetStaticPropsType } from "next";
 import PageTitle from "@/components/PageTitle";
-import { StructuredText } from "react-datocms";
+import { renderRule, StructuredText } from "react-datocms";
+import { isLink } from "datocms-structured-text-utils";
+import CustomLink from "@/components/CustomLink";
 
 export default function About({ about }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { name, title, location, profilepicture, content, updatedAt } = about;
@@ -46,7 +48,21 @@ export default function About({ about }: InferGetStaticPropsType<typeof getStati
           </div>
         </div>
         <div className="pt-8 pb-8 prose dark:prose-dark max-w-none xl:col-span-2">
-          <StructuredText data={content} />
+          <StructuredText
+            data={content}
+            customRules={[
+              renderRule(isLink, ({ node }) => {
+                console.log(node);
+                return (
+                  <CustomLink href={node.url}>
+                    {node.children.map((child) => {
+                      return <child.type key={child.value}>{child.value}</child.type>;
+                    })}
+                  </CustomLink>
+                );
+              }),
+            ]}
+          />
           <div className="mt-14">
             <p className="text-gray-300 dark:text-gray-700">
               Last updated at{" "}
