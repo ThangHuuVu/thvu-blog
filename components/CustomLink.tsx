@@ -22,7 +22,7 @@ const CustomLink = ({ href, children, className, showIcon = true, ...rest }: Cus
       <a
         target="_blank"
         rel="noopener noreferrer"
-        className={`inline-flex gap-0.5 items-center ${className}`}
+        className={`items-center ${className ? className : ""}`}
         {...rest}
       >
         {children}
@@ -30,7 +30,7 @@ const CustomLink = ({ href, children, className, showIcon = true, ...rest }: Cus
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            className="h-4 w-4 inline-block fill-current"
+            className="ml-0.5 h-4 w-4 inline-block fill-current"
           >
             <g data-name="Layer 2">
               <g data-name="external-link">
