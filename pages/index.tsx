@@ -1,11 +1,11 @@
-import Link from "@/components/CustomLink";
+import CustomLink from "@/components/CustomLink";
 import { PageSEO } from "@/components/SEO";
 import Hero from "@/components/Hero";
+import InternalCard from "@/components/InternalCard";
 import siteMetadata from "@/data/siteMetadata";
 import { getAllFilesFrontMatter } from "@/lib/mdx";
 import { InferGetStaticPropsType } from "next";
 import prisma from "@/lib/prisma";
-import { Container } from "@/lib/types/common";
 import { getAllProjects } from "@/lib/cms/datocms";
 
 const MAX_DISPLAY = 2;
@@ -34,25 +34,6 @@ export const getStaticProps = async ({ preview = false }) => {
   };
 };
 
-interface IndexCardProps extends Container {
-  href: string;
-  title: string;
-}
-
-function IndexCard({ href, title, children }: IndexCardProps) {
-  return (
-    <Link
-      href={href}
-      className=" w-full flex flex-col justify-between row-span-1 p-4 border-2 border-solid rounded-lg border-gray-200 dark:border-gray-800 transform hover:scale-101 hover:border-primary-600 dark:hover:border-primary-400"
-    >
-      <h4 className="text-lg font-bold leading-4 tracking-tight">{title}</h4>
-      <div className="pt-4 text-sm prose text-gray-800 max-w-none dark:text-gray-200 flex items-center gap-1">
-        {children}
-      </div>
-    </Link>
-  );
-}
-
 export default function Home({
   posts,
   guestbookEntryCount,
@@ -78,7 +59,7 @@ export default function Home({
                 {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
                   const { slug, title, viewCount } = frontMatter;
                   return (
-                    <IndexCard key={slug} href={`/blog/${slug}`} title={title}>
+                    <InternalCard key={slug} href={`/blog/${slug}`} title={title}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -93,20 +74,20 @@ export default function Home({
                         </g>
                       </svg>
                       {viewCount}
-                    </IndexCard>
+                    </InternalCard>
                   );
                 })}
               </div>
             </>
           )}
           <div className="text-base font-medium leading-6">
-            <Link
+            <CustomLink
               href="/blog"
               className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
               aria-label="all posts"
             >
               All Posts &rarr;
-            </Link>
+            </CustomLink>
           </div>
         </div>
         <div>
@@ -114,7 +95,7 @@ export default function Home({
             Showcase
           </h2>
           <div className="py-8 grid grid-cols-1 grid-rows-3 grid-flow-row sm:grid-rows-1 sm:grid-cols-2 xl:grid-cols-3 justify-between gap-4">
-            <IndexCard href={`/endorsements`} title="Endorsements">
+            <InternalCard href={`/endorsements`} title="Endorsements">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -128,8 +109,8 @@ export default function Home({
                 </g>
               </svg>
               {endorsementCount}
-            </IndexCard>
-            <IndexCard href={`/guestbook`} title="Guestbook">
+            </InternalCard>
+            <InternalCard href={`/guestbook`} title="Guestbook">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -143,8 +124,8 @@ export default function Home({
                 </g>
               </svg>
               {guestbookEntryCount}
-            </IndexCard>
-            <IndexCard href={`/projects`} title="Projects">
+            </InternalCard>
+            <InternalCard href={`/projects`} title="Projects">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -158,7 +139,7 @@ export default function Home({
                 </g>
               </svg>
               {projectCount}
-            </IndexCard>
+            </InternalCard>
           </div>
         </div>
       </div>

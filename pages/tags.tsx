@@ -1,4 +1,4 @@
-import Link from "@/components/CustomLink";
+import CustomLink from "@/components/CustomLink";
 import { PageSEO } from "@/components/SEO";
 import Tag from "@/components/Tag";
 import siteMetadata from "@/data/siteMetadata";
@@ -29,12 +29,12 @@ export default function Tags({ tags }: InferGetStaticPropsType<typeof getStaticP
             return (
               <div key={t} className="mt-2 mb-2 mr-5">
                 <Tag text={t} />
-                <Link
+                <CustomLink
                   href={`/tags/${kebabCase(t)}`}
                   className="-ml-2 text-sm font-semibold text-gray-600 uppercase dark:text-gray-300"
                 >
                   {` (${tags[t]})`}
-                </Link>
+                </CustomLink>
               </div>
             );
           })}

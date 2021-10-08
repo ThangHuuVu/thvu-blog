@@ -1,4 +1,4 @@
-import Link from "@/components/CustomLink";
+import CustomLink from "@/components/CustomLink";
 import PageTitle from "@/components/PageTitle";
 import SectionContainer from "@/components/SectionContainer";
 import { BlogSEO } from "@/components/SEO";
@@ -79,12 +79,12 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
                       <dd className="text-gray-900 dark:text-gray-100">{siteMetadata.author}</dd>
                       <dt className="sr-only">Twitter</dt>
                       <dd>
-                        <Link
+                        <CustomLink
                           href={siteMetadata.twitter}
                           className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                         >
                           {siteMetadata.twitter.replace("https://twitter.com/", "@")}
-                        </Link>
+                        </CustomLink>
                       </dd>
                     </dl>
                   </li>
@@ -94,11 +94,11 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:pb-0 xl:col-span-3 xl:row-span-2">
               <div className="pt-10 pb-8 prose dark:prose-dark max-w-none">{children}</div>
               <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
-                <Link href={discussUrl(slug)} rel="nofollow">
+                <CustomLink href={discussUrl(slug)} rel="nofollow">
                   {"Discuss on Twitter"}
-                </Link>
+                </CustomLink>
                 {` • `}
-                <Link href={editUrl(fileName)}>{"View on GitHub"}</Link>
+                <CustomLink href={editUrl(fileName)}>{"View on GitHub"}</CustomLink>
               </div>
             </div>
             <footer>
@@ -123,7 +123,7 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
                           Previous Article
                         </h2>
                         <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
+                          <CustomLink href={`/blog/${prev.slug}`}>{prev.title}</CustomLink>
                         </div>
                       </div>
                     )}
@@ -133,7 +133,7 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
                           Next Article
                         </h2>
                         <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/blog/${next.slug}`}>{next.title}</Link>
+                          <CustomLink href={`/blog/${next.slug}`}>{next.title}</CustomLink>
                         </div>
                       </div>
                     )}
@@ -141,12 +141,12 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
                 )}
               </div>
               <div className="pt-4 xl:pt-8">
-                <Link
+                <CustomLink
                   href="/blog"
                   className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                 >
                   &larr; Back
-                </Link>
+                </CustomLink>
               </div>
             </footer>
           </div>

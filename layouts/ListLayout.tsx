@@ -1,4 +1,4 @@
-import Link from "@/components/CustomLink";
+import CustomLink from "@/components/CustomLink";
 import PageTitle from "@/components/PageTitle";
 import Tag from "@/components/Tag";
 import siteMetadata from "@/data/siteMetadata";
@@ -68,9 +68,12 @@ export default function ListLayout({ posts, title }: Props) {
                 <div className="space-y-3 xl:col-span-3">
                   <div>
                     <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                      <Link href={`/blog/${slug}`} className="text-gray-900 dark:text-gray-100">
+                      <CustomLink
+                        href={`/blog/${slug}`}
+                        className="text-gray-900 dark:text-gray-100"
+                      >
                         {title}
-                      </Link>
+                      </CustomLink>
                     </h3>
                     <div className="flex flex-wrap">
                       {tags.map((tag) => (
