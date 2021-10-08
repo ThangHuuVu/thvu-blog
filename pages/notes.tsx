@@ -1,7 +1,7 @@
 import siteMetadata from "@/data/siteMetadata";
 import { PageSEO } from "@/components/SEO";
 import { getPublishedNotes } from "@/lib/notion";
-import Card from "@/components/Card";
+import ExternalCard from "@/components/ExternalCard";
 import { InferGetStaticPropsType } from "next";
 import PageTitle from "@/components/PageTitle";
 
@@ -29,7 +29,7 @@ export default function Notes({ notionPublishes }: InferGetStaticPropsType<typeo
       <div className="container py-12">
         <div className="flex flex-wrap -m-4">
           {notionPublishes.map((publish) => (
-            <Card
+            <ExternalCard
               key={publish.title}
               title={publish.title}
               description={publish.description}

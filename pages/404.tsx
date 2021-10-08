@@ -1,4 +1,4 @@
-import Link from "@/components/CustomLink";
+import CustomLink from "@/components/CustomLink";
 
 export default function FourZeroFour() {
   return (
@@ -13,11 +13,11 @@ export default function FourZeroFour() {
           Sorry we couldn't find this page.
         </p>
         <p className="mb-8">But dont worry, you can find plenty of other things on our homepage.</p>
-        <Link href="/">
+        <CustomLink href="/">
           <button className="inline px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-primary-600 border border-transparent rounded-lg shadow focus:outline-none focus:shadow-outline-primary hover:bg-primary-700 dark:hover:bg-primary-500">
             Back to homepage
           </button>
-        </Link>
+        </CustomLink>
       </div>
     </div>
   );

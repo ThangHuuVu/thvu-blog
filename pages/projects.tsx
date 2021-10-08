@@ -1,5 +1,5 @@
 import siteMetadata from "@/data/siteMetadata";
-import Card from "@/components/Card";
+import ExternalCard from "@/components/ExternalCard";
 import { PageSEO } from "@/components/SEO";
 import { getAllProjects } from "@/lib/cms/datocms";
 import { InferGetStaticPropsType } from "next";
@@ -18,7 +18,7 @@ export default function Projects({ allProjects }: InferGetStaticPropsType<typeof
       <div className="container py-12">
         <div className="flex flex-wrap -m-4">
           {allProjects.map(({ title, description, cover, url }) => (
-            <Card
+            <ExternalCard
               key={title}
               title={title}
               description={description}
