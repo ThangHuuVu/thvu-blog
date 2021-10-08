@@ -140,7 +140,12 @@ export async function getAllFilesFrontMatter(folder: string): Promise<FrontMatte
   const allFrontMatter = [];
 
   files.forEach((file) => {
-    const fileName = file.slice(prefixPaths.length + 1);
+    // Replace is needed to work on Windows
+    const fileName = file.slice(prefixPaths.length + 1).replace(/\\/g, "/");
+    // Remove Unexpected File
+    if (path.extname(fileName) !== ".md" && path.extname(fileName) !== ".mdx") {
+      return;
+    }
     const source = fs.readFileSync(file, "utf8");
     const { data } = matter(source);
     if (data.draft !== true) {
