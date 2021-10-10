@@ -1,11 +1,12 @@
 ---
 title: CSS in real world - Re-create Vercel Deploy. Preview. Ship. with Tailwind CSS
-date: "2021-10-11"
+date: "2021-10-10"
 tags: ["CSS", "Tailwind CSS"]
-draft: true
+draft: false
 summary:
 images:
   [
+    "/static/blog/css-in-real-world-recreate-vercel-deploy-preview-ship-with-tailwind-css/css-in-real-world-verccel-hero-tailwind-css.png",
     "/static/blog/css-in-real-world-recreate-vercel-deploy-preview-ship-with-tailwind-css/daniel-ging-28q5mxg4G7E-unsplash.jpg",
     "/static/blog/css-in-real-world-recreate-vercel-deploy-preview-ship-with-tailwind-css/foreground.png",
     "/static/blog/css-in-real-world-recreate-vercel-deploy-preview-ship-with-tailwind-css/background.png",
@@ -187,9 +188,9 @@ Applying back these to the markup:
 </h1>
 ```
 
-What is going on? For the foreground, we set the background color to gradient, using utilities `from-` and `to-`. Then, we use `text-transparent` and `bg-clip-text` to clip the text & achive the gradient text effect.
+What is going on? For the foreground, we set the background color to gradient, using utilities `from-` and `to-`. Then, we use `text-transparent` and `bg-clip-text` to clip the text & achieve the gradient text effect.
 
-> Tip: Besides `from-` and `to-`, you can also use `via-` to add a middle color.
+> Tip: Besides `from-` and `to-`, you can also use `via-` to add a middle color in your design.
 
 We are making good progress! Now the text should have vivid gradient colors. [Here](https://play.tailwindcss.com/BjTaBpFxD2) is how it should look like.
 
@@ -237,14 +238,12 @@ Let's first style the pseudo-element:
 ```
 
 - We want the pseudo-element to be `absolute` positioned within the outer `span`.
-- Use `data content and `before:content-[attr(data-content)]`to fill content inside pseudo-elements. You should see the display is all black now, as the pseudo-element is overlaying the descendant`span`. This is expected.
+- Use `data content` and `before:content-[attr(data-content)]` to fill content inside pseudo-elements.
+- You should see the display is all black now, as the pseudo-element is overlaying the descendant`span`. This is expected.
 
 ### Animations
 
-Animation utilities in Tailwind CSS are enabled by default. To write custom animation, go to `tailwind.config.js`. We need to:
-
-- Extend `keyframes`
-- Extend `animation`
+Animation utilities in Tailwind CSS are enabled by default. To write custom animation, go to `tailwind.config.js`. We need to extend `keyframes` & `animation`. The value are extracted from Vercel:
 
 ```js:tailwind.config.js {18-81} showLineNumbers
 module.exports = {
@@ -333,111 +332,7 @@ module.exports = {
 }
 ```
 
-It's time to apply the class back to our markup. [Here](https://play.tailwindcss.com/DntnlBJk2F) is how it should look like at the end:
-
-```html:index.html
-<h1 class="py-14 text-[23vw] text-center sm:text-10xl leading-none select-none tracking-tightest font-extrabold">
-  <span data-content="Develop." class="relative block before:content-[attr(data-content)] before:w-full before:z-0 before:block before:absolute before:top-0 before:px-2 before:bottom-0 before:left-0 before:text-center before:text-black before:animate-gradient-background-1">
-    <span class="px-2 text-transparent bg-clip-text bg-gradient-to-br from-gradient-1-start to-gradient-1-end animate-gradient-foreground-1"> Develop.</span>
-  </span>
-  <span data-content="Preview." class="relative block before:content-[attr(data-content)] before:w-full before:z-0 before:block before:absolute before:top-0 before:px-2 before:bottom-0 before:left-0 before:text-center before:text-black before:animate-gradient-background-2">
-    <span class="px-2 text-transparent bg-clip-text bg-gradient-to-br from-gradient-2-start to-gradient-2-end animate-gradient-foreground-2"> Preview.</span>
-  </span>
-  <span data-content="Ship." class="relative block before:content-[attr(data-content)] before:w-full before:z-0 before:block before:absolute before:top-0 before:px-2 before:bottom-0 before:left-0 before:text-center before:text-black before:animate-gradient-background-3">
-    <span class="px-2 text-transparent bg-clip-text bg-gradient-to-br from-gradient-3-start to-gradient-3-end animate-gradient-foreground-3"> Ship.</span>
-  </span>
-</h1>
-```
-
-```js:tailwind.config.js
-module.exports = {
-  mode: 'jit',
-  theme: {
-    extend: {
-      fontSize: {
-        '10xl': '10rem',
-      },
-      letterSpacing: {
-        tightest: '-.06em',
-      },
-      gradientColorStops: {
-        'gradient-1-start': '#007CF0',
-        'gradient-1-end': '#00DFD8',
-        'gradient-2-start': '#7928CA',
-        'gradient-2-end': '#FF0080',
-        'gradient-3-start': '#FF4D4D',
-        'gradient-3-end': '#F9CB28',
-      },
-      keyframes: {
-        'gradient-foreground-1': {
-          'from, 16.667%, to': {
-            opacity: 1,
-          },
-          '33.333%, 83.333%': {
-            opacity: 0,
-          },
-        },
-        'gradient-background-1': {
-          'from, 16.667%, to': {
-            opacity: 0,
-          },
-          '25%, 91.667%': {
-            opacity: 1,
-          },
-        },
-        'gradient-foreground-2': {
-          'from, to': {
-            opacity: 0,
-          },
-          '33.333%, 50%': {
-            opacity: 1,
-          },
-          '16.667%, 66.667%': {
-            opacity: 0,
-          },
-        },
-        'gradient-background-2': {
-          'from, to': {
-            opacity: 1,
-          },
-          '33.333%, 50%': {
-            opacity: 0,
-          },
-          '25%, 58.333%': {
-            opacity: 1,
-          },
-        },
-        'gradient-foreground-3': {
-          'from, 50%, to': {
-            opacity: 0,
-          },
-          '66.667%, 83.333%': {
-            opacity: 1,
-          },
-        },
-        'gradient-background-3': {
-          'from, 58.333%, 91.667%, to': {
-            opacity: 1,
-          },
-          '66.667%, 83.333%': {
-            opacity: 0,
-          },
-        },
-      },
-      animation: {
-        'gradient-background-1': 'gradient-background-1 8s infinite',
-        'gradient-foreground-1': 'gradient-foreground-1 8s infinite',
-        'gradient-background-2': 'gradient-background-2 8s infinite',
-        'gradient-foreground-2': 'gradient-foreground-2 8s infinite',
-        'gradient-background-3': 'gradient-background-3 8s infinite',
-        'gradient-foreground-3': 'gradient-foreground-3 8s infinite',
-      }
-    },
-  },
-  variants: {},
-  plugins: [],
-}
-```
+It's time to apply the class back to our markup. [Here](https://play.tailwindcss.com/DntnlBJk2F) is how it should look like at the end. Spoiler alert: The classnames are long 😆
 
 # Conclusion
 
