@@ -20,9 +20,10 @@ class MyDocument extends Document {
           `,
             }}
           />
+          {/* font */}
           <link
-            rel="preload"
             href="/fonts/be-vietnam-pro-v2-vietnamese_latin-regular.woff2"
+            rel="preload"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
@@ -46,8 +47,8 @@ class MyDocument extends Document {
             crossOrigin="anonymous"
           />
           <link
-            rel="preload"
             href="/fonts/be-vietnam-pro-v2-vietnamese_latin-500.woff2"
+            rel="preload"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
@@ -59,29 +60,29 @@ class MyDocument extends Document {
             crossOrigin="anonymous"
           />
           <link
-            rel="preload"
             href="/fonts/be-vietnam-pro-v2-vietnamese_latin-700.woff2"
+            rel="preload"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
-            rel="preload"
             href="/fonts/be-vietnam-pro-v2-vietnamese_latin-700italic.woff2"
+            rel="preload"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
-            rel="preload"
             href="/fonts/be-vietnam-pro-v2-vietnamese_latin-800italic.woff2"
+            rel="preload"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
-            rel="preload"
             href="/fonts/be-vietnam-pro-v2-vietnamese_latin-800.woff2"
+            rel="preload"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
@@ -92,31 +93,21 @@ class MyDocument extends Document {
             type="font/woff2"
             crossOrigin="anonymous"
           />
-
+          {/* favicons */}
           <link
             rel="apple-touch-icon"
             sizes="180x180"
             href="/static/favicons/apple-touch-icon.png"
           />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/static/favicons/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/static/favicons/favicon-16x16.png"
-          />
+          <link rel="icon" type="image/svg+xml" href="/static/favicons/favicon.svg" />
+          <link rel="icon" type="image/png" href="/static/favicons/favicon.png" />
           <link rel="manifest" href="manifest.json" />
           <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
-          <link rel="shortcut icon" href="/static/favicons/favicon.ico" />
-          <meta name="msapplication-TileColor" content="#da532c" />
+          <link rel="shortcut icon" href="/static/favicons/favicon.svg" />
+          <meta name="msapplication-TileColor" content="#2b5797" />
           <meta name="msapplication-config" content="/static/favicons/browserconfig.xml" />
           <meta name="theme-color" content="#ffffff" />
-
+          {/* rss */}
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
         </Head>
         <body className="antialiased text-black bg-white dark:bg-black dark:text-white">
