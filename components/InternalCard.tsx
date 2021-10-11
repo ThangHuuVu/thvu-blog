@@ -10,6 +10,7 @@ export default function InternalCard({ href, title, children }: InternalCardProp
   return (
     <CustomLink
       href={href}
+      title={title}
       className=" w-full flex flex-col justify-between row-span-1 p-4 border-2 border-solid rounded-lg border-gray-200 dark:border-gray-800 transform hover:scale-101 hover:border-primary-600 dark:hover:border-primary-400"
     >
       <h4 className="text-lg font-bold leading-4 tracking-tight">{title}</h4>

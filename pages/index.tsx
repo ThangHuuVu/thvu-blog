@@ -85,6 +85,7 @@ export default function Home({
               href="/blog"
               className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
               aria-label="all posts"
+              title="All posts"
             >
               All Posts &rarr;
             </CustomLink>
@@ -108,7 +109,7 @@ export default function Home({
                   </g>
                 </g>
               </svg>
-              {endorsementCount}
+              {endorsementCount} endorsements
             </InternalCard>
             <InternalCard href={`/guestbook`} title="Guestbook">
               <svg
@@ -123,7 +124,7 @@ export default function Home({
                   </g>
                 </g>
               </svg>
-              {guestbookEntryCount}
+              {guestbookEntryCount} entries
             </InternalCard>
             <InternalCard href={`/projects`} title="Projects">
               <svg
@@ -138,7 +139,7 @@ export default function Home({
                   </g>
                 </g>
               </svg>
-              {projectCount}
+              {projectCount} projects
             </InternalCard>
           </div>
         </div>
