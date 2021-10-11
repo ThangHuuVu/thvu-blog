@@ -67,6 +67,7 @@ export default function SkillBadge({ skill, user, currentUserId }: Props) {
           <button
             className="disabled:hover:cursor-not-allowed font-semibold text-primary-600 dark:text-primary-400 hover:text-gray-700 dark:hover:text-gray-300 disabled:text-gray-700 dark:disabled:text-gray-300 "
             disabled={!Boolean(user)}
+            title="Please login first."
             onClick={() => onEndorse(skill.id)}
           >
             <ButtonIcon className="w-8 h-8 inline fill-current " />

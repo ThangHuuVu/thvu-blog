@@ -75,6 +75,7 @@ export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEnt
               aria-label="Your message"
               placeholder="Your message..."
               required
+              style={{ resize: "none" }}
               className="px-4 py-2 my-4 focus:ring-primary-500 focus:border-primary-500 block w-full border-gray-300 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
             />
             <Button type="submit">
