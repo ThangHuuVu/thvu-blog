@@ -5,7 +5,7 @@ import Skills from "@/components/skills/Skills";
 import { InferGetStaticPropsType } from "next";
 import prisma from "@/lib/prisma";
 import { Skill, SkillCategory } from "@/lib/types/skill";
-import { User } from "@/lib/types/User";
+import { User } from "@/lib/types/user";
 
 export async function getStaticProps() {
   const skillsByCategory = await prisma.skillCategory.findMany({

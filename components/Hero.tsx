@@ -45,7 +45,11 @@ export default function Hero() {
           </span>
           .{" "}
           <Link href={`mailto:${siteMetadata.email}`}>
-            <a className="font-medium leading-6 " aria-label={`Email to ${siteMetadata.email}`}>
+            <a
+              className="font-medium leading-6 "
+              aria-label={`Email to ${siteMetadata.email}`}
+              title={`Email to ${siteMetadata.email}`}
+            >
               Get in touch &rarr;
             </a>
           </Link>
