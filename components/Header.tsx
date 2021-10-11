@@ -55,6 +55,7 @@ export default function Header() {
                 .map((link) => (
                   <Link
                     key={link.title}
+                    title={link.title}
                     href={link.href}
                     style={{ opacity: isTop ? 1 : 0 }}
                     className="font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-opacity"
@@ -72,16 +73,17 @@ export default function Header() {
       </header>
       {/* Mobile side menu */}
       <div
-        className={`md:hidden fixed w-full h-screen right-0 bg-white dark:bg-black z-20 transform ease-in-out duration-500 ${
+        className={`sm:hidden fixed w-full h-screen right-0 bg-white dark:bg-black z-20 transform ease-in-out duration-500 ${
           menuShow ? "translate-x-0" : " -translate-x-full"
         } backdrop-filter bg-opacity-30 dark:bg-opacity-30 backdrop-saturate-150 backdrop-blur-lg firefox:bg-opacity-100 dark:firefox:bg-opacity-100`}
       >
-        <nav className="h-full mt-8">
+        <nav className="h-full mt-8 space-y-8">
           {headerNavLinks.map((link) => (
-            <div key={link.title} className="px-12 py-4">
+            <div key={link.title} className="px-12">
               <Link
                 href={link.href}
-                className="text-2xl font-bold text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
+                title={link.title}
+                className="text-xl font-semibold leading-8 tracking-wide text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
                 onClick={onMenuToggle}
               >
                 {link.title}
