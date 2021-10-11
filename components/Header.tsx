@@ -57,8 +57,7 @@ export default function Header() {
                     key={link.title}
                     title={link.title}
                     href={link.href}
-                    style={{ opacity: isTop ? 1 : 0 }}
-                    className="font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-opacity"
+                    className="font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
                   >
                     {link.title}
                   </Link>
