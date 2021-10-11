@@ -7,7 +7,7 @@ export default function MenuButton({ isOpened, onClick }: Props) {
   return (
     <button
       type="button"
-      className="flex cursor-pointer bg-transparent w-8 h-8 ml-1 mr-1 rounded"
+      className="flex cursor-pointer bg-transparent w-8 h-8 rounded"
       onClick={onClick}
       aria-label="Toggle Menu"
     >

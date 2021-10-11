@@ -3,41 +3,14 @@ import siteMetadata from "@/data/siteMetadata";
 import PageTitle from "@/components/PageTitle";
 import Skills from "@/components/skills/Skills";
 import { InferGetStaticPropsType } from "next";
-import prisma from "@/lib/prisma";
-import { Skill, SkillCategory } from "@/lib/types/skill";
-import { User } from "@/lib/types/user";
+import { getAllSkillsByCategory } from "@/lib/db";
 
 export async function getStaticProps() {
-  const skillsByCategory = await prisma.skillCategory.findMany({
-    include: {
-      skills_in_category: {
-        include: {
-          endorsements: {
-            include: {
-              user: true,
-            },
-          },
-        },
-      },
-    },
-  });
+  const skillsByCategory = await getAllSkillsByCategory();
 
   return {
     props: {
-      fallbackData: skillsByCategory.map<SkillCategory>((category) => ({
-        name: category.name,
-        skills: category.skills_in_category.map<Skill>((skill) => ({
-          id: skill.id.toString(),
-          name: skill.name,
-          users: skill.endorsements
-            .filter((en) => en.userId)
-            .map<User>((en) => ({
-              id: en.user.id,
-              name: en.user.name,
-              image: en.user.image,
-            })),
-        })),
-      })),
+      fallbackData: skillsByCategory,
     },
   };
 }

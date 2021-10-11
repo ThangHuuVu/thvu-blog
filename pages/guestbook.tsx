@@ -1,13 +1,11 @@
 import Guestbook from "@/components/guestbook/Guestbook";
 import siteMetadata from "@/data/siteMetadata";
 import { PageSEO } from "@/components/SEO";
-import Link from "next/link";
 import PageViews from "@/components/metric/PageViews";
 import { InferGetStaticPropsType } from "next";
 import PageTitle from "@/components/PageTitle";
-import prisma from "@/lib/prisma";
-import { GuestBookEntry } from "@/lib/types/guestbook";
 import CustomLink from "@/components/CustomLink";
+import { getGuestbookEntries } from "@/lib/db";
 
 export default function GuestbookPage({
   fallbackData,
@@ -38,25 +36,11 @@ export default function GuestbookPage({
 }
 
 export const getStaticProps = async () => {
-  const entries = await prisma.guestbook.findMany({
-    orderBy: {
-      updated_at: "desc",
-    },
-    select: { id: true, body: true, updated_at: true, user: true },
-  });
+  const entries = await getGuestbookEntries();
 
   return {
     props: {
-      fallbackData: entries.map<GuestBookEntry>((entry) => ({
-        id: entry.id.toString(),
-        body: entry.body,
-        updated_at: entry.updated_at.toString(),
-        user: {
-          id: entry.user.id,
-          name: entry.user.name,
-          image: entry.user.image,
-        },
-      })),
+      fallbackData: entries,
     },
     revalidate: 60,
   };
