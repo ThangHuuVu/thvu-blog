@@ -16,7 +16,7 @@ const Card = ({ title, description, imgSrc, href, tags }: CardProps) => (
     className="p-4 md:w-1/2 md max-w-[34rem]"
     showIcon={false}
   >
-    <div className="h-full border-2 border-gray-200 dark:border-gray-800 hover:scale-101 rounded-md overflow-hidden hover:border-primary-600 dark:hover:border-primary-400">
+    <div className="h-full border-2 border-gray-200 dark:border-gray-800 rounded-md overflow-hidden hover:border-primary-600 dark:hover:border-primary-400">
       <Image
         alt={title}
         src={imgSrc}

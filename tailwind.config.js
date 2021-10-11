@@ -15,9 +15,6 @@ module.exports = {
         "content-sm": "calc(100vh - 4.5rem)",
         content: "calc(100vh - 4rem)",
       },
-      scale: {
-        101: "1.01",
-      },
       lineHeight: {
         11: "2.75rem",
         12: "3rem",
