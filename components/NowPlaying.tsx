@@ -22,6 +22,7 @@ export default function NowPlaying() {
           <CustomLink
             className="text-sm max-w-max truncate hover:text-spotify-green"
             href={data.songUrl}
+            title={data.title}
           >
             {data.title}
           </CustomLink>
