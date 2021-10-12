@@ -58,7 +58,7 @@ export default function SkillBadge({ skill, user, currentUserId }: Props) {
         ) : isUserEndorsed ? (
           <button
             className="disabled:hover:cursor-not-allowed font-semibold text-success-700 dark:text-success-400"
-            title="You already endorsed this skill."
+            title="You already endorsed this skill!"
             disabled
           >
             <DoneIcon className="w-8 h-8 inline fill-current " />
@@ -67,7 +67,7 @@ export default function SkillBadge({ skill, user, currentUserId }: Props) {
           <button
             className="disabled:hover:cursor-not-allowed font-semibold text-primary-600 dark:text-primary-400 hover:text-gray-700 dark:hover:text-gray-300 disabled:text-gray-700 dark:disabled:text-gray-300 "
             disabled={!Boolean(user)}
-            title="Please login first."
+            title={Boolean(user) ? "Please login first." : "Endorse this skill!"}
             onClick={() => onEndorse(skill.id)}
           >
             <ButtonIcon className="w-8 h-8 inline fill-current " />
