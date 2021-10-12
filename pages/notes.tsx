@@ -46,20 +46,13 @@ export default function Notes({ notionPublishes }: InferGetStaticPropsType<typeo
 
 export const getStaticProps = async () => {
   const results = (await getPublishedNotes()) || [];
-  const notionPublishes = results.map<NotionPublish>((publish) => {
-    return {
-      title: publish.properties.Name["title"][0].text.content,
-      description: publish.properties.Description["rich_text"][0].text.content,
-      cover: publish.cover["external"]
-        ? publish.cover["external"].url
-        : publish.cover["file"]
-        ? publish.cover["file"].url
-        : // fallback
-          siteMetadata.socialBanner,
-      url: publish.properties.Page["rich_text"][0].href,
-      tags: publish.properties.Tags["multi_select"].map((tag) => tag.name),
-    };
-  });
+  const notionPublishes = results.map<NotionPublish>((publish) => ({
+    title: publish.properties.Name["title"][0].text.content,
+    description: publish.properties.Description["rich_text"][0].text.content,
+    cover: publish.properties.Cover["rich_text"][0].href,
+    url: publish.properties.Page["rich_text"][0].href,
+    tags: publish.properties.Tags["multi_select"].map((tag) => tag.name),
+  }));
   return {
     props: { notionPublishes },
     revalidate: 10,
