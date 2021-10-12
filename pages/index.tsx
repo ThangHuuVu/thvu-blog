@@ -27,7 +27,7 @@ export const getStaticProps = async ({ preview = false }) => {
 
   return {
     props: {
-      recentPosts: posts.slice(0, MAX_DISPLAY),
+      posts,
       endorsementCount,
       guestbookEntryCount,
       projectCount,
@@ -37,11 +37,13 @@ export const getStaticProps = async ({ preview = false }) => {
 };
 
 export default function Home({
-  recentPosts,
+  posts,
   guestbookEntryCount,
   endorsementCount,
   projectCount,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const recentPosts = posts.slice(0, MAX_DISPLAY);
+
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
@@ -50,7 +52,7 @@ export default function Home({
         Latest blog posts
       </h2>
       {recentPosts.length === 0 ? (
-        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400 prose dark:prose-dark xl:text-xl">
+        <p className="pt-8 text-lg leading-7 text-gray-500 dark:text-gray-400 prose dark:prose-dark xl:text-xl">
           No recent posts.
         </p>
       ) : (
