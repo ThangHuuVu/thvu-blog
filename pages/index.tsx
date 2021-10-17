@@ -124,7 +124,7 @@ export default function Home({
           </svg>
           {guestbookEntryCount} entries
         </InternalCard>
-        <InternalCard href={`/projects`} title="Projects">
+        {/* <InternalCard href={`/projects`} title="Projects">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -138,7 +138,7 @@ export default function Home({
             </g>
           </svg>
           {projectCount} projects
-        </InternalCard>
+        </InternalCard> */}
       </div>
     </>
   );
