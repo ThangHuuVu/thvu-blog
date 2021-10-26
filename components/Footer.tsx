@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer>
       <div className="flex flex-col items-center pb-8">
-        <nav className="flex flex-col justify-between w-full max-w-2xl gap-4 pb-8 mx-auto mt-4 xl:max-w-3xl sm:gap-0 sm:flex-row">
+        <nav className="w-full max-w-2xl xl:max-w-3xl flex flex-col gap-4 sm:gap-0 sm:flex-row justify-between mx-auto mt-4 pb-8">
           <div className="flex flex-col space-y-4 md:items-start">
             <p className="text-sm font-bold">Portfolio</p>
             <CustomLink
@@ -45,12 +45,12 @@ export default function Footer() {
           </div>
           <div className="flex flex-col space-y-4 md:items-start">
             <p className="text-sm font-bold">Showcase</p>
-            {/* <CustomLink
+            <CustomLink
               className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/projects"
             >
               Projects
-            </CustomLink> */}
+            </CustomLink>
             <CustomLink
               className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/endorsements"
