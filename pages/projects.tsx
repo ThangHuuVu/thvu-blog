@@ -49,7 +49,7 @@ export default function Projects({ allProjects }: InferGetStaticPropsType<typeof
                 title={title}
                 description={description}
                 imgSrc={cover.url}
-                href={url}
+                href={ready ? url : ""}
                 showLink={ready}
               />
             ))}
@@ -61,7 +61,6 @@ export default function Projects({ allProjects }: InferGetStaticPropsType<typeof
 
 export const getStaticProps = async ({ preview = false }) => {
   const allProjects = (await getAllProjects(preview)) || [];
-  console.log(allProjects);
 
   return {
     props: { allProjects },
