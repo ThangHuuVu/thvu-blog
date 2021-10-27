@@ -1,5 +1,4 @@
 import { getSession } from "next-auth/react";
-import { withSentry } from "@sentry/nextjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import { GuestBookEntry } from "@/lib/types/guestbook";
@@ -59,4 +58,4 @@ const guestbookEntries = async (
   return res.send("Method not allowed.");
 };
 
-export default withSentry(guestbookEntries);
+export default guestbookEntries;
