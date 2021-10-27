@@ -3,7 +3,7 @@ import { Switch } from "@headlessui/react";
 
 const ThemeSwitch = () => {
   const [isDark, mounted, setTheme] = useDarkTheme();
-  if (!mounted) return <div className="w-12 ml-4" />;
+  if (!mounted) return <div className="w-12 h-6 ml-4" />;
   return (
     <div className="flex items-center">
       <Switch
