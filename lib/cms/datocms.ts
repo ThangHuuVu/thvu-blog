@@ -4,10 +4,12 @@ export async function getAllProjects(preview: boolean) {
   const data = await fetchAPI(
     `
     {
-      allProjects(filter: { ready: { eq: true } }) {
+      allProjects {
         id
         title
         description
+        hobby
+        ready
         url
         cover {
           url
