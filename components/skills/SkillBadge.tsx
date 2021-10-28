@@ -50,27 +50,27 @@ export default function SkillBadge({ skill, user, currentUserId }: Props) {
 
   return (
     <div className="space-y-4">
-      <div className="text-base font-semibold flex items-center">
+      <div className="flex items-center text-base font-semibold">
         {state === STATE.LOADING ? (
-          <div className="h-8 w-8 flex items-center justify-center">
+          <div className="flex items-center justify-center w-8 h-8">
             <LoadingSpinner />
           </div>
         ) : isUserEndorsed ? (
           <button
-            className="disabled:hover:cursor-not-allowed font-semibold text-success-700 dark:text-success-400"
+            className="font-semibold disabled:hover:cursor-not-allowed text-success-700 dark:text-success-400"
             title="You already endorsed this skill!"
             disabled
           >
-            <DoneIcon className="w-8 h-8 inline fill-current " />
+            <DoneIcon className="inline w-8 h-8 fill-current " />
           </button>
         ) : (
           <button
-            className="disabled:hover:cursor-not-allowed font-semibold text-primary-600 dark:text-primary-400 hover:text-gray-700 dark:hover:text-gray-300 disabled:text-gray-700 dark:disabled:text-gray-300 "
+            className="font-semibold disabled:hover:cursor-not-allowed text-primary-600 dark:text-primary-400 hover:text-gray-700 dark:hover:text-gray-300 disabled:text-gray-700 dark:disabled:text-gray-300 "
             disabled={!Boolean(user)}
             title={!Boolean(user) ? "Please login first." : "Endorse this skill!"}
             onClick={() => onEndorse(skill.id)}
           >
-            <ButtonIcon className="w-8 h-8 inline fill-current " />
+            <ButtonIcon className="inline w-8 h-8 fill-current " />
           </button>
         )}
         <span className="ml-2">{skill.name}</span>
@@ -87,7 +87,7 @@ export default function SkillBadge({ skill, user, currentUserId }: Props) {
                 className="rounded-full"
               />
             ) : (
-              <DefaultAvatar className="w-8 h-8 p-1 rounded-full fill-current text-primary-600 dark:text-primary-400 border-2 border-solid border-primary-600 dark:border-primary-400" />
+              <DefaultAvatar className="w-8 h-8 p-0.5 rounded-full fill-current text-primary-600 dark:text-primary-400 border-2 border-solid border-primary-600 dark:border-primary-400" />
             )}
           </span>
         ))}
