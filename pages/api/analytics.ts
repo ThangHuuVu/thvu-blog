@@ -1,3 +1,4 @@
+import { withSentry } from "@sentry/nextjs";
 import { google } from "googleapis";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -33,4 +34,4 @@ const handlers = async (_: NextApiRequest, res: NextApiResponse<Analytic>) => {
   });
 };
 
-export default handlers;
+export default withSentry(handlers);
