@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import { Skill } from "@/lib/types/skill";
+import { withSentry } from "@sentry/nextjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 async function handler(req: NextApiRequest, res: NextApiResponse<Skill[] | string>) {
@@ -33,4 +34,4 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Skill[] | strin
   return res.send("Method not allowed.");
 }
 
-export default handler;
+export default withSentry(handler);
