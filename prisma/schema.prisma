@@ -65,7 +65,7 @@ model Account {
   provider                 String
   providerAccountId        String
   refresh_token            String?
-  access_token             String?
+  access_token             String? @db.VarChar(4096)
   refresh_token_expires_in Int?
   expires_at               Int?
   token_type               String?
