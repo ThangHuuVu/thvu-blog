@@ -21,9 +21,6 @@ export default NextAuth({
     LineProvider({
       clientId: process.env.LINE_CHANNEL_ID,
       clientSecret: process.env.LINE_CHANNEL_SECRET,
-      client: {
-        id_token_signed_response_alg: "HS256",
-      },
     }),
   ],
   pages: {
