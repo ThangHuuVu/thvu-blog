@@ -1225,11 +1225,6 @@
     "@types/node-fetch" "^2.5.10"
     node-fetch "^2.6.1"
 
-"@panva/hkdf@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@panva/hkdf/-/hkdf-1.0.0.tgz#4d2d8bd1197146b7cbb81ba499b0d41a76dad538"
-  integrity sha512-xPlCwVdEGjGObIn+s1jV0WNDm2fRBtf9j/F+TlQ+AgrkJTOLLK6mQ8iVqRZ6m/cnSdN+sbtp1GoXfWwqruHjTQ==
-
 "@polka/url@^1.0.0-next.20":
   version "1.0.0-next.21"
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
@@ -4013,6 +4008,11 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
+futoin-hkdf@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/futoin-hkdf/-/futoin-hkdf-1.4.2.tgz#fd534e848e0e50339b8bfbd81250b09cbff10ba3"
+  integrity sha512-2BggwLEJOTfXzKq4Tl2bIT37p0IqqKkblH4e0cMp2sXTdmwg/ADBKMxvxaEytYYcgdxgng8+acsi3WgMVUl6CQ==
+
 gauge@~2.7.3:
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"
@@ -6372,13 +6372,13 @@ negotiator@0.6.2:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
 
-next-auth@4.0.0-beta.6:
-  version "4.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.0.0-beta.6.tgz#bc9733f8a5981966c2b7ee09245468faee9ce70f"
-  integrity sha512-g2X0c2RGPt9xjEiGqR5g0Csth37F9+cVmoNWa0ek6j1OYP2M4P3ZQmJqCQBq+9486pMmMn/awQYr5bhcVOIMgg==
+next-auth@4.0.0-beta.5:
+  version "4.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.0.0-beta.5.tgz#91a1f7fb3a75d350b80eca97a5c1a3944aa3fe60"
+  integrity sha512-/65/EAPE/bsXJOsWWliNXyfRYInoiNTaYLNqQ3yVMHb8MRWLQ9V+SP5+QSwaMjxJ29WYqxK+xb6WsRnLkyw0iQ==
   dependencies:
     "@babel/runtime" "^7.15.4"
-    "@panva/hkdf" "^1.0.0"
+    futoin-hkdf "^1.4.2"
     jose "^4.1.2"
     oauth "^0.9.15"
     openid-client "^5.0.1"
