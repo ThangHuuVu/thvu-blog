@@ -4,7 +4,7 @@ import PageTitle from "./PageTitle";
 
 export default function Hero() {
   return (
-    <div className="w-full h-content sm:h-content-sm flex flex-col justify-around">
+    <div className="flex flex-col justify-around w-full h-content sm:h-content-sm">
       <h1 className="my-28 sm:my-10 text-center select-none text-6xl sm:text-8.5xl leading-none tracking-tightest font-extrabold">
         <span
           data-content="Blog."
@@ -39,11 +39,7 @@ export default function Hero() {
           </span>
         </PageTitle>
         <p className="text-lg leading-7 prose text-gray-500 max-w-none dark:text-gray-400">
-          I'm a software engineer located in HCMC, Vietnam{" "}
-          <span role="img" aria-label="vietnam flag">
-            🇻🇳
-          </span>
-          .{" "}
+          I am a software engineer with a strong focus in Front-end Engineering and System Design.{" "}
           <Link href={`mailto:${siteMetadata.email}`}>
             <a
               className="font-medium leading-6 "
