@@ -13,7 +13,7 @@ export default function Projects({ allProjects }: InferGetStaticPropsType<typeof
         <PageTitle>Projects</PageTitle>
       </div>
       <h2 className="text-xl font-extrabold leading-5 tracking-tight text-gray-900 dark:text-gray-100 sm:text-2xl sm:leading-7 md:text-3xl md:leading-9">
-        Side Hustles
+        Products
       </h2>
       <p className="text-lg leading-7 text-gray-500 dark:text-gray-400 xl:text-xl">
         Products I helped launch.
@@ -34,7 +34,7 @@ export default function Projects({ allProjects }: InferGetStaticPropsType<typeof
         </div>
       </div>
       <h2 className="text-xl font-extrabold leading-5 tracking-tight text-gray-900 dark:text-gray-100 sm:text-2xl sm:leading-7 md:text-3xl md:leading-9">
-        Hobby Hub
+        Side hustles
       </h2>
       <p className="text-lg leading-7 text-gray-500 dark:text-gray-400 xl:text-xl">
         Projects I built for my hobbies or personal needs.
