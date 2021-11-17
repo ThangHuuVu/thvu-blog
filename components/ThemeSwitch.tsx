@@ -36,7 +36,7 @@ const ThemeSwitch = () => {
             aria-hidden="true"
             className={`${
               isDark ? "translate-x-0 " : "translate-x-6"
-            } bg-gray-100 pointer-events-none inline-block h-6 w-6 rounded-full shadow transform ring-0 transition ease-in-out duration-200`}
+            } bg-gray-100 pointer-events-none inline-block h-6 w-6 rounded-full shadow-lg transform ring-0 transition ease-in-out duration-200  `}
           ></span>
         </Switch>
       )}

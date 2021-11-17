@@ -1,6 +1,5 @@
 import headerNavLinks from "@/data/headerNavLinks";
 import Link from "./CustomLink";
-import ThemeSwitch from "./ThemeSwitch";
 import { useEffect, useState } from "react";
 import MenuButton from "./MenuButton";
 
@@ -47,7 +46,7 @@ export default function Header() {
           isTop ? "border-none" : "border-b border-gray-200 dark:border-gray-800"
         } bg-white dark:bg-black bg-opacity-30 dark:bg-opacity-30 backdrop-filter backdrop-saturate-150 backdrop-blur-lg firefox:bg-opacity-100 dark:firefox:bg-opacity-100`}
       >
-        <nav className="w-full max-w-2xl mx-auto px-4 sm:px-6 sm:py-2 xl:max-w-3xl xl:px-0 flex items-center justify-between">
+        <nav className="flex items-center justify-between w-full max-w-2xl px-4 mx-auto sm:px-6 sm:py-2 xl:max-w-3xl xl:px-0">
           <div className="flex items-center text-base leading-5">
             <div className="hidden sm:block sm:space-x-8">
               {headerNavLinks
@@ -63,11 +62,10 @@ export default function Header() {
                   </Link>
                 ))}
             </div>
-            <div className="sm:hidden flex items-center">
+            <div className="flex items-center sm:hidden">
               <MenuButton onClick={onMenuToggle} isOpened={menuShow} />
             </div>
           </div>
-          <ThemeSwitch />
         </nav>
       </header>
       {/* Mobile side menu */}

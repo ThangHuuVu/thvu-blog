@@ -39,7 +39,7 @@ export default function Hero() {
           </span>
         </PageTitle>
         <p className="text-lg leading-7 prose text-gray-500 max-w-none dark:text-gray-400">
-          I am a software engineer with a strong focus in Front-end Engineering and System Design.{" "}
+          I am a full stack software engineer with a strong focus in front-end and system design.{" "}
           <Link href={`mailto:${siteMetadata.email}`}>
             <a
               className="font-medium leading-6 "

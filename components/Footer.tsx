@@ -1,12 +1,13 @@
 import CustomLink from "./CustomLink";
 import siteMetadata from "@/data/siteMetadata";
 import NowPlaying from "@/components/NowPlaying";
+import ThemeSwitch from "./ThemeSwitch";
 
 export default function Footer() {
   return (
     <footer>
       <div className="flex flex-col items-center pb-8">
-        <nav className="w-full max-w-2xl xl:max-w-3xl flex flex-col gap-4 sm:gap-0 sm:flex-row justify-between mx-auto mt-4 pb-8">
+        <nav className="flex flex-col justify-between w-full max-w-2xl gap-4 pb-8 mx-auto mt-4 xl:max-w-3xl sm:gap-0 sm:flex-row">
           <div className="flex flex-col space-y-4 md:items-start">
             <p className="text-sm font-bold">Portfolio</p>
             <CustomLink
@@ -92,17 +93,22 @@ export default function Footer() {
             </CustomLink>
           </div>
         </nav>
-        <NowPlaying />
-        <div className="flex mb-2 space-x-2 text-sm text-gray-500 dark:text-gray-400">
-          <div>Copyright</div>
-          <div>{`© ${new Date().getFullYear()}`}</div>
-          <div>-</div>
-          <CustomLink
-            className="text-black dark:text-white hover:text-primary-600 dark:hover:text-primary-400"
-            href="/"
-          >
-            {siteMetadata.title}
-          </CustomLink>
+        <div className="flex justify-between w-full">
+          <div className="w-full truncate">
+            <NowPlaying />
+            <div className="flex mb-2 space-x-2 text-sm text-gray-500 dark:text-gray-400">
+              <div>Copyright</div>
+              <div>{`© ${new Date().getFullYear()}`}</div>
+              <div>-</div>
+              <CustomLink
+                className="text-black dark:text-white hover:text-primary-600 dark:hover:text-primary-400"
+                href="/"
+              >
+                {siteMetadata.title}
+              </CustomLink>
+            </div>
+          </div>
+          <ThemeSwitch />
         </div>
       </div>
     </footer>
