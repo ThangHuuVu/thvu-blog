@@ -22,6 +22,12 @@ export default function Footer() {
             >
               About
             </CustomLink>
+            <CustomLink
+              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
+              href="/projects"
+            >
+              Projects
+            </CustomLink>
           </div>
           <div className="flex flex-col space-y-4 md:items-start">
             <p className="text-sm font-bold">Writing</p>
@@ -46,12 +52,6 @@ export default function Footer() {
           </div>
           <div className="flex flex-col space-y-4 md:items-start">
             <p className="text-sm font-bold">Showcase</p>
-            <CustomLink
-              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
-              href="/projects"
-            >
-              Projects
-            </CustomLink>
             <CustomLink
               className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/endorsements"
