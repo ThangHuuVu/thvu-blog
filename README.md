@@ -1,6 +1,6 @@
 # www.thvu.dev
 
-Blog. Showcase. Porfolio. 
+Blog. Showcase. Portfolio.
 
 Tech I used to build this site:
 
