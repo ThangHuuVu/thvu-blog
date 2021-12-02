@@ -1225,6 +1225,11 @@
     "@types/node-fetch" "^2.5.10"
     node-fetch "^2.6.1"
 
+"@panva/hkdf@^1.0.0":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@panva/hkdf/-/hkdf-1.0.1.tgz#ed0da773bd5f794d0603f5a5b5cee6d2354e5660"
+  integrity sha512-mMyQ9vjpuFqePkfe5bZVIf/H3Dmk6wA8Kjxff9RcO4kqzJo+Ek9pGKwZHpeMr7Eku0QhLXMCd7fNCSnEnRMubg==
+
 "@polka/url@^1.0.0-next.20":
   version "1.0.0-next.21"
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
@@ -4008,11 +4013,6 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
-futoin-hkdf@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/futoin-hkdf/-/futoin-hkdf-1.4.2.tgz#fd534e848e0e50339b8bfbd81250b09cbff10ba3"
-  integrity sha512-2BggwLEJOTfXzKq4Tl2bIT37p0IqqKkblH4e0cMp2sXTdmwg/ADBKMxvxaEytYYcgdxgng8+acsi3WgMVUl6CQ==
-
 gauge@~2.7.3:
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"
@@ -6372,16 +6372,17 @@ negotiator@0.6.2:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
 
-next-auth@4.0.0-beta.5:
-  version "4.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.0.0-beta.5.tgz#91a1f7fb3a75d350b80eca97a5c1a3944aa3fe60"
-  integrity sha512-/65/EAPE/bsXJOsWWliNXyfRYInoiNTaYLNqQ3yVMHb8MRWLQ9V+SP5+QSwaMjxJ29WYqxK+xb6WsRnLkyw0iQ==
+next-auth@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.0.1.tgz#06ef83ba24a6d032d55dc614c08228ab25fc1360"
+  integrity sha512-5z2+OtNAUtR1s4xSSZStMZMk0FRehV9YiB9GSS8gJmn7P2b/z4aIHh9q4sUCJbD09pHj0j1MYq6cn511KkSYzw==
   dependencies:
     "@babel/runtime" "^7.15.4"
-    futoin-hkdf "^1.4.2"
+    "@panva/hkdf" "^1.0.0"
+    cookie "^0.4.1"
     jose "^4.1.2"
     oauth "^0.9.15"
-    openid-client "^5.0.1"
+    openid-client "^5.0.2"
     preact "^10.5.14"
     preact-render-to-string "^5.1.19"
     uuid "^8.3.2"
@@ -6722,10 +6723,10 @@ opener@^1.5.2:
   resolved "https://registry.yarnpkg.com/opener/-/opener-1.5.2.tgz#5d37e1f35077b9dcac4301372271afdeb2a13598"
   integrity sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==
 
-openid-client@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/openid-client/-/openid-client-5.0.1.tgz#6bd6c31932c7d295d1a2d1c999b1480b32fe4f19"
-  integrity sha512-Ks97p8A/RJld7W3NrdNqJ/6danhGONcRkyjSuRZwvllawjEwHhn/88w923CC/L7fBKzbDcmRH7btJ0gPr4AwCQ==
+openid-client@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/openid-client/-/openid-client-5.0.2.tgz#6de591d94c37af9853cc59ef012ad34b1eacf2a7"
+  integrity sha512-Z3fuzy5S/ohIBonXdTFYAKIjMAf0ycRMW0Rs1cXSH1UBJDB2CJTcVR5u7MPlPui5lA1f+mQ9DktPNEwrYVoY+A==
   dependencies:
     jose "^4.1.0"
     lru-cache "^6.0.0"
