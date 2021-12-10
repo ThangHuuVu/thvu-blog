@@ -1,11 +1,10 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   mode: "jit",
-  purge: {
-    content: ["./pages/**/*.tsx", "./components/**/*.tsx", "./layouts/**/*.tsx", "./lib/**/*.ts"],
-  },
+  content: ["./pages/**/*.tsx", "./components/**/*.tsx", "./layouts/**/*.tsx", "./lib/**/*.ts"],
   darkMode: "class",
   theme: {
     extend: {
@@ -97,6 +96,10 @@ module.exports = {
           900: "#7A0747",
         },
         "spotify-green": "#1DB954",
+        green: colors.emerald,
+        yellow: colors.amber,
+        purple: colors.violet,
+        gray: colors.neutral,
       },
       typography: (theme) => ({
         DEFAULT: {
@@ -305,10 +308,6 @@ module.exports = {
         "gradient-foreground-3": "gradient-foreground-3 8s infinite",
       },
     },
-  },
-  variants: {
-    typography: ["dark"],
-    animation: ["motion-safe"],
   },
   plugins: [
     require("@tailwindcss/forms"),
