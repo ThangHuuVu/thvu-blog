@@ -11,7 +11,7 @@ const ThemeSwitch = () => {
           title="Theme switch"
           onChange={() => setTheme(isDark ? "light" : "dark")}
           className={`${isDark ? "bg-gray-700" : "bg-gray-300"}
-          relative inline-flex flex-shrink-0 h-6 w-12 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+          relative inline-flex shrink-0 h-6 w-12 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
         >
           <span className="sr-only">Use setting</span>
           <svg
