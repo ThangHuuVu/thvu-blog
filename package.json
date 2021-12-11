@@ -74,7 +74,7 @@
     "next-compose-plugins": "^2.2.1",
     "next-remote-watch": "^1.0.0",
     "prettier": "2.2.1",
-    "prisma": "3.1.1",
+    "prisma": "^3.6.0",
     "rehype": "11.0.0",
     "remark-frontmatter": "3.0.0",
     "remark-parse": "9.0.0",
