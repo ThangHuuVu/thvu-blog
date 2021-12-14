@@ -21,7 +21,7 @@
     "@headlessui/react": "^1.4.1",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
-    "@next-auth/prisma-adapter": "^0.5.2-next.19",
+    "@next-auth/prisma-adapter": "^0.5.4",
     "@notionhq/client": "^0.4.9",
     "@prisma/client": "3.5.0",
     "@sentry/nextjs": "6.16.1",
