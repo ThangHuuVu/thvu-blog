@@ -34,7 +34,7 @@
     "gray-matter": "^4.0.2",
     "image-size": "0.9.7",
     "mdx-bundler": "^6.0.1",
-    "mdx-embed": "^0.0.19",
+    "mdx-embed": "^0.0.22",
     "next": "12",
     "next-auth": "4.0.2",
     "next-pwa": "^5.3.1",
