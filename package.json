@@ -37,7 +37,7 @@
     "mdx-embed": "^0.0.22",
     "next": "12",
     "next-auth": "4.0.2",
-    "next-pwa": "^5.3.1",
+    "next-pwa": "^5.4.1",
     "next-seo": "4.28.1",
     "next-themes": "^0.0.15",
     "postcss": "^8.4.4",
