@@ -29,7 +29,7 @@
     "@tailwindcss/typography": "^0.5.0",
     "autoprefixer": "^10.4.0",
     "date-fns": "^2.26.0",
-    "esbuild": "^0.13.15",
+    "esbuild": "^0.14.0",
     "googleapis": "^85.0.0",
     "gray-matter": "^4.0.2",
     "image-size": "0.9.7",
