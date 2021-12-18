@@ -1,0 +1,119 @@
+---
+title: Rebuilding Bakia - Write consistent TypeScript with Prisma
+date: "2021-12-14"
+tags: ["Next.js", "Prisma", "TypeScript"]
+draft: false
+summary: Quick tip for defining TypeScript types & interfaces when using Prisma.
+images:
+  [
+    "/static/blog/rebuild-bakia-prisma/rebuild-bakia-prisma.png",
+    "/static/blog/rebuild-bakia-prisma/linda-christiansen-ZJ53yRQZsA0-unsplash.jpg",
+  ]
+layout: PostLayout
+---
+
+<Image
+  alt="Header"
+  src="/static/blog/rebuild-bakia-prisma/linda-christiansen-ZJ53yRQZsA0-unsplash.jpg"
+  width={640}
+  height={799}
+/>
+<p className="italic text-sm text-gray-600 dark:text-gray-400">
+  Photo by Linda Christiansen on [Unsplash](https://unsplash.com/photos/ZJ53yRQZsA0)
+</p>
+
+# About the product
+
+Bakia is short for "Bất kì ai". In Vietnamese, it means "Anyone". The product is a E-commerce website that sells custom toys. Features include:
+
+- Customize Lab: Customize your own toy
+- Shopping cart
+- Payment form
+
+You can check it out at [www.bakia.vn](https://www.bakia.vn/)
+
+# Why I am rebuilding
+
+When I first built Bakia, I was a beginner in web development. I constantly found myself wrestling with new concepts, technologies, and frameworks. I ended up with the following stack:
+
+- Front-end: React.js, styled-components
+- Back-end: PostgreSQL, Java Spring Boot
+- Deployment: AWS
+
+The reasons behind this stack are pretty straight-forward:
+
+- I already knew React.js, and was interested in css-in-js approach.
+- I was teaching a group of interns in my company about Java Spring Boot and PostgreSQL.
+- I have some experience with AWS.
+
+This stack is a classic approach to web development with separate front-end and back-end. It works fine after the first release. However, after a while, I realize as a solo dev, it is hard to manage this stack:
+
+- I found myself having to jump between codebases all the time
+- Performance & SEO issue with SPA approach
+- To deploy a single ecommerce application on AWS is overkill IMO: I have to manage EC2, S3 buckets, CloudFront, etc.
+- All components are built manually and it's hard to maintain them all at once.
+
+After much considerations, I decided to rebuild Bakia with a new stack, this time delegating as much as possible:
+
+- Next.js as framework
+- **Prisma for ORM. Rewrite with TypeScript**
+- PlanetScale and MySQL for serverless database
+- Deploy to Vercel
+- TailwindCSS and Radix UI for styling
+- react-hook-form for form implementation
+
+In this post, I will focus on sharing the experience using Prisma and a useful technique for defining types/interfaces in my project.
+
+# Building with Prisma
+
+## Benefits
+
+By delegating to Prisma I can focus on other feature development. Prisma helps me move so much faster:
+
+- Auto-generated client.
+- Easy migration with PlanetScale. I covered the migration workflow in [my previous post](https://www.thvu.dev/blog/develop-a-fullstack-workflow-with-prisma-and-planetscale-in-nextjs).
+- Prisma Studio means free Admin console
+- Void SQL queries. (I don't miss them much 🙃)
+- TypeScript safety. I can ship with confidence and the code is much easier for new maintainers who is familiar with TypeScript.
+
+## TypeScript + Prisma = 💪
+
+To create consistent `Type`, I first create some utility type:
+
+```typescript:common.ts
+// For return type of Await methods
+export type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T;
+
+// For Array elements
+export type ArrayElement<
+  ArrayType extends readonly unknown[]
+> = ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
+```
+
+Then, I create a `db.ts` file to write Prisma code:
+
+```typescript:db.ts
+export const getCategories = async () => {
+    try {
+        const categories = await prisma.category.findMany();
+        // some magic applied to categories
+        return categories;
+    } catch (error) {
+        throw new Error(error);
+    }
+};
+
+```
+
+```typescript:types/category.ts
+export type CategoryType = ArrayElement<Awaited<ReturnType<typeof getCategories>>>;
+```
+
+And comsume `CategoryType` in components. I found this approach is much easier to read and maintain.
+
+- I can reuse the code in different pages / API routes.
+- All the changes in Prisma generated client are immediately reflected and recognized.
+
+# Conclusion
+
+I hope you find this post useful. Stay tuned for more Prisma-related posts.
