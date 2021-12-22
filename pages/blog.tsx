@@ -7,7 +7,7 @@ import { getAllBlogPosts } from "@/lib/db";
 export async function getStaticProps() {
   const posts = await getAllBlogPosts();
 
-  return { props: { posts } };
+  return { props: { posts }, revalidate: 60 };
 }
 
 export default function Blog({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
