@@ -5,6 +5,7 @@ import GoogleDark from "./google-dark.svg";
 import Github from "./github.svg";
 import GithubDark from "./github-dark.svg";
 import { useDarkTheme } from "@/lib/hooks/useDarkTheme";
+import { useRouter } from "next/router";
 interface StyleGuide {
   Logo: any;
   LogoDark?: any;
@@ -40,6 +41,8 @@ const providerStyleGuides: { [key: string]: StyleGuide } = {
 export default function LoginButton({ provider }: { provider: ClientSafeProvider }) {
   const [isDark, mounted] = useDarkTheme();
   const { Logo, LogoDark, bg, bgDark, text, textDark } = providerStyleGuides[provider.id];
+  const router = useRouter();
+  const { callbackUrl } = router.query;
   if (!mounted) return null;
   return (
     <div key={provider.name}>
@@ -47,7 +50,7 @@ export default function LoginButton({ provider }: { provider: ClientSafeProvider
         className={`w-56 h-12 flex items-center gap-3 text-sm font-medium leading-5 transition-colors duration-150 border border-transparent rounded-lg shadow focus:outline-none focus:shadow-outline-primary
          ${isDark && bgDark ? bgDark : bg}
          ${isDark && textDark ? textDark : text} `}
-        onClick={() => signIn(provider.id)}
+        onClick={() => signIn(provider.id, { callbackUrl: callbackUrl as string })}
       >
         {isDark && LogoDark ? <LogoDark className="h-full p-2" /> : <Logo className="h-full p-2" />}
         Sign in with {provider.name}
