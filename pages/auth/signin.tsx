@@ -1,4 +1,4 @@
-import LoginButton from "@/components/login-button";
+import LoginButton from "@/components/LoginButton";
 import PageTitle from "@/components/PageTitle";
 import { InferGetServerSidePropsType } from "next";
 import { getProviders, getSession } from "next-auth/react";
@@ -21,10 +21,10 @@ export default function SignIn({
       <div className="pt-6 pb-4 space-y-2 md:space-y-5">
         <PageTitle>Sign In</PageTitle>
       </div>
-      <div className="space-y-2 flex justify-items-center items-center flex-col xl:space-y-0">
+      <div className="flex flex-col items-center space-y-2 justify-items-center xl:space-y-0">
         <div className="p-8 prose dark:prose-dark max-w-none">
-          <div className="flex gap-4 flex-col justify-between items-center">
-            <p className=" text-center sm:text-left">Sign in with one of these providers:</p>
+          <div className="flex flex-col items-center justify-between gap-4">
+            <p className="text-center  sm:text-left">Sign in with one of these providers:</p>
             {Object.values(providers).map((provider) => {
               return <LoginButton key={provider.id} provider={provider} />;
             })}
@@ -77,7 +77,7 @@ export default function SignIn({
                 <div className="mt-4">
                   <button
                     type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-success-900 bg-success-100 border border-transparent rounded-md hover:bg-success-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-success-500"
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium border border-transparent rounded-md text-success-900 bg-success-100 hover:bg-success-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-success-500"
                     onClick={() => setIsOpen(false)}
                   >
                     OK
