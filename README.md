@@ -12,6 +12,7 @@ Tech I used to build this site:
 - PlanetScale
 - DatoCMS (with Graphql)
 - MDX
+- Notion API
 - Tailwind CSS
 - Sentry
 
