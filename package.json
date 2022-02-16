@@ -41,7 +41,7 @@
     "next-seo": "4.28.1",
     "next-themes": "^0.0.15",
     "postcss": "^8.4.4",
-    "preact": "^10.5.13",
+    "preact": "^10.6.1",
     "querystring": "^0.2.1",
     "react": "^17.0.2",
     "react-datocms": "^1.6.3",
