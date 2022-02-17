@@ -1,14 +1,15 @@
-import { getSession } from "next-auth/react";
 import { withSentry } from "@sentry/nextjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import { GuestBookEntry } from "@/lib/types/guestbook";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
 
 const guestbookEntries = async (
   req: NextApiRequest,
   res: NextApiResponse<GuestBookEntry | string | {}>
 ) => {
-  const { user, id: userId } = await getSession({ req });
+  const { user, id: userId } = await getServerSession({ req, res }, authOptions);
   const { id } = req.query;
 
   const entry = await prisma.guestbook.findUnique({
