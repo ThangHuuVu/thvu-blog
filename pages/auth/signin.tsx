@@ -1,10 +1,12 @@
 import LoginButton from "@/components/LoginButton";
 import PageTitle from "@/components/PageTitle";
 import { InferGetServerSidePropsType } from "next";
-import { getProviders, getSession } from "next-auth/react";
+import { getProviders } from "next-auth/react";
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]";
 
 export default function SignIn({
   providers,
@@ -24,7 +26,7 @@ export default function SignIn({
       <div className="flex flex-col items-center space-y-2 justify-items-center xl:space-y-0">
         <div className="p-8 prose dark:prose-dark max-w-none">
           <div className="flex flex-col items-center justify-between gap-4">
-            <p className="text-center  sm:text-left">Sign in with one of these providers:</p>
+            <p className="text-center sm:text-left">Sign in with one of these providers:</p>
             {Object.values(providers).map((provider) => {
               return <LoginButton key={provider.id} provider={provider} />;
             })}
@@ -93,7 +95,7 @@ export default function SignIn({
 }
 
 export async function getServerSideProps(context) {
-  const session = await getSession(context);
+  const session = await getServerSession(context, authOptions);
   if (session) {
     return {
       redirect: {
