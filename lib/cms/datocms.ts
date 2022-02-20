@@ -8,7 +8,7 @@ export async function getAllProjects(preview: boolean) {
         id
         title
         description
-        hobby
+        projectType
         ready
         url
         cover {
