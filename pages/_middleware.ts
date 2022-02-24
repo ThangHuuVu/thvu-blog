@@ -8,6 +8,7 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
   child-src *.youtube.com *.google.com *.twitter.com https://cdpn.io https://dbdiagram.io;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src * blob: data: https://www.googletagmanager.com;
+  worker-src 'self' *.youtube.com *.google.com *.twitter.com;
   connect-src *;
   object-src 'none';
   form-action 'self';
