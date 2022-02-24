@@ -5,7 +5,7 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
   const ContentSecurityPolicy = `
   default-src 'self' data:;
   script-src 'self' 'unsafe-eval' 'unsafe-inline' *.twitter.com https://www.googletagmanager.com https://www.google-analytics.com;
-  child-src *.youtube.com *.google.com *.twitter.com https://cdpn.io https://dbdiagram.io;
+  child-src *.youtube.com *.google.com *.twitter.com https://cdpn.io https://codepen.io https://dbdiagram.io;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src * blob: data: https://www.googletagmanager.com;
   worker-src 'self' *.youtube.com *.google.com *.twitter.com;
