@@ -42,7 +42,7 @@ const nextConfig = {
     runtimeCaching,
     disable: isDevelopment,
     mode: "production",
-    buildExcludes: [/middleware-manifest\.json$/],
+    buildExcludes: [/middleware-manifest\.json$/, /middleware-runtime\.js$/],
   },
   webpack: (config, { dev, isServer }) => {
     config.module.rules.push({
