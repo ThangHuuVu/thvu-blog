@@ -33,8 +33,6 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       // github avatar
       "avatars.githubusercontent.com",
-      // notion file url
-      "s3.us-west-2.amazonaws.com",
     ],
   },
   pwa: {
@@ -42,7 +40,11 @@ const nextConfig = {
     runtimeCaching,
     disable: isDevelopment,
     mode: "production",
-    buildExcludes: [/middleware-manifest\.json$/, /middleware-runtime\.js$/],
+    buildExcludes: [
+      /middleware-manifest\.json$/,
+      /middleware-runtime\.js$/,
+      /middleware-runtime\.js.map$/,
+    ],
   },
   webpack: (config, { dev, isServer }) => {
     config.module.rules.push({
