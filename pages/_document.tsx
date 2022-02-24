@@ -12,8 +12,10 @@ class MyDocument extends Document<DocumentProps> {
     const isDev = process.env.NODE_ENV === "development";
     const csp = `
       default-src 'self' data:;
-      script-src 'self' *.twitter.com https://www.googletagmanager.com https://www.google-analytics.com ${
-        isDev ? `'unsafe-eval' 'unsafe-inline'` : `'strict-dynamic' 'nonce-${nonce}'`
+      script-src ${
+        isDev
+          ? `'self' *.twitter.com 'unsafe-eval' 'unsafe-inline'`
+          : `'strict-dynamic' 'nonce-${nonce}'`
       };
       child-src *.youtube.com *.google.com *.twitter.com https://cdpn.io https://codepen.io https://dbdiagram.io;
       style-src 'self' *.googleapis.com ${isDev ? "unsafe-inline" : `'nonce-${nonce}'`};
