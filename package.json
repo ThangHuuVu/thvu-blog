@@ -35,7 +35,7 @@
     "image-size": "0.9.7",
     "mdx-bundler": "^6.0.1",
     "mdx-embed": "^0.0.22",
-    "next": "12.0.9",
+    "next": "12.1.0",
     "next-auth": "4.1.2",
     "next-pwa": "^5.4.1",
     "next-seo": "4.28.1",
@@ -56,7 +56,8 @@
     "remark-gfm": "^2.0.0",
     "remark-slug": "6.1.0",
     "swr": "^1.0.1",
-    "tailwindcss": "^3.0.0"
+    "tailwindcss": "^3.0.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "11.1.2",
