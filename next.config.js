@@ -44,6 +44,8 @@ const nextConfig = {
       /middleware-manifest\.json$/,
       /middleware-runtime\.js$/,
       /middleware-runtime\.js.map$/,
+      /middleware\.js$/,
+      /middleware\.js.map$/,
     ],
   },
   webpack: (config, { dev, isServer }) => {
