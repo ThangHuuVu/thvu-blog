@@ -18,9 +18,7 @@ class MyDocument extends Document<DocumentProps> {
           : `'strict-dynamic' 'nonce-${nonce}'`
       };
       child-src *.youtube.com *.google.com *.twitter.com https://cdpn.io https://codepen.io https://dbdiagram.io;
-      style-src 'self' *.googleapis.com ${
-        isDev ? `'unsafe-inline' 'unsafe-eval'` : `'nonce-${nonce}'`
-      };
+      style-src 'self' *.googleapis.com 'unsafe-inline' 'unsafe-eval';
       img-src 'self' data: https: blob: https://www.googletagmanager.com;
       worker-src 'self' *.youtube.com *.google.com *.twitter.com;
       connect-src *;
