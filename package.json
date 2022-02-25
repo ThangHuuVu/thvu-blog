@@ -39,7 +39,7 @@
     "next-auth": "4.1.2",
     "next-pwa": "^5.4.1",
     "next-seo": "4.28.1",
-    "next-themes": "^0.0.15",
+    "next-themes": "0.1.1",
     "postcss": "^8.4.4",
     "preact": "^10.6.6",
     "querystring": "^0.2.1",
