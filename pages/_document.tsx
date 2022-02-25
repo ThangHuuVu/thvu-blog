@@ -1,10 +1,45 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import { GA_TRACKING_ID } from "@/lib/gtag";
+import Document, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
+import { v4 as uuidv4 } from "uuid";
 
-class MyDocument extends Document {
+interface DocumentProps {
+  nonce: string;
+}
+
+class MyDocument extends Document<DocumentProps> {
+  static async getInitialProps(ctx: DocumentContext) {
+    const nonce = uuidv4();
+    const isDev = process.env.NODE_ENV === "development";
+    const csp = `
+      default-src 'self' data:;
+      script-src ${
+        isDev
+          ? `'self' *.twitter.com 'unsafe-eval' 'unsafe-inline'`
+          : `'strict-dynamic' 'nonce-${nonce}'`
+      };
+      child-src *.youtube.com *.google.com *.twitter.com https://cdpn.io https://codepen.io https://dbdiagram.io;
+      style-src 'self' *.googleapis.com ${isDev ? "unsafe-inline" : `'nonce-${nonce}'`};
+      img-src * blob: data: https://www.googletagmanager.com;
+      worker-src 'self' *.youtube.com *.google.com *.twitter.com;
+      connect-src *;
+      object-src 'none';
+      form-action 'self';
+      frame-ancestors 'none';
+      base-uri 'none';
+    `;
+    ctx.res.setHeader("Content-Security-Policy", csp.replace(/\n/g, ""));
+    const initialProps = await ctx.defaultGetInitialProps(ctx);
+    if (isDev) return initialProps;
+    ctx.res.setHeader("CSP-Nonce", nonce);
+
+    return { ...initialProps, nonce };
+  }
+
   render() {
+    const { nonce } = this.props;
     return (
       <Html lang="en">
-        <Head>
+        <Head nonce={nonce}>
           {/* font */}
           <link
             href="/fonts/be-vietnam-pro-v2-vietnamese_latin-regular.woff2"
@@ -95,7 +130,7 @@ class MyDocument extends Document {
         </Head>
         <body className="antialiased text-black bg-white dark:bg-black dark:text-white">
           <Main />
-          <NextScript />
+          <NextScript nonce={nonce} />
         </body>
       </Html>
     );

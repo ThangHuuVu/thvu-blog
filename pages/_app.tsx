@@ -7,12 +7,11 @@ import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 import { SessionProvider } from "next-auth/react";
 import LayoutWrapper from "@/components/LayoutWrapper";
-import { pageView } from "@/lib/gtag";
-import type { AppProps } from "next/app";
+import { GA_TRACKING_ID, pageView } from "@/lib/gtag";
+import type { AppContext, AppProps } from "next/app";
+import App from "next/app";
 import Script from "next/script";
-import { GA_TRACKING_ID } from "@/lib/gtag";
-
-export default function App({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps & { nonce: string }) {
   const router = useRouter();
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -23,29 +22,10 @@ export default function App({ Component, pageProps }: AppProps) {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, [router.events]);
-  const { session, ...rest } = pageProps;
+  const { session, nonce, ...rest } = pageProps;
 
   return (
     <>
-      {/* Global Site Tag (gtag.js) - Google Analytics */}
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-      />
-      <Script
-        id="gtag-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }}
-      />
       <ThemeProvider attribute="class">
         <SessionProvider session={session}>
           <Head>
@@ -59,6 +39,30 @@ export default function App({ Component, pageProps }: AppProps) {
           </LayoutWrapper>
         </SessionProvider>
       </ThemeProvider>
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} nonce={nonce} />
+      <Script
+        id="gtag"
+        dangerouslySetInnerHTML={{
+          __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${GA_TRACKING_ID}', {
+                    page_path: window.location.pathname,
+                  });
+                `,
+        }}
+        nonce={nonce}
+      />
     </>
   );
 }
+MyApp.getInitialProps = async (appContext: AppContext) => {
+  const appProps = await App.getInitialProps(appContext);
+  const nonce = appContext.ctx.res.getHeader("CSP-Nonce");
+  appContext.ctx.res.removeHeader("CSP-Nonce");
+
+  return { ...appProps, nonce };
+};
+
+export default MyApp;
