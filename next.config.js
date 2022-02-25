@@ -33,6 +33,8 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       // github avatar
       "avatars.githubusercontent.com",
+      // line avatar
+      "profile.line-scdn.net",
     ],
   },
   pwa: {
