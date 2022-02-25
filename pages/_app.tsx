@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps & { nonce: string }) {
 
   return (
     <>
-      <ThemeProvider attribute="class">
+      <ThemeProvider attribute="class" nonce={nonce}>
         <SessionProvider session={session}>
           <Head>
             <meta
