@@ -11,7 +11,7 @@ import { GA_TRACKING_ID, pageView } from "@/lib/gtag";
 import type { AppContext, AppProps } from "next/app";
 import App from "next/app";
 import Script from "next/script";
-function MyApp({ Component, pageProps }: AppProps & { nonce: string }) {
+function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -22,11 +22,11 @@ function MyApp({ Component, pageProps }: AppProps & { nonce: string }) {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, [router.events]);
-  const { session, nonce, ...rest } = pageProps;
+  const { session, ...rest } = pageProps;
 
   return (
     <>
-      <ThemeProvider attribute="class" nonce={nonce}>
+      <ThemeProvider attribute="class">
         <SessionProvider session={session}>
           <Head>
             <meta
@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps }: AppProps & { nonce: string }) {
           </LayoutWrapper>
         </SessionProvider>
       </ThemeProvider>
-      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} nonce={nonce} />
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
       <Script
         id="gtag"
         dangerouslySetInnerHTML={{
@@ -52,17 +52,9 @@ function MyApp({ Component, pageProps }: AppProps & { nonce: string }) {
                   });
                 `,
         }}
-        nonce={nonce}
       />
     </>
   );
 }
-MyApp.getInitialProps = async (appContext: AppContext) => {
-  const appProps = await App.getInitialProps(appContext);
-  const nonce = appContext.ctx.res.getHeader("CSP-Nonce");
-  appContext.ctx.res.removeHeader("CSP-Nonce");
-
-  return { ...appProps, nonce };
-};
 
 export default MyApp;

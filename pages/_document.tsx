@@ -1,45 +1,7 @@
-import { GA_TRACKING_ID } from "@/lib/gtag";
 import Document, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
-import { v4 as uuidv4 } from "uuid";
 
-interface DocumentProps {
-  nonce: string;
-}
-
-class MyDocument extends Document<DocumentProps> {
-  static async getInitialProps(ctx: DocumentContext) {
-    const nonce = uuidv4();
-    const isDev = process.env.NODE_ENV === "development";
-    const csp = `
-      default-src 'self';
-      script-src ${
-        isDev
-          ? `'self' *.twitter.com 'unsafe-eval' 'unsafe-inline' data:`
-          : `'strict-dynamic' 'nonce-${nonce}'`
-      };
-      child-src *.youtube.com *.google.com *.twitter.com https://cdpn.io https://codepen.io https://dbdiagram.io;
-      style-src 'self' *.googleapis.com 'unsafe-inline' 'unsafe-eval';
-      img-src 'self' data: https: blob: https://www.googletagmanager.com;
-      worker-src 'self' *.youtube.com *.google.com *.twitter.com;
-      connect-src *;
-      object-src 'none';
-      form-action 'self';
-      frame-ancestors 'none';
-      base-uri 'none';
-    `;
-
-    ctx.res.setHeader("Content-Security-Policy", csp.replace(/\n/g, ""));
-
-    const initialProps = await ctx.defaultGetInitialProps(ctx);
-    if (isDev) return initialProps;
-
-    ctx.res.setHeader("CSP-Nonce", nonce);
-
-    return { ...initialProps, nonce };
-  }
-
+class MyDocument extends Document {
   render() {
-    const { nonce } = this.props;
     const headTags = (
       <>
         {/* font */}
@@ -128,23 +90,12 @@ class MyDocument extends Document<DocumentProps> {
       </>
     );
 
-    if (!nonce) {
-      return (
-        <Html lang="en">
-          <Head>{headTags}</Head>
-          <body className="antialiased text-black bg-white dark:bg-black dark:text-white">
-            <Main />
-            <NextScript />
-          </body>
-        </Html>
-      );
-    }
     return (
       <Html lang="en">
-        <Head nonce={nonce}>{headTags}</Head>
+        <Head>{headTags}</Head>
         <body className="antialiased text-black bg-white dark:bg-black dark:text-white">
           <Main />
-          <NextScript nonce={nonce} />
+          <NextScript />
         </body>
       </Html>
     );
