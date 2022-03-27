@@ -8,6 +8,7 @@ import ButtonIcon from "./plus-square-outline.svg";
 import DoneIcon from "./checkmark-circle-outline.svg";
 import DefaultAvatar from "../guestbook/person-outline.svg";
 import Image from "next/image";
+import fireConfetti from "@/lib/utils/confetti";
 
 enum STATE {
   INITIAL,
@@ -45,6 +46,7 @@ export default function SkillBadge({ skill, user, currentUserId }: Props) {
     }
     mutate("/api/skill-category");
     setState(STATE.SUCCESS);
+    fireConfetti();
   }
   const isUserEndorsed = skill?.users?.find((u) => u.id === currentUserId);
 

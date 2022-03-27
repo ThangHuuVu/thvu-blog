@@ -28,6 +28,7 @@
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.0",
     "autoprefixer": "^10.4.0",
+    "canvas-confetti": "^1.5.1",
     "date-fns": "^2.26.0",
     "esbuild": "^0.14.0",
     "googleapis": "^85.0.0",

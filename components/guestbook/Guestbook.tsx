@@ -10,6 +10,7 @@ import { GuestBookEntry } from "@/lib/types/guestbook";
 import LoginView from "../LoginView";
 import Button from "../Button";
 import Entry from "./Entry";
+import fireConfetti from "@/lib/utils/confetti";
 
 enum FORM_STATE {
   "INIT",
@@ -59,8 +60,9 @@ export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEnt
     mutate("/api/guestbook");
     setForm({
       state: FORM_STATE.SUCCESS,
-      message: "You did it! Thank you for signing my guestbook.",
+      message: "Awesome! Thank you for signing my guestbook!",
     });
+    fireConfetti();
   };
 
   return (
