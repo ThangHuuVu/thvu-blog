@@ -75,7 +75,7 @@ export default function SkillBadge({ skill, user, currentUserId }: Props) {
         )}
         <span className="ml-2">{skill.name}</span>
       </div>
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-1 flex-wrap">
         {skill.users.map((user) => (
           <span title={user.name} key={user.id} className="w-8 h-8">
             {user.image ? (
