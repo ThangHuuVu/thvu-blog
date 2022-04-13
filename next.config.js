@@ -18,7 +18,7 @@ const isDevelopment = process.env.NODE_ENV === "development";
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
-  swcMinify: true,
+  // swcMinify: true,
   reactStrictMode: true,
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   images: {
@@ -68,15 +68,15 @@ const nextConfig = {
       use: ["@svgr/webpack"],
     });
 
-    if (!dev && !isServer) {
-      // Replace React with Preact only in client production build
-      Object.assign(config.resolve.alias, {
-        "react/jsx-runtime.js": "preact/compat/jsx-runtime",
-        react: "preact/compat",
-        "react-dom/test-utils": "preact/test-utils",
-        "react-dom": "preact/compat",
-      });
-    }
+    // if (!dev && !isServer) {
+    //   // Replace React with Preact only in client production build
+    //   Object.assign(config.resolve.alias, {
+    //     "react/jsx-runtime.js": "preact/compat/jsx-runtime",
+    //     react: "preact/compat",
+    //     "react-dom/test-utils": "preact/test-utils",
+    //     "react-dom": "preact/compat",
+    //   });
+    // }
 
     return config;
   },
