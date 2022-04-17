@@ -47,10 +47,15 @@ export default function Notes({ notionPublishes }: InferGetStaticPropsType<typeo
 export const getStaticProps = async () => {
   const results = (await getPublishedNotes()) || [];
   const notionPublishes = results.map<NotionPublish>((publish) => ({
+    // @ts-expect-error
     title: publish.properties.Name["title"][0].text.content,
+    // @ts-expect-error
     description: publish.properties.Description["rich_text"][0].text.content,
-    cover: publish.properties.Cover["rich_text"][0].href,
+    // @ts-expect-error
+    cover: publish.cover.external.url,
+    // @ts-expect-error
     url: publish.properties.Page["rich_text"][0].href,
+    // @ts-expect-error
     tags: publish.properties.Tags["multi_select"].map((tag) => tag.name),
   }));
   return {
