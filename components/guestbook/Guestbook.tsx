@@ -1,4 +1,4 @@
-import React, { useState, useRef, ReactElement } from "react";
+import React, { useState, useRef } from "react";
 
 import useSWR, { useSWRConfig } from "swr";
 import fetcher from "@/lib/fetcher";
@@ -12,7 +12,6 @@ import Button from "../Button";
 import Entry from "./Entry";
 import fireConfetti from "@/lib/utils/confetti";
 import { FormState } from "types/form";
-import CustomLink from "../CustomLink";
 
 export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEntry[] }) {
   const [form, setForm] = useState<FormState>(FormState.INITIAL);
@@ -72,7 +71,7 @@ export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEnt
             </Button>
           </form>
           {form === FormState.ERROR && <ErrorMessage>An error occurred.</ErrorMessage>}
-          {form === FormState.INITIAL && (
+          {form === FormState.SUCCESS && (
             <SuccessMessage>Awesome! Thank you for signing my guestbook.</SuccessMessage>
           )}
         </div>
