@@ -7,6 +7,9 @@ import { Dialog, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]";
+import { PageSEO } from "@/components/SEO";
+import siteMetadata from "@/data/siteMetadata";
+import CustomLink from "@/components/CustomLink";
 
 export default function SignIn({
   providers,
@@ -20,6 +23,10 @@ export default function SignIn({
   }, [router]);
   return (
     <>
+      <PageSEO
+        title={`Sign In - ${siteMetadata.author}`}
+        description={`Sign In - ${siteMetadata.author}`}
+      />
       <div className="pt-6 pb-4 space-y-2 md:space-y-5">
         <PageTitle>Sign In</PageTitle>
       </div>
@@ -30,6 +37,10 @@ export default function SignIn({
             {Object.values(providers).map((provider) => {
               return <LoginButton key={provider.id} provider={provider} />;
             })}
+            <p className="text-center sm:text-left">
+              Authentication built with 💚 using{" "}
+              <CustomLink href="https://next-auth.js.org/">NextAuth.js</CustomLink>
+            </p>
           </div>
         </div>
       </div>
