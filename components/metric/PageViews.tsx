@@ -2,10 +2,12 @@ import useSWR from "swr";
 import fetcher from "@/lib/fetcher";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { Analytic } from "pages/api/analytics";
+import ErrorMessage from "../ErrorMessage";
 
 export default function PageViews() {
-  const { data } = useSWR<Analytic>("/api/analytics", fetcher);
+  const { data, error } = useSWR<Analytic>("/api/analytics", fetcher);
 
+  if (error) return <ErrorMessage>An error occurred when trying to load pageviews.</ErrorMessage>;
   const pageViews = data?.pageViews;
 
   return pageViews ? (
