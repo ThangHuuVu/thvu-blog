@@ -22,6 +22,12 @@ export default function GuestbookPage({
           An artifact of the 90's webs. Leave a comment below for my future visitors. Feel free to
           write anything!
         </p>
+        <div className="prose dark:prose-dark">
+          <p>
+            You could also endorse me 🏆 at{" "}
+            <CustomLink href="/endorsements">the endorsement page</CustomLink>.
+          </p>
+        </div>
       </div>
       <div className="flex flex-col item-center gap-4 pb-8">
         <Guestbook fallbackData={fallbackData} />

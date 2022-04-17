@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { mutate } from "swr";
+import { useSWRConfig } from "swr";
 import ErrorMessage from "../ErrorMessage";
 import SuccessMessage from "../SuccessMessage";
 import { Skill } from "@/lib/types/skill";
@@ -9,13 +9,7 @@ import DoneIcon from "./checkmark-circle-outline.svg";
 import DefaultAvatar from "../guestbook/person-outline.svg";
 import Image from "next/image";
 import fireConfetti from "@/lib/utils/confetti";
-
-enum STATE {
-  INITIAL,
-  LOADING,
-  ERROR,
-  SUCCESS,
-}
+import { FormState } from "types/form";
 
 interface Props {
   skill: Skill;
@@ -27,9 +21,10 @@ interface Props {
 }
 
 export default function SkillBadge({ skill, user, currentUserId }: Props) {
-  const [state, setState] = useState<STATE>(STATE.INITIAL);
+  const [state, setState] = useState<FormState>(FormState.INITIAL);
+  const { mutate } = useSWRConfig();
   async function onEndorse(skillId: string) {
-    setState(STATE.LOADING);
+    setState(FormState.LOADING);
     const res = await fetch("/api/endorsement", {
       body: JSON.stringify({
         skillId,
@@ -41,11 +36,11 @@ export default function SkillBadge({ skill, user, currentUserId }: Props) {
     });
     const { error } = await res.json();
     if (error) {
-      setState(STATE.ERROR);
+      setState(FormState.ERROR);
       return;
     }
     mutate("/api/skill-category");
-    setState(STATE.SUCCESS);
+    setState(FormState.SUCCESS);
     fireConfetti();
   }
   const isUserEndorsed = skill?.users?.find((u) => u.id === currentUserId);
@@ -53,7 +48,7 @@ export default function SkillBadge({ skill, user, currentUserId }: Props) {
   return (
     <div className="space-y-4">
       <div className="flex items-center text-base font-semibold">
-        {state === STATE.LOADING ? (
+        {state === FormState.LOADING ? (
           <div className="flex items-center justify-center w-8 h-8">
             <LoadingSpinner />
           </div>
@@ -101,8 +96,10 @@ export default function SkillBadge({ skill, user, currentUserId }: Props) {
           <span className="mx-2">{skill.users.map((u) => u.name).join(", ")}</span>
         </p>
       )}
-      {state === STATE.ERROR && <ErrorMessage>An unexpected error occurred.</ErrorMessage>}
-      {state === STATE.SUCCESS && <SuccessMessage>Thank you for your endorsement!</SuccessMessage>}
+      {state === FormState.ERROR && <ErrorMessage>An unexpected error occurred.</ErrorMessage>}
+      {state === FormState.SUCCESS && (
+        <SuccessMessage>Thank you for your endorsement!</SuccessMessage>
+      )}
     </div>
   );
 }

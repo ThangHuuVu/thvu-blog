@@ -4,6 +4,7 @@ import PageTitle from "@/components/PageTitle";
 import Skills from "@/components/skills/Skills";
 import { InferGetStaticPropsType } from "next";
 import { getAllSkillsByCategory } from "@/lib/db";
+import CustomLink from "@/components/CustomLink";
 
 export async function getStaticProps() {
   const skillsByCategory = await getAllSkillsByCategory();
@@ -31,6 +32,12 @@ export default function EndorsementsPage({
           Since you're here, I invite you to give me endorsement(s) based on the experience you had
           with me in tech.
         </p>
+        <div className="prose dark:prose-dark">
+          <p>
+            You could also leave a comment ✍️ at{" "}
+            <CustomLink href="/guestbook">the guestbook page</CustomLink>.
+          </p>
+        </div>
       </div>
       <Skills fallbackData={fallbackData} />
     </>

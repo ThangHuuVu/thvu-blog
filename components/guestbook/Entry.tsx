@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import DefaultAvatar from "./person-outline.svg";
 import { useState } from "react";
 import { GuestBookEntry } from "@/lib/types/guestbook";
-import { mutate } from "swr";
+import { useSWRConfig } from "swr";
 import LoadingSpinner from "@/components/LoadingSpinner";
 
 interface GuestbookEntryProps {
@@ -14,6 +14,7 @@ interface GuestbookEntryProps {
 export default function Entry({ entry, currentUserId }: GuestbookEntryProps) {
   const { user, body, updated_at } = entry;
   const [isDeleting, setIsDeleting] = useState(false);
+  const { mutate } = useSWRConfig();
   const deleteEntry = async (e) => {
     e.preventDefault();
     setIsDeleting(true);

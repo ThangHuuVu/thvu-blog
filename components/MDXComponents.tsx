@@ -5,16 +5,7 @@ import TOCInline from "./TOCInline";
 import Pre from "./Pre";
 import { CodePen, Tweet } from "mdx-embed";
 import { useMemo } from "react";
-import { Container } from "@/lib/types/common";
-
-interface WrapperProps extends Container {
-  layout: string;
-}
-
-const wrapper = ({ layout, ...rest }: WrapperProps) => {
-  const Layout = require(`../layouts/${layout}`).default;
-  return <Layout {...rest} />;
-};
+import PostLayout from "@/layouts/PostLayout";
 
 export const MDXComponents: ComponentMap = {
   Image,
@@ -23,7 +14,7 @@ export const MDXComponents: ComponentMap = {
   TOCInline,
   a: CustomLink,
   pre: Pre,
-  wrapper,
+  wrapper: PostLayout,
 };
 
 export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {

@@ -2,12 +2,12 @@ import { Container } from "@/lib/types/common";
 
 export default function SuccessMessage({ children }: Container) {
   return (
-    <p className="flex items-center text-sm font-bold text-success-700 dark:text-success-400 my-1 sm:my-2">
+    <p className="text-sm font-bold text-success-700 dark:text-success-400 my-1 sm:my-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="mr-2 h-4 w-4"
+        className="mr-2 h-4 w-4 inline-block"
       >
         <path
           fillRule="evenodd"
