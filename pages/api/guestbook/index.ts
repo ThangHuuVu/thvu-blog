@@ -23,14 +23,19 @@ const handler = async (
         body: entry.body,
         updated_at: entry.updated_at.toString(),
         user: {
-          id: entry.user.id,
-          name: entry.user.name,
-          image: entry.user.image,
+          id: entry.user!.id,
+          name: entry.user!.name!,
+          image: entry.user!.image!,
         },
       }))
     );
   }
-  const { user, id } = await getServerSession({ req, res }, authOptions);
+  const session = await getServerSession({ req, res }, authOptions);
+  if (!session) {
+    return res.status(401).send("Unauthenticated");
+  }
+
+  const { user, id } = session;
   if (!user) {
     return res.status(403).send("Unauthorized");
   }
@@ -40,20 +45,21 @@ const handler = async (
     const newEntry = await prisma.guestbook.create({
       data: {
         body,
-        userId: id.toString(),
+        userId: id as string,
       },
     });
-
-    return res.status(200).json({
+    const guestbookEntry: GuestBookEntry = {
       id: newEntry.id.toString(),
       body: newEntry.body,
       updated_at: newEntry.updated_at.toString(),
       user: {
-        id: id.toString(),
-        name: user.name,
-        image: user.image,
+        id: id as string,
+        name: user.name!,
+        image: user.image!,
       },
-    });
+    };
+
+    return res.status(200).json(guestbookEntry);
   }
 
   return res.send("Method not allowed.");

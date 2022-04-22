@@ -6,11 +6,13 @@ import { Pluggable } from "unified";
 export default function remarkImgToJsx(): Pluggable {
   return (tree) => {
     visit(
+      //@ts-expect-error
       tree,
       // only visit p tags that contain an img element
-      (node) => node.type === "paragraph" && node.children.some((n) => n.type === "image"),
+      (node: any) =>
+        node.type === "paragraph" && node.children.some((n: any) => n.type === "image"),
       (node: any) => {
-        const imageNode = node.children.find((n) => n.type === "image");
+        const imageNode = node.children.find((n: any) => n.type === "image");
 
         // only local files
         if (fs.existsSync(`${process.cwd()}/public${imageNode.url}`)) {

@@ -3,7 +3,7 @@ import { google } from "googleapis";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export interface Analytic {
-  pageViews: string;
+  pageViews?: string;
 }
 const handlers = async (_: NextApiRequest, res: NextApiResponse<Analytic>) => {
   const startDate = "2021-01-01";
@@ -30,7 +30,7 @@ const handlers = async (_: NextApiRequest, res: NextApiResponse<Analytic>) => {
 
   res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=30");
   return res.status(200).json({
-    pageViews: response.data.totalsForAllResults["ga:pageviews"],
+    pageViews: response.data.totalsForAllResults?.["ga:pageviews"],
   });
 };
 

@@ -19,7 +19,7 @@ export default function LoginView({ message }: Props) {
 
   return (
     <div className="prose dark:prose-dark lg:prose-xl">
-      {Boolean(session?.user) ? (
+      {!!session?.user ? (
         <div>
           Logged in as <strong>{session.user.name}.</strong>{" "}
           {isLoading ? (

@@ -2,7 +2,7 @@ import { Container } from "@/lib/types/common";
 import { useState, useRef } from "react";
 
 const Pre = ({ children }: Container) => {
-  const textInput = useRef(null);
+  const textInput = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -14,11 +14,13 @@ const Pre = ({ children }: Container) => {
     setCopied(false);
   };
   const onCopy = () => {
-    setCopied(true);
-    navigator.clipboard.writeText(textInput.current.textContent);
-    setTimeout(() => {
-      setCopied(false);
-    }, 2000);
+    if (textInput.current?.textContent) {
+      setCopied(true);
+      navigator.clipboard.writeText(textInput.current.textContent);
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+    }
   };
 
   return (

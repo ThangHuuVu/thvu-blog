@@ -1,6 +1,6 @@
 import LoginButton from "@/components/LoginButton";
 import PageTitle from "@/components/PageTitle";
-import { InferGetServerSidePropsType } from "next";
+import { GetServerSidePropsContext } from "next";
 import { getProviders } from "next-auth/react";
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
@@ -10,10 +10,13 @@ import { authOptions } from "../api/auth/[...nextauth]";
 import { PageSEO } from "@/components/SEO";
 import siteMetadata from "@/data/siteMetadata";
 import CustomLink from "@/components/CustomLink";
+import { Awaited } from "@/lib/types/common";
 
 export default function SignIn({
   providers,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: {
+  providers: Awaited<ReturnType<typeof getProviders>>;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   useEffect(() => {
@@ -34,9 +37,10 @@ export default function SignIn({
         <div className="p-8 prose dark:prose-dark max-w-none">
           <div className="flex flex-col items-center justify-between gap-4">
             <p className="text-center sm:text-left">Sign in with one of these providers:</p>
-            {Object.values(providers).map((provider) => {
-              return <LoginButton key={provider.id} provider={provider} />;
-            })}
+            {providers &&
+              Object.values(providers).map((provider) => {
+                return <LoginButton key={provider.id} provider={provider} />;
+              })}
             <p className="text-center sm:text-left">
               Authentication built with 💚 using{" "}
               <CustomLink href="https://next-auth.js.org/">NextAuth.js</CustomLink>
@@ -105,7 +109,7 @@ export default function SignIn({
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getServerSession(context, authOptions);
   if (session) {
     return {

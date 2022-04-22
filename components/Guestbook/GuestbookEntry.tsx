@@ -11,20 +11,10 @@ interface GuestbookEntryProps {
   currentUserId: string;
 }
 
-export default function Entry({ entry, currentUserId }: GuestbookEntryProps) {
+export default function GuestbookEntry({ entry, currentUserId }: GuestbookEntryProps) {
   const { user, body, updated_at } = entry;
   const [isDeleting, setIsDeleting] = useState(false);
   const { mutate } = useSWRConfig();
-  const deleteEntry = async (e) => {
-    e.preventDefault();
-    setIsDeleting(true);
-
-    await fetch(`/api/guestbook/${entry.id}`, {
-      method: "DELETE",
-    });
-
-    mutate("/api/guestbook");
-  };
 
   return (
     <>
@@ -56,7 +46,16 @@ export default function Entry({ entry, currentUserId }: GuestbookEntryProps) {
                 <span className="text-gray-300 dark:text-gray-700">/</span>
                 <button
                   className="text-sm text-danger-600 dark:text-danger-400"
-                  onClick={deleteEntry}
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    setIsDeleting(true);
+
+                    await fetch(`/api/guestbook/${entry.id}`, {
+                      method: "DELETE",
+                    });
+
+                    mutate("/api/guestbook");
+                  }}
                 >
                   Delete
                 </button>

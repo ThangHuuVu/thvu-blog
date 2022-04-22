@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 import fetcher from "@/lib/fetcher";
 
-export default function useViewCounter(slug) {
+export default function useViewCounter(slug: string) {
   const { data } = useSWR<{ total: unknown }>(`/api/view-count/${slug}`, fetcher);
   const views = new Number(data?.total);
 

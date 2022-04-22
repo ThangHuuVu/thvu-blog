@@ -8,11 +8,10 @@ export default function PageViews() {
   const { data, error } = useSWR<Analytic>("/api/analytics", fetcher);
 
   if (error) return <ErrorMessage>An error occurred when trying to load pageviews.</ErrorMessage>;
-  const pageViews = data?.pageViews;
 
-  return pageViews ? (
+  return data?.pageViews ? (
     <p className="text-sm text-gray-600 dark:text-gray-400">
-      All views: <span className="font-semibold">{pageViews}</span>
+      All views: <span className="font-semibold">{data.pageViews}</span>
     </p>
   ) : (
     <LoadingSpinner />

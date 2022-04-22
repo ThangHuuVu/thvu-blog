@@ -14,7 +14,7 @@ import Script from "next/script";
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   useEffect(() => {
-    const handleRouteChange = (url) => {
+    const handleRouteChange = (url: string) => {
       pageView(url);
     };
     router.events.on("routeChangeComplete", handleRouteChange);

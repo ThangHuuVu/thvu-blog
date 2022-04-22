@@ -21,14 +21,14 @@ export function getFiles(type: string) {
   const prefixPaths = path.join(root, "data", type);
   const files = getAllFilesRecursively(prefixPaths);
   // Only want to return blog/path and ignore root
-  return files.map((file) => file.slice(prefixPaths.length + 1));
+  return files.map((file: string) => file.slice(prefixPaths.length + 1));
 }
 
 export function formatSlug(slug: string) {
   return slug.replace(/\.(mdx|md)/, "");
 }
 
-export function dateSortDesc(a, b) {
+export function dateSortDesc(a: Date, b: Date) {
   if (a > b) return -1;
   if (a < b) return 1;
   return 0;
@@ -37,13 +37,13 @@ export function dateSortDesc(a, b) {
 export interface FrontMatter {
   title: string;
   summary: string;
-  date: string | null;
+  date: string;
   url: string;
   tags: string[];
   images: string[];
   lastModified: string;
   draft: boolean;
-  slug: string | null;
+  slug: string;
   viewCount?: string;
   layout: string;
 }
@@ -59,7 +59,7 @@ type FileBySlug = {
   frontMatter: EnhancedFrontMatter;
 };
 
-export async function getFileBySlug(type, slug): Promise<FileBySlug> {
+export async function getFileBySlug(type: string, slug: string): Promise<FileBySlug> {
   const mdxPath = path.join(root, "data", type, `${slug}.mdx`);
   const mdPath = path.join(root, "data", type, `${slug}.md`);
   const source = fs.existsSync(mdxPath)
@@ -84,7 +84,7 @@ export async function getFileBySlug(type, slug): Promise<FileBySlug> {
     );
   }
 
-  let toc = [];
+  let toc: any[] = [];
 
   const { frontmatter, code } = await bundleMDX({
     source,
@@ -125,10 +125,10 @@ export async function getFileBySlug(type, slug): Promise<FileBySlug> {
     toc,
     frontMatter: {
       readingMinutes: readingTime(code).minutes,
-      slug: slug || null,
       fileName: fs.existsSync(mdxPath) ? `${slug}.mdx` : `${slug}.md`,
       ...(frontmatter as FrontMatter),
-      date: frontmatter.date ? new Date(frontmatter.date).toISOString() : null,
+      date: new Date(frontmatter.date).toISOString(),
+      slug,
     },
   };
 }
@@ -138,7 +138,7 @@ export async function getAllFilesFrontMatter(folder: string): Promise<FrontMatte
 
   const files = getAllFilesRecursively(prefixPaths);
 
-  const allFrontMatter = [];
+  const allFrontMatter: any[] = [];
 
   files.forEach((file) => {
     // Replace is needed to work on Windows

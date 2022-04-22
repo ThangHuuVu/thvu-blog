@@ -1,7 +1,7 @@
-import Guestbook from "@/components/guestbook/Guestbook";
+import Guestbook from "@/components/Guestbook";
 import siteMetadata from "@/data/siteMetadata";
 import { PageSEO } from "@/components/SEO";
-import PageViews from "@/components/metric/PageViews";
+import PageViews from "@/components/Metric/PageView";
 import { InferGetStaticPropsType } from "next";
 import PageTitle from "@/components/PageTitle";
 import CustomLink from "@/components/CustomLink";

@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import { Skill } from "@/lib/types/skill";
+import { User } from "@/lib/types/user";
 import { withSentry } from "@sentry/nextjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -21,10 +22,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Skill[] | strin
         name: skill.name,
         users: [
           ...new Set(
-            skill.endorsements.map((en) => ({
-              id: en.user.id,
-              name: en.user.name,
-              image: en.user.image,
+            skill.endorsements.map<User>((en) => ({
+              id: en.user!.id,
+              name: en.user!.name!,
+              image: en.user!.image!,
             }))
           ),
         ],

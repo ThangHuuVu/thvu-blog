@@ -1,11 +1,12 @@
 import Link from "next/link";
 
 interface CustomLinkProps extends React.LinkHTMLAttributes<HTMLAnchorElement> {
+  href: string;
   showIcon?: boolean;
 }
 const CustomLink = ({ href, children, className, showIcon = true, ...rest }: CustomLinkProps) => {
-  const isInternalLink = href && href.startsWith("/");
-  const isAnchorLink = href && href.startsWith("#");
+  const isInternalLink = href.startsWith("/");
+  const isAnchorLink = href.startsWith("#");
 
   if (isInternalLink || isAnchorLink) {
     return (

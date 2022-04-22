@@ -20,8 +20,8 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GITHUB_SECRET,
     }),
     LineProvider({
-      clientId: process.env.LINE_CHANNEL_ID,
-      clientSecret: process.env.LINE_CHANNEL_SECRET,
+      clientId: process.env.LINE_CHANNEL_ID!,
+      clientSecret: process.env.LINE_CHANNEL_SECRET!,
     }),
   ],
   pages: {
