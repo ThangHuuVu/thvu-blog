@@ -1,4 +1,3 @@
-import { StructuredTextPropTypes } from "react-datocms";
 import { fetchAPI } from "./common";
 
 export interface Project {

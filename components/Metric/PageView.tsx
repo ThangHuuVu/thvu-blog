@@ -11,7 +11,7 @@ export default function PageViews() {
 
   return data?.pageViews ? (
     <p className="text-sm text-gray-600 dark:text-gray-400">
-      All views: <span className="font-semibold">{data?.pageViews}</span>
+      All views: <span className="font-semibold">{data.pageViews}</span>
     </p>
   ) : (
     <LoadingSpinner />

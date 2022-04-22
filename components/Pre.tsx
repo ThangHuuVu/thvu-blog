@@ -16,7 +16,7 @@ const Pre = ({ children }: Container) => {
   const onCopy = () => {
     if (textInput.current?.textContent) {
       setCopied(true);
-      navigator.clipboard.writeText(textInput.current?.textContent);
+      navigator.clipboard.writeText(textInput.current.textContent);
       setTimeout(() => {
         setCopied(false);
       }, 2000);

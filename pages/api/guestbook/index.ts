@@ -31,11 +31,15 @@ const handler = async (
     );
   }
   const session = await getServerSession({ req, res }, authOptions);
-  if (!session?.user) {
+  if (!session) {
     return res.status(401).send("Unauthenticated");
   }
 
   const { user, id } = session;
+  if (!user) {
+    return res.status(403).send("Unauthorized");
+  }
+
   if (req.method === "POST") {
     const body = (req.body.body || "").slice(0, 500);
     const newEntry = await prisma.guestbook.create({

@@ -85,8 +85,8 @@ export const TagSEO = ({ title, description }: SEOProps) => {
 
 export const BlogSEO = ({ title, summary, date, lastModified, url, images = [] }: FrontMatter) => {
   const router = useRouter();
-  const publishedAt = new Date(date!).toISOString();
-  const modifiedAt = new Date(lastModified || date!).toISOString();
+  const publishedAt = new Date(date).toISOString();
+  const modifiedAt = new Date(lastModified || date).toISOString();
   let imagesArr =
     images.length === 0
       ? [siteMetadata.socialBanner]

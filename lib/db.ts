@@ -10,7 +10,7 @@ export async function getAllBlogPosts() {
     const viewCountBySlug = (await prisma.view.findMany()).reduce((obj, view) => {
       obj[view.slug] = view.count.toString();
       return obj;
-    }, {} as any);
+    }, {} as Record<string, string>);
 
     posts.forEach((post) => (post.viewCount = viewCountBySlug[post.slug] || "0"));
 
