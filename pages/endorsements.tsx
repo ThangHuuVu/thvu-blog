@@ -1,7 +1,7 @@
 import { PageSEO } from "@/components/SEO";
 import siteMetadata from "@/data/siteMetadata";
 import PageTitle from "@/components/PageTitle";
-import Skills from "@/components/skills/Skills";
+import Skills from "@/components/Skills";
 import { InferGetStaticPropsType } from "next";
 import { getAllSkillsByCategory } from "@/lib/db";
 import CustomLink from "@/components/CustomLink";

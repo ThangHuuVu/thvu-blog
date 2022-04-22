@@ -1,6 +1,7 @@
 import siteMetadata from "@/data/siteMetadata";
+import { FrontMatter } from "@/lib/mdx";
 
-const generateRssItem = (post) => `
+const generateRssItem = (post: FrontMatter) => `
   <item>
     <guid>${siteMetadata.siteUrl}/blog/${post.slug}</guid>
     <title>${post.title}</title>
@@ -12,7 +13,7 @@ const generateRssItem = (post) => `
   </item>
 `;
 
-const generateRss = (posts, page = "feed.xml") => `
+const generateRss = (posts: FrontMatter[], page = "feed.xml") => `
   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
       <title>${siteMetadata.title}</title>

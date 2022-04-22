@@ -10,7 +10,7 @@ export async function getAllBlogPosts() {
     const viewCountBySlug = (await prisma.view.findMany()).reduce((obj, view) => {
       obj[view.slug] = view.count.toString();
       return obj;
-    }, {});
+    }, {} as any);
 
     posts.forEach((post) => (post.viewCount = viewCountBySlug[post.slug] || "0"));
 
@@ -45,9 +45,9 @@ export async function getAllSkillsByCategory() {
         users: skill.endorsements
           .filter((en) => en.userId)
           .map<User>((en) => ({
-            id: en.user.id,
-            name: en.user.name,
-            image: en.user.image,
+            id: en.user!.id,
+            name: en.user!.name!,
+            image: en.user!.image!,
           })),
       })),
     }));
@@ -71,9 +71,9 @@ export async function getGuestbookEntries() {
       body: entry.body,
       updated_at: entry.updated_at.toString(),
       user: {
-        id: entry.user.id,
-        name: entry.user.name,
-        image: entry.user.image,
+        id: entry.user!.id,
+        name: entry.user!.name!,
+        image: entry.user!.image!,
       },
     }));
   } catch (error) {

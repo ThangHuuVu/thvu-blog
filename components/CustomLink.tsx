@@ -18,7 +18,7 @@ const CustomLink = ({ href, children, className, showIcon = true, ...rest }: Cus
   }
 
   return (
-    <Link href={href}>
+    <Link href={href!}>
       <a
         target="_blank"
         rel="noopener noreferrer"

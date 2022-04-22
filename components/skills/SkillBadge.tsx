@@ -9,14 +9,12 @@ import DoneIcon from "./checkmark-circle-outline.svg";
 import DefaultAvatar from "../guestbook/person-outline.svg";
 import Image from "next/image";
 import fireConfetti from "@/lib/utils/confetti";
-import { FormState } from "types/form";
+import { FormState } from "@/lib/types/form";
+import { DefaultSession } from "next-auth/core/types";
 
 interface Props {
   skill: Skill;
-  user: {
-    image?: string;
-    name?: string;
-  };
+  user: DefaultSession["user"];
   currentUserId: string;
 }
 

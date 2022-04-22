@@ -4,7 +4,7 @@ const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
 export async function getPublishedNotes() {
   const response = await notion.databases.query({
-    database_id: process.env.NOTION_DB_ID,
+    database_id: process.env.NOTION_DB_ID as string,
     filter: {
       property: "Published?",
       checkbox: {

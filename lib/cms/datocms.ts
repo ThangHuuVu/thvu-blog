@@ -1,4 +1,17 @@
+import { StructuredTextPropTypes } from "react-datocms";
 import { fetchAPI } from "./common";
+
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  projectType: "sideGig" | "hobby" | "product" | "oss";
+  ready: boolean;
+  url: string;
+  cover: {
+    url: string;
+  };
+}
 
 export async function getAllProjects(preview: boolean) {
   const data = await fetchAPI(
@@ -19,10 +32,24 @@ export async function getAllProjects(preview: boolean) {
   `,
     { preview }
   );
-  return data?.allProjects;
+  return data?.allProjects as Project[];
 }
 
-export async function getAbout(preview) {
+export interface About {
+  name: string;
+  title: string;
+  location: string;
+  updatedAt: string;
+  content: any;
+  profilepicture: {
+    blurhash: string;
+    alt: string;
+    url: string;
+    blurUpThumb: string;
+  };
+}
+
+export async function getAbout(preview: boolean) {
   const data = await fetchAPI(
     `
     {
@@ -31,9 +58,9 @@ export async function getAbout(preview) {
         title
         location
         updatedAt
-          content {
-            value
-          }
+        content {
+          value
+        }
         profilepicture {
           blurhash
           alt
@@ -45,5 +72,5 @@ export async function getAbout(preview) {
   `,
     { preview }
   );
-  return data?.about;
+  return data?.about as About;
 }

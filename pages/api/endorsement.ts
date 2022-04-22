@@ -6,12 +6,15 @@ import { authOptions } from "./auth/[...nextauth]";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
-    const { id } = await getServerSession({ req, res }, authOptions);
+    const session = await getServerSession({ req, res }, authOptions);
+    if (!session) {
+      return res.status(403).send("Unauthorized");
+    }
     const { skillId } = req.body;
     await prisma.endorsement.create({
       data: {
         skill_id: Number(skillId),
-        userId: id.toString(),
+        userId: session.id as string,
       },
     });
     return res.status(200).json(true);

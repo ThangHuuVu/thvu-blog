@@ -9,15 +9,26 @@ import PostLayout from "@/layouts/PostLayout";
 
 export const MDXComponents: ComponentMap = {
   Image,
+  // @ts-expect-error
   CodePen,
+  // @ts-expect-error
   Tweet,
   TOCInline,
   a: CustomLink,
+  // @ts-expect-error
   pre: Pre,
   wrapper: PostLayout,
 };
 
-export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
+export const MDXLayoutRenderer = ({
+  layout,
+  mdxSource,
+  ...rest
+}: {
+  layout: any;
+  mdxSource: string;
+  [key: string]: any;
+}) => {
   const MDXLayout = useMemo(() => getMDXComponent(mdxSource), [mdxSource]);
 
   return <MDXLayout layout={layout} components={MDXComponents} {...rest} />;

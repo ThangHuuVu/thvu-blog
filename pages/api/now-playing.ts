@@ -21,7 +21,9 @@ async function handler(_: NextApiRequest, res: NextApiResponse<NowPlayingSong>) 
     // song
     const isPlaying = nowPlaying.is_playing;
     const title = nowPlaying.item.name;
-    const artist = nowPlaying.item.artists.map((_artist) => _artist.name).join(", ");
+    const artist = nowPlaying.item.artists
+      .map((_artist: { name: string }) => _artist.name)
+      .join(", ");
     const songUrl = nowPlaying.item.external_urls.spotify;
 
     res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=30");

@@ -11,11 +11,11 @@ import LoginView from "../LoginView";
 import Button from "../Button";
 import Entry from "./Entry";
 import fireConfetti from "@/lib/utils/confetti";
-import { FormState } from "types/form";
+import { FormState } from "@/lib/types/form";
 
 export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEntry[] }) {
   const [form, setForm] = useState<FormState>(FormState.INITIAL);
-  const inputEl = useRef(null);
+  const inputEl = useRef<HTMLTextAreaElement>(null);
   const { data: session } = useSession();
   const { error: entriesError, data: entries } = useSWR<GuestBookEntry[]>(
     "/api/guestbook",
@@ -25,31 +25,6 @@ export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEnt
     }
   );
   const { mutate } = useSWRConfig();
-  const onSubmitGuestbookEntry = async (e) => {
-    e.preventDefault();
-    setForm(FormState.LOADING);
-
-    const res = await fetch("/api/guestbook", {
-      body: JSON.stringify({
-        body: inputEl.current.value,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    });
-
-    const { error } = await res.json();
-    if (error) {
-      setForm(FormState.ERROR);
-      return;
-    }
-
-    inputEl.current.value = "";
-    mutate("/api/guestbook");
-    setForm(FormState.SUCCESS);
-    fireConfetti();
-  };
 
   return (
     <>
@@ -57,7 +32,34 @@ export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEnt
       {Boolean(session?.user) && (
         <div className="border-2 border-gray-400 dark:border-gray-600 rounded-md p-6 prose dark:prose-dark lg:prose-xl">
           <p>Leave a message!</p>
-          <form className="w-full my-4" onSubmit={onSubmitGuestbookEntry}>
+          <form
+            className="w-full my-4"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              setForm(FormState.LOADING);
+
+              const res = await fetch("/api/guestbook", {
+                body: JSON.stringify({
+                  body: inputEl.current?.value,
+                }),
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                method: "POST",
+              });
+
+              const { error } = await res.json();
+              if (error) {
+                setForm(FormState.ERROR);
+                return;
+              }
+
+              if (inputEl.current) inputEl.current.value = "";
+              mutate("/api/guestbook");
+              setForm(FormState.SUCCESS);
+              fireConfetti();
+            }}
+          >
             <textarea
               ref={inputEl}
               aria-label="Your message"
