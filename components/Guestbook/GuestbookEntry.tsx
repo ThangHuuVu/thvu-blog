@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { format } from "date-fns";
-import DefaultAvatar from "../person-outline.svg";
+import DefaultAvatar from "./person-outline.svg";
 import { useState } from "react";
 import { GuestBookEntry } from "@/lib/types/guestbook";
 import { useSWRConfig } from "swr";
