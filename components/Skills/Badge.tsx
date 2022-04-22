@@ -6,7 +6,7 @@ import { Skill } from "@/lib/types/skill";
 import LoadingSpinner from "../LoadingSpinner";
 import ButtonIcon from "./plus-square-outline.svg";
 import DoneIcon from "./checkmark-circle-outline.svg";
-import DefaultAvatar from "../guestbook/person-outline.svg";
+import DefaultAvatar from "../Guestbook/person-outline.svg";
 import Image from "next/image";
 import fireConfetti from "@/lib/utils/confetti";
 import { FormState } from "@/lib/types/form";
@@ -18,7 +18,7 @@ interface Props {
   currentUserId: string;
 }
 
-export default function SkillBadge({ skill, user, currentUserId }: Props) {
+export default function Badge({ skill, user, currentUserId }: Props) {
   const [state, setState] = useState<FormState>(FormState.INITIAL);
   const { mutate } = useSWRConfig();
   async function onEndorse(skillId: string) {

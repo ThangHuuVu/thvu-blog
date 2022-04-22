@@ -1,7 +1,7 @@
 import fetcher from "@/lib/fetcher";
 import { SkillCategory } from "@/lib/types/skill";
 import { useSession } from "next-auth/react";
-import SkillBadge from "./SkillBadge";
+import Badge from "./Badge";
 import useSWR from "swr";
 import LoginView from "../LoginView";
 import ErrorMessage from "../ErrorMessage";
@@ -35,7 +35,7 @@ export default function Skills({ fallbackData }: Props) {
                   <h4>{category.name}</h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 grid-flow-row auto-rows-auto gap-2">
                     {category?.skills?.map((skill) => (
-                      <SkillBadge
+                      <Badge
                         key={skill.id}
                         skill={skill}
                         user={session?.user}

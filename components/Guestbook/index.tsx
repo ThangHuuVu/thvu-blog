@@ -9,7 +9,7 @@ import { useSession } from "next-auth/react";
 import { GuestBookEntry } from "@/lib/types/guestbook";
 import LoginView from "../LoginView";
 import Button from "../Button";
-import Entry from "./Entry";
+import GuestbookEntry from "./GuestbookEntry";
 import fireConfetti from "@/lib/utils/confetti";
 import { FormState } from "@/lib/types/form";
 
@@ -87,7 +87,7 @@ export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEnt
         )}
         {entries ? (
           entries.map((entry) => (
-            <Entry key={entry.id} entry={entry} currentUserId={session?.id as string} />
+            <GuestbookEntry key={entry.id} entry={entry} currentUserId={session?.id as string} />
           ))
         ) : (
           <LoadingSpinner />

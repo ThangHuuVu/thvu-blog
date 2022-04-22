@@ -14,6 +14,7 @@ export const MDXComponents: ComponentMap = {
   // @ts-expect-error
   Tweet,
   TOCInline,
+  // @ts-expect-error
   a: CustomLink,
   // @ts-expect-error
   pre: Pre,

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { format } from "date-fns";
-import DefaultAvatar from "./person-outline.svg";
+import DefaultAvatar from "../person-outline.svg";
 import { useState } from "react";
 import { GuestBookEntry } from "@/lib/types/guestbook";
 import { useSWRConfig } from "swr";
@@ -11,7 +11,7 @@ interface GuestbookEntryProps {
   currentUserId: string;
 }
 
-export default function Entry({ entry, currentUserId }: GuestbookEntryProps) {
+export default function GuestbookEntry({ entry, currentUserId }: GuestbookEntryProps) {
   const { user, body, updated_at } = entry;
   const [isDeleting, setIsDeleting] = useState(false);
   const { mutate } = useSWRConfig();
