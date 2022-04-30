@@ -37,7 +37,6 @@ export async function getAllProjects(preview: boolean) {
 export interface About {
   name: string;
   title: string;
-  location: string;
   updatedAt: string;
   content: any;
   profilepicture: {
@@ -55,7 +54,6 @@ export async function getAbout(preview: boolean) {
       about {
         name
         title
-        location
         updatedAt
         content {
           value

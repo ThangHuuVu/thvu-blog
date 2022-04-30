@@ -10,7 +10,7 @@ import { isLink } from "datocms-structured-text-utils";
 import CustomLink from "@/components/CustomLink";
 
 export default function About({ about }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { name, title, location, profilepicture, content, updatedAt } = about;
+  const { name, title, profilepicture, content, updatedAt } = about;
 
   return (
     <>
@@ -34,12 +34,6 @@ export default function About({ about }: InferGetStaticPropsType<typeof getStati
           />
           <h3 className="pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight">{name}</h3>
           <div className="text-gray-500 dark:text-gray-400">{title}</div>
-          <div className="text-gray-500 dark:text-gray-400">
-            <span role="img" aria-label="location">
-              📍
-            </span>
-            {location}
-          </div>
           <div className="flex pt-6 space-x-3">
             <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} />
             <SocialIcon kind="github" href={siteMetadata.github} />
