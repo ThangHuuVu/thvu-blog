@@ -3,22 +3,21 @@ import { PageSEO } from "@/components/SEO";
 import Hero from "@/components/Hero";
 import InternalCard from "@/components/InternalCard";
 import siteMetadata from "@/data/siteMetadata";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { InferGetStaticPropsType } from "next";
 import prisma from "@/lib/prisma";
 import { getAllProjects } from "@/lib/cms/datocms";
 import { getAllBlogPosts } from "@/lib/db";
-import { getSession } from "next-auth/react";
 
 const MAX_DISPLAY = 2;
 
-export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+export const getStaticProps = async ({ preview = false }) => {
   const posts = await getAllBlogPosts();
   let projectCount = 0;
   let endorsementCount = 0;
   let guestbookEntryCount = 0;
 
   try {
-    const allProjects = (await getAllProjects(ctx.preview || false)) || [];
+    const allProjects = (await getAllProjects(preview)) || [];
     projectCount = allProjects.length;
     endorsementCount = await prisma.endorsement.count();
     guestbookEntryCount = await prisma.guestbook.count();
@@ -32,8 +31,8 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
       endorsementCount,
       guestbookEntryCount,
       projectCount,
-      session: await getSession(ctx),
     },
+    revalidate: 60,
   };
 };
 
@@ -42,7 +41,7 @@ export default function Home({
   guestbookEntryCount,
   endorsementCount,
   projectCount,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
