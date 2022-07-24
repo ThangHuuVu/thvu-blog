@@ -16,8 +16,8 @@ export const authOptions: NextAuthOptions = {
         "https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code",
     } as any),
     GitHubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+      clientId: process.env.GITHUB_ID!,
+      clientSecret: process.env.GITHUB_SECRET!,
     }),
     LineProvider({
       clientId: process.env.LINE_CHANNEL_ID!,
