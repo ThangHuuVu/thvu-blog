@@ -1256,10 +1256,10 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.22.tgz#219dfd89ae5b97a8801f015323ffa4b62f45718b"
   integrity sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==
 
-"@next-auth/prisma-adapter@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@next-auth/prisma-adapter/-/prisma-adapter-1.0.1.tgz#63a55d0c28bbb1f1db1e7823d2fd14eb2856e260"
-  integrity sha512-oZ1yDs5pSz19JvyYkIuf52CHpCc79ND/VYl3sX8Cwy3TaTfGgZWHRJfdcj3ordFNKIPxlV2qBYIX2UjgmSyTqQ==
+"@next-auth/prisma-adapter@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@next-auth/prisma-adapter/-/prisma-adapter-1.0.4.tgz#3e7304ac0615b8bfe425c81f96c40b40cafb59f0"
+  integrity sha512-jIOM6CzCbl2/Mzbx9kb2IjtHoJOeRN9wtQgLk4EUm5bhneSVGv1rtz5TDskvp2UfCa+EK9nDmug+lje41z80Gg==
 
 "@next/bundle-analyzer@11.1.2":
   version "11.1.2"
@@ -5926,10 +5926,10 @@ negotiator@0.6.2:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
 
-next-auth@^4.3.3:
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.3.3.tgz#5ff892e73648a0f33c2af0e9d7cafda729f63ae7"
-  integrity sha512-bUs+oOOPT18Pq/+4v9q4PA/DGoVoAX6jwY7RTfE/akFXwlny+y/mNS6lPSUwpqcHjljqBaq34PQA3+01SdOOPw==
+next-auth@^4.10.2:
+  version "4.10.2"
+  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.10.2.tgz#6893f1bf4b3e5281bd340a6bcd3c331225c5e2be"
+  integrity sha512-9XeP3faA5M3LneNJuzZCrmyR1ONYVH+pNQTozLBlpzXSkVRCgy+PTLAojOGkCo5v5MWcCZNTNHUOQL6gIcYwEQ==
   dependencies:
     "@babel/runtime" "^7.16.3"
     "@panva/hkdf" "^1.0.1"

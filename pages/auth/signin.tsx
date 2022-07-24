@@ -5,7 +5,7 @@ import { getProviders } from "next-auth/react";
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
-import { getServerSession } from "next-auth";
+import { unstable_getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]";
 import { PageSEO } from "@/components/SEO";
 import siteMetadata from "@/data/siteMetadata";
@@ -109,8 +109,8 @@ export default function SignIn({
   );
 }
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const session = await getServerSession(context, authOptions);
+export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
+  const session = await unstable_getServerSession(req, res, authOptions);
   if (session) {
     return {
       redirect: {
