@@ -9,7 +9,7 @@ const siteMetadata = {
   siteLogo: "/static/images/logo.png",
   image: "https://pbs.twimg.com/profile_images/1533009865886420992/_nkHo5tO_400x400.jpg",
   socialBanner: "/static/images/social-banner.png",
-  email: "thvu@hey.com",
+  email: "hi@thvu.dev",
   github: "https://github.com/ThangHuuVu",
   twitter: "https://twitter.com/thanghvu",
   linkedin: "https://www.linkedin.com/in/thanghuuvu/",
