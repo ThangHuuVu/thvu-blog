@@ -18,13 +18,10 @@ export default function GuestbookPage({
       />
       <div className="flex flex-col justify-center items-start max-w-2xl pt-6 pb-8 space-y-2 md:space-y-5">
         <PageTitle>Guestbook</PageTitle>
-        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400 xl:text-xl">
-          An artifact of the 90's webs. Leave a comment below for my future visitors. Feel free to
-          write anything!
-        </p>
         <div className="prose dark:prose-dark">
-          <p>
-            You could also endorse me 🏆 at{" "}
+          <p className="text-lg text-gray-500 dark:text-gray-400 xl:text-xl">
+            An artifact of the 90's webs. Leave a comment below for my future visitors. Feel free to
+            write anything! You could also endorse me 🏆 at{" "}
             <CustomLink href="/endorsements">the endorsement page</CustomLink>.
           </p>
         </div>
