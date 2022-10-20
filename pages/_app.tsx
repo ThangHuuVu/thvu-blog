@@ -8,11 +8,14 @@ import Head from "next/head";
 import { SessionProvider } from "next-auth/react";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import { GA_TRACKING_ID, pageView } from "@/lib/gtag";
-import type { AppContext, AppProps } from "next/app";
-import App from "next/app";
 import Script from "next/script";
-function MyApp({ Component, pageProps }: AppProps) {
+
+import type { AppProps } from "next/app";
+import type { Session } from "next-auth";
+
+function MyApp({ Component, pageProps }: AppProps<{ session: Session }>) {
   const router = useRouter();
+
   useEffect(() => {
     const handleRouteChange = (url: string) => {
       pageView(url);
@@ -22,6 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, [router.events]);
+
   const { session, ...rest } = pageProps;
 
   return (
