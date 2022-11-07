@@ -4,6 +4,7 @@ import Github from "./github.svg";
 import Linkedin from "./linkedin.svg";
 import Twitter from "./twitter.svg";
 import Codepen from "./codepen.svg";
+import Link from "next/link";
 
 interface ComponentProps {
   [kind: string]: any;
@@ -28,7 +29,7 @@ const SocialIcon = ({ kind, href, size = 8 }: Props) => {
   const SocialSvg = components[kind];
 
   return (
-    <a
+    <Link
       className="text-sm text-gray-500 transition hover:text-gray-600"
       target="_blank"
       rel="noopener noreferrer"
@@ -38,7 +39,7 @@ const SocialIcon = ({ kind, href, size = 8 }: Props) => {
       <SocialSvg
         className={`fill-current text-gray-700 dark:text-gray-200 hover:text-primary-500 dark:hover:text-primary-400 h-${size} w-${size}`}
       />
-    </a>
+    </Link>
   );
 };
 
