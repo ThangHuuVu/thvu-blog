@@ -5,12 +5,11 @@ import { getProviders } from "next-auth/react";
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
-import { unstable_getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]";
 import { PageSEO } from "@/components/SEO";
 import siteMetadata from "@/data/siteMetadata";
 import CustomLink from "@/components/CustomLink";
 import { Awaited } from "@/lib/types/common";
+import { getServerSession } from "@/lib/getServerSession";
 
 export default function SignIn({
   providers,
@@ -110,7 +109,7 @@ export default function SignIn({
 }
 
 export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
-  const session = await unstable_getServerSession(req, res, authOptions);
+  const session = await getServerSession(req, res);
   if (session) {
     return {
       redirect: {

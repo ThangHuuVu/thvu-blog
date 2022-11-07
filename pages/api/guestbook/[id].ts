@@ -2,14 +2,13 @@ import { withSentry } from "@sentry/nextjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import { GuestBookEntry } from "@/lib/types/guestbook";
-import { unstable_getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]";
+import { getServerSession } from "@/lib/getServerSession";
 
 const guestbookEntries = async (
   req: NextApiRequest,
   res: NextApiResponse<GuestBookEntry | string | {}>
 ) => {
-  const session = await unstable_getServerSession(req, res, authOptions);
+  const session = await getServerSession(req, res);
   if (!session?.user) {
     return res.status(401).send("Unauthenticated");
   }
