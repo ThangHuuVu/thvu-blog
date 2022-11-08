@@ -40,14 +40,13 @@ export default function Hero() {
         </PageTitle>
         <p className="text-lg leading-7 prose text-gray-500 max-w-none dark:text-gray-400">
           I am a full stack software engineer with a strong focus in front-end and system design.{" "}
-          <Link href={`mailto:${siteMetadata.email}`}>
-            <a
-              className="font-medium leading-6 "
-              aria-label={`Email to ${siteMetadata.email}`}
-              title={`Email to ${siteMetadata.email}`}
-            >
-              Get in touch &rarr;
-            </a>
+          <Link
+            href={`mailto:${siteMetadata.email}`}
+            className="font-medium leading-6 "
+            aria-label={`Email to ${siteMetadata.email}`}
+            title={`Email to ${siteMetadata.email}`}
+          >
+            Get in touch &rarr;
           </Link>
         </p>
       </div>

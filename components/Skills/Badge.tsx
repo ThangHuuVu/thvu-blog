@@ -80,6 +80,9 @@ export default function Badge({ skill, user, currentUserId }: Props) {
                 width={32}
                 height={32}
                 className="rounded-full"
+                style={{
+                  margin: "0",
+                }}
               />
             ) : (
               <DefaultAvatar className="w-8 h-8 p-0.5 rounded-full fill-current text-primary-600 dark:text-primary-400 border-2 border-solid border-primary-600 dark:border-primary-400" />
