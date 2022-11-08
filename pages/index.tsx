@@ -7,7 +7,6 @@ import { InferGetStaticPropsType } from "next";
 import prisma from "@/lib/prisma";
 import { getAllProjects } from "@/lib/cms/datocms";
 import { getAllBlogPosts } from "@/lib/db";
-import { FrontMatter } from "@/lib/mdx";
 
 const MAX_DISPLAY = 2;
 
@@ -57,7 +56,7 @@ export default function Home({
       ) : (
         <>
           <div className="py-8 grid grid-cols-1 grid-rows-2 grid-flow-row sm:grid-rows-1 sm:grid-cols-2 justify-between gap-4">
-            {recentPosts.map((frontMatter: FrontMatter) => {
+            {recentPosts.map((frontMatter) => {
               const { slug, title, viewCount } = frontMatter;
               return (
                 <InternalCard key={slug} href={`/blog/${slug}`} title={title}>
