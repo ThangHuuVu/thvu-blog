@@ -87,7 +87,7 @@ const nextConfig = {
 
     return config;
   },
-  experimental: { appDir: true },
+  // experimental: { appDir: true },
 };
 
 module.exports = isDevelopment
