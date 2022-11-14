@@ -12,12 +12,6 @@ export default function Footer() {
             <p className="text-sm font-bold">Portfolio</p>
             <CustomLink
               className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
-              href="/"
-            >
-              Home
-            </CustomLink>
-            <CustomLink
-              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
               href="/about"
             >
               About
@@ -27,6 +21,12 @@ export default function Footer() {
               href="/projects"
             >
               Projects
+            </CustomLink>
+            <CustomLink
+              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
+              href="/endorsements"
+            >
+              Endorsements
             </CustomLink>
           </div>
           <div className="flex flex-col space-y-4 md:items-start">
@@ -48,21 +48,6 @@ export default function Footer() {
               href="/notes"
             >
               Notes
-            </CustomLink>
-          </div>
-          <div className="flex flex-col space-y-4 md:items-start">
-            <p className="text-sm font-bold">Showcase</p>
-            <CustomLink
-              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
-              href="/endorsements"
-            >
-              Endorsements
-            </CustomLink>
-            <CustomLink
-              className="text-sm hover:text-primary-600 dark:hover:text-primary-400"
-              href="/guestbook"
-            >
-              Guestbook
             </CustomLink>
           </div>
           <div className="flex flex-col space-y-4 md:items-start">

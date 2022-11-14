@@ -2,23 +2,32 @@ import { PageSEO } from "@/components/SEO";
 import siteMetadata from "@/data/siteMetadata";
 import PageTitle from "@/components/PageTitle";
 import Skills from "@/components/Skills";
-import { InferGetStaticPropsType } from "next";
-import { getAllSkillsByCategory } from "@/lib/db";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { getAllSkillsByCategory, getGuestbookEntries } from "@/lib/db";
 import CustomLink from "@/components/CustomLink";
+import { getServerSession } from "@/lib/getServerSession";
+import Guestbook from "@/components/Guestbook";
+import PageViews from "@/components/Metric/PageView";
+import LoginView from "@/components/LoginView";
 
-export async function getStaticProps() {
+export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
   const skillsByCategory = await getAllSkillsByCategory();
+  const entries = await getGuestbookEntries();
+  const session = await getServerSession(req, res);
 
   return {
     props: {
-      fallbackData: skillsByCategory,
+      skillsByCategory,
+      session,
+      entries,
     },
-    revalidate: 60,
   };
 }
+
 export default function EndorsementsPage({
-  fallbackData,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+  skillsByCategory,
+  entries,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <PageSEO
@@ -31,12 +40,22 @@ export default function EndorsementsPage({
         <div className="prose dark:prose-dark">
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400 xl:text-xl">
             Since you're here, I invite you to give me endorsement(s) based on the experience you
-            had with me in tech. You could also leave a comment ✍️ at{" "}
-            <CustomLink href="/guestbook">the guestbook page</CustomLink>.
+            had with me in tech. You could also leave a comment ✍️ below.
           </p>
         </div>
       </div>
-      <Skills fallbackData={fallbackData} />
+      <div className="space-y-16 prose dark:prose-dark">
+        <LoginView message="Login to give endorsements." />
+        <Skills fallbackData={skillsByCategory} />
+        <Guestbook fallbackData={entries} />
+      </div>
+      <div className="mt-16">
+        <p className="text-sm text-gray-600 dark:text-gray-400 prose dark:prose-dark">
+          This page is inspired by{" "}
+          <CustomLink href="https://leerob.io/guestbook">Lee Robinson's guestbook.</CustomLink>
+        </p>
+        <PageViews />
+      </div>
     </>
   );
 }

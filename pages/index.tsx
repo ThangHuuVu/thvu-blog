@@ -93,8 +93,8 @@ export default function Home({
       <h2 className="text-xl font-extrabold leading-5 tracking-tight text-gray-900 dark:text-gray-100 sm:text-2xl sm:leading-7 md:text-3xl md:leading-9">
         Showcase
       </h2>
-      <div className="py-8 grid grid-cols-1 grid-rows-3 grid-flow-row sm:grid-rows-1 sm:grid-cols-2 xl:grid-cols-3 justify-between gap-4">
-        <InternalCard href={`/endorsements`} title="Endorsements">
+      <div className="py-8 grid grid-cols-1 grid-rows-2 grid-flow-row sm:grid-rows-1 sm:grid-cols-2 xl:grid-cols-2 justify-between gap-4">
+        <InternalCard href="/endorsements" title="Endorsements">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -108,8 +108,6 @@ export default function Home({
             </g>
           </svg>
           {endorsementCount} endorsements
-        </InternalCard>
-        <InternalCard href={`/guestbook`} title="Guestbook">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -124,7 +122,7 @@ export default function Home({
           </svg>
           {guestbookEntryCount} entries
         </InternalCard>
-        <InternalCard href={`/projects`} title="Projects">
+        <InternalCard href="/projects" title="Projects">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
