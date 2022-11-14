@@ -21,7 +21,7 @@ export default function GuestbookEntry({ entry, currentUserId }: GuestbookEntryP
       {isDeleting ? (
         <LoadingSpinner />
       ) : (
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 not-prose">
           <div className="text-gray-700 max-w-none dark:text-gray-300">{body}</div>
           <div className="flex items-center space-x-3">
             {user.image ? (

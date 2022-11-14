@@ -17,8 +17,7 @@ export default function Skills({ fallbackData }: Props) {
   });
 
   return (
-    <div className="prose dark:prose-dark lg:prose-xl">
-      <LoginView message="Login to give endorsements." />
+    <div>
       {categories && (
         <div className="mb-10">
           {error && (
@@ -28,7 +27,7 @@ export default function Skills({ fallbackData }: Props) {
             </ErrorMessage>
           )}
           <div className="mt-10 space-y-4">
-            <h5 className="text-2xl font-bold leading-8 tracking-tight">Skills</h5>
+            <h2 className="text-2xl font-bold leading-8 tracking-tight">Skills</h2>
             <div className="space-y-8 divide-y divide-gray-200 dark:divide-gray-800">
               {categories.map((category) => (
                 <div key={category.name}>
