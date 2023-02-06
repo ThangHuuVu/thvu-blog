@@ -7,7 +7,7 @@ const siteMetadata = {
   siteUrl: "https://thvu.dev",
   siteRepo: "https://github.com/ThangHuuVu/thvu-blog",
   siteLogo: "/static/images/logo.png",
-  image: "https://pbs.twimg.com/profile_images/1535533043456217088/AiPHdcZ6_400x400.jpg",
+  image: "https://pbs.twimg.com/profile_images/1607003064342556673/Uow-6Nmi_400x400.jpg",
   socialBanner: "/static/images/social-banner.png",
   email: "hi@thvu.dev",
   github: "https://github.com/ThangHuuVu",
