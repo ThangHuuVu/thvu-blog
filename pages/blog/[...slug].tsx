@@ -38,7 +38,7 @@ export default function Blog({ post, prev, next }: InferGetStaticPropsType<typeo
   const { mdxSource, toc, frontMatter } = post;
   return (
     <>
-      {!frontMatter.draft ? (
+      {!frontMatter.draft || process.env.NODE_ENV !== "production" ? (
         <MDXLayoutRenderer
           layout={frontMatter.layout || DEFAULT_LAYOUT}
           toc={toc}
