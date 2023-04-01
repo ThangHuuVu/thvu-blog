@@ -7,7 +7,6 @@ import { getAllSkillsByCategory, getGuestbookEntries } from "@/lib/db";
 import CustomLink from "@/components/CustomLink";
 import { getServerSession } from "@/lib/getServerSession";
 import Guestbook from "@/components/Guestbook";
-import PageViews from "@/components/Metric/PageView";
 import LoginView from "@/components/LoginView";
 
 export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
@@ -54,7 +53,6 @@ export default function EndorsementsPage({
           This page is inspired by{" "}
           <CustomLink href="https://leerob.io/guestbook">Lee Robinson's guestbook.</CustomLink>
         </p>
-        <PageViews />
       </div>
     </>
   );

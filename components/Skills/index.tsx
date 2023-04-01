@@ -3,7 +3,6 @@ import { SkillCategory } from "@/lib/types/skill";
 import { useSession } from "next-auth/react";
 import Badge from "./Badge";
 import useSWR from "swr";
-import LoginView from "../LoginView";
 import ErrorMessage from "../ErrorMessage";
 
 interface Props {
