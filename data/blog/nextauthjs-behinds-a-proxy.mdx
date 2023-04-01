@@ -2,7 +2,7 @@
 title: NextAuth.js behinds a proxy
 date: "2023-04-01"
 tags: ["NextAuth.js"]
-draft: true
+draft: false
 summary: A step-by-step guide for using Auth.js in a subpath behind a Netlify proxy
 images: []
 layout: PostLayout
@@ -136,13 +136,24 @@ export default NextAuth({
 
 Before deploying, we want to set the environment variables first.
 
-### `NEXTAUTH_URL_INTERNAL`
+### Override `x-forwarded-host` header
 
-For this setup to work, we need to set `NEXTAUTH_URL_INTERNAL` to `https://your-netlify-app.netlify.app/authjs/api/auth/`.
+For this setup to work, we need to set `NEXTAUTH_URL` and override the `x-forwarded-host` header using Advanced Initialization:
+
+```
+NEXTAUTH_URL="https://authjs-with-proxy.netlify.app/authjs/api/auth/"
+```
+
+```[...nextauth].ts
+export default function auth(req: NextApiRequest, res: NextApiResponse) {
+  req.headers['x-forwarded-host'] = process.env.NEXTAUTH_URL
+  return NextAuth(req, res, authOptions)
+}
+```
 
 <aside>
-💡 This variable is necessary for `next-auth` to correctly set the callback URL during the login process.
-
+  ☝️ This variable is necessary for `next-auth` to correctly set the callback URL during the login
+  process.
 </aside>
 
 ### `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`
@@ -157,7 +168,7 @@ First, we need to create a new GitHub OAuth app. Follow these steps:
 6. Copy the `Client ID` and `Client Secret` to put in the Vercel project settings as `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`. From the Vercel dashboard, select your project, and go to Settings → Environment Variables.
 
 <aside>
-💡 Note that you need to generate a new secret when you first open the OAuth app. Keep this secret secured - it is recommended to put it in the Vercel environment variables page immediately after copying.
+☝️ Note that you need to generate a new secret when you first open the OAuth app. Keep this secret secured - it is recommended to put it in the Vercel environment variables page immediately after copying.
 
 </aside>
 
