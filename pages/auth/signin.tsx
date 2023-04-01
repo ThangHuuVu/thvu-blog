@@ -9,7 +9,6 @@ import { PageSEO } from "@/components/SEO";
 import siteMetadata from "@/data/siteMetadata";
 import CustomLink from "@/components/CustomLink";
 import { Awaited } from "@/lib/types/common";
-import { getServerSession } from "@/lib/getServerSession";
 
 export default function SignIn({
   providers,
@@ -109,15 +108,6 @@ export default function SignIn({
 }
 
 export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
-  const session = await getServerSession(req, res);
-  if (session) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/",
-      },
-    };
-  }
   const providers = await getProviders();
   return {
     props: { providers },

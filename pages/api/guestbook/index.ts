@@ -2,7 +2,8 @@ import { withSentry } from "@sentry/nextjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import { GuestBookEntry } from "@/lib/types/guestbook";
-import { getServerSession } from "@/lib/getServerSession";
+import { authOptions } from "../auth/[...nextauth]";
+import { getServerSession } from "next-auth";
 
 const handler = async (
   req: NextApiRequest,
@@ -29,17 +30,17 @@ const handler = async (
       }))
     );
   }
-  const session = await getServerSession(req, res);
-  if (!session) {
-    return res.status(401).send("Unauthenticated");
-  }
-
-  const { user, id } = session;
-  if (!user) {
-    return res.status(403).send("Unauthorized");
-  }
-
   if (req.method === "POST") {
+    const session = await getServerSession(req, res, authOptions);
+    if (!session) {
+      return res.status(401).send("Unauthenticated");
+    }
+
+    const { user, id } = session;
+    if (!user) {
+      return res.status(403).send("Unauthorized");
+    }
+
     const body = (req.body.body || "").slice(0, 500);
     const newEntry = await prisma.guestbook.create({
       data: {

@@ -2,6 +2,7 @@ import headerNavLinks from "@/data/headerNavLinks";
 import Link from "./CustomLink";
 import { useEffect, useState } from "react";
 import MenuButton from "./MenuButton";
+import ThemeSwitch from "./ThemeSwitch";
 
 function useIsScrollTop() {
   const [isTop, setIsTop] = useState(true);
@@ -66,6 +67,7 @@ export default function Header() {
               <MenuButton onClick={onMenuToggle} isOpened={menuShow} />
             </div>
           </div>
+          <ThemeSwitch />
         </nav>
       </header>
       {/* Mobile side menu */}
