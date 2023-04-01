@@ -4,8 +4,7 @@ const headerNavLinks = [
   { href: "/tags", title: "Tags", onlyMobile: true },
   { href: "/projects", title: "Projects" },
   { href: "/endorsements", title: "Endorsements" },
-  { href: "/guestbook", title: "Guestbook", onlyMobile: true },
-  { href: "/notes", title: "Notes", onlyMobile: true },
+  { href: "/notes", title: "Notes" },
   { href: "/about", title: "About" },
 ];
 

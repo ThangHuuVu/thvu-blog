@@ -2,31 +2,30 @@ import { PageSEO } from "@/components/SEO";
 import siteMetadata from "@/data/siteMetadata";
 import PageTitle from "@/components/PageTitle";
 import Skills from "@/components/Skills";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { InferGetStaticPropsType } from "next";
 import { getAllSkillsByCategory, getGuestbookEntries } from "@/lib/db";
 import CustomLink from "@/components/CustomLink";
-import { getServerSession } from "@/lib/getServerSession";
 import Guestbook from "@/components/Guestbook";
 import LoginView from "@/components/LoginView";
 
-export async function getServerSideProps({ req, res }: GetServerSidePropsContext) {
+export async function getStaticProps() {
   const skillsByCategory = await getAllSkillsByCategory();
   const entries = await getGuestbookEntries();
-  const session = await getServerSession(req, res);
 
   return {
     props: {
       skillsByCategory,
-      session,
       entries,
     },
+    // revalidate every 1 hour
+    revalidate: 60 * 60,
   };
 }
 
 export default function EndorsementsPage({
   skillsByCategory,
   entries,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <PageSEO
