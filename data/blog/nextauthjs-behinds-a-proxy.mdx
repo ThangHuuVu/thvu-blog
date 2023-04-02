@@ -97,7 +97,7 @@ Your new repository will be created with all the necessary files to get started 
 
 Configure the `next-auth` app with custom `basePath` and `trailingSlash` in your `next.config.js` file:
 
-```jsx
+```js
 const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
@@ -120,7 +120,7 @@ To learn more about Next.js configuration, head over to the [official Next.js do
 
 Configure `next-auth` like this in your `/pages/api/auth/[...nextauth].ts` file:
 
-```tsx
+```ts
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 
@@ -138,22 +138,33 @@ Before deploying, we want to set the environment variables first.
 
 ### Override `x-forwarded-host` header
 
-For this setup to work, we need to set `NEXTAUTH_URL` and override the `x-forwarded-host` header using Advanced Initialization:
+For this setup to work, we need to set `NEXTAUTH_URL` and override the `x-forwarded-host` header using [Advanced Initialization](https://next-auth.js.org/configuration/initialization#advanced-initialization):
 
 ```
 NEXTAUTH_URL="https://authjs-with-proxy.netlify.app/authjs/api/auth/"
 ```
 
-```[...nextauth].ts
+```ts
+import NextAuth from "next-auth";
+import Providers from "next-auth/providers";
+
+export const authOptions = {
+  providers: [
+    Providers.GitHub({
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    }),
+  ],
+};
+
 export default function auth(req: NextApiRequest, res: NextApiResponse) {
-  req.headers['x-forwarded-host'] = process.env.NEXTAUTH_URL
-  return NextAuth(req, res, authOptions)
+  req.headers["x-forwarded-host"] = process.env.NEXTAUTH_URL;
+  return NextAuth(req, res, authOptions);
 }
 ```
 
 <aside>
-  ☝️ This variable is necessary for `next-auth` to correctly set the callback URL during the login
-  process.
+  ☝️ This is necessary for `next-auth` to correctly set the callback URL during the login process.
 </aside>
 
 ### `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`
@@ -189,10 +200,19 @@ To deploy the `next-auth` app to Vercel, you can follow these steps:
 After following the above steps, you’re all set! However, there’s still one catch. After GitHub calls the callback endpoint, the Netlify redirect keeps the `state` and `code` parameters on the `/` page for some reason (related discussion [here](https://github.com/netlify/next-runtime/discussions/1931#discussion-4875236)). To remove the params after being redirected, add this code to the `next-auth` app `/` as a workaround:
 
 ```tsx
-const router = useRouter();
-useEffect(() => {
-  if (router.query.code && router.query.state) router.replace("/", undefined, { shallow: true });
-}, [router.query]);
+export default function Home() {
+  const router = useRouter();
+  useEffect(() => {
+    if (router.query.code && router.query.state) router.replace("/", undefined, { shallow: true });
+  }, [router.query]);
+  return (
+    <div>
+      <h1>Auth.js behind a proxy</h1>
+      <p>A step-by-step for using Auth.js in a subpath behind a Netlify proxy</p>
+      <a href="/authjs">Go to Auth.js app</a>
+    </div>
+  );
+}
 ```
 
 # Conclusion
