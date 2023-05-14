@@ -1,6 +1,6 @@
-import NextAuth from "next-auth";
+import NextAuth from "@auth/nextjs";
 
-declare module "next-auth" {
+declare module "@auth/nextjs" {
   interface Session {
     id: string;
   }

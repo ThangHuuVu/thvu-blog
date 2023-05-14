@@ -10,7 +10,7 @@ import DefaultAvatar from "../Guestbook/person-outline.svg";
 import Image from "next/image";
 import fireConfetti from "@/lib/utils/confetti";
 import { FormState } from "@/lib/types/form";
-import { DefaultSession } from "next-auth/core/types";
+import type { DefaultSession } from "@auth/core/types";
 
 interface Props {
   skill: Skill;
