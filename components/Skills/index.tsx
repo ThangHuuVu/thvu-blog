@@ -1,6 +1,6 @@
 import fetcher from "@/lib/fetcher";
 import { SkillCategory } from "@/lib/types/skill";
-import { useSession } from "next-auth/react";
+import { useSession } from "@auth/nextjs/client";
 import Badge from "./Badge";
 import useSWR from "swr";
 import ErrorMessage from "../ErrorMessage";

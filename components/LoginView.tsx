@@ -1,4 +1,4 @@
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "@auth/nextjs/client";
 import CustomLink from "./CustomLink";
 
 interface Props {

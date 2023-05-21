@@ -3,11 +3,11 @@ import "@/css/prism.css";
 import "@/css/font.css";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider } from "@auth/nextjs/client";
 import LayoutWrapper from "@/components/LayoutWrapper";
 
 import type { AppProps } from "next/app";
-import type { Session } from "next-auth";
+import type { Session } from "@auth/nextjs";
 
 function MyApp({ Component, pageProps }: AppProps<{ session: Session }>) {
   const { session, ...rest } = pageProps;

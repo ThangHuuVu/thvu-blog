@@ -5,7 +5,7 @@ import fetcher from "@/lib/fetcher";
 import SuccessMessage from "@/components/SuccessMessage";
 import ErrorMessage from "@/components/ErrorMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import { useSession } from "next-auth/react";
+import { useSession } from "@auth/nextjs/client";
 import { GuestBookEntry } from "@/lib/types/guestbook";
 import GuestbookEntry from "./GuestbookEntry";
 import fireConfetti from "@/lib/utils/confetti";

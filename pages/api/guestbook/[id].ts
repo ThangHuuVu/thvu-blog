@@ -2,8 +2,7 @@ import { withSentry } from "@sentry/nextjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import { GuestBookEntry } from "@/lib/types/guestbook";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]";
+import { auth } from "auth";
 
 const guestbookEntries = async (
   req: NextApiRequest,
@@ -29,12 +28,13 @@ const guestbookEntries = async (
       updated_at: entry.updated_at,
     });
   } else {
-    const session = await getServerSession(req, res, authOptions);
+    const session = await auth(req, res);
+
     if (!session?.user) {
       return res.status(401).send("Unauthenticated");
     }
-    const { user, id: userId } = session;
-    if (!user || userId !== entry?.userId) {
+    const { user } = session;
+    if (!user || user.id !== entry?.userId) {
       return res.status(403).send("Unauthorized");
     }
     if (req.method === "DELETE") {

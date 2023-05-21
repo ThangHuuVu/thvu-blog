@@ -1,7 +1,7 @@
 import LoginButton from "@/components/LoginButton";
 import PageTitle from "@/components/PageTitle";
 import { GetServerSidePropsContext } from "next";
-import { getProviders } from "next-auth/react";
+import { getProviders } from "@auth/nextjs/client";
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
