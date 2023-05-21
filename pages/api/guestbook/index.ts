@@ -6,7 +6,7 @@ import { auth } from "auth";
 
 const handler = async (
   req: NextApiRequest,
-  res: NextApiResponse<GuestBookEntry[] | string | GuestBookEntry>
+  res: NextApiResponse<GuestBookEntry[] | { error: string } | GuestBookEntry>
 ) => {
   if (req.method === "GET") {
     const entries = await prisma.guestbook.findMany({
@@ -32,19 +32,20 @@ const handler = async (
   if (req.method === "POST") {
     const session = await auth(req, res);
     if (!session) {
-      return res.status(401).send("Unauthenticated");
+      return res.status(401).send({ error: "Unauthorized" });
     }
 
-    const { user, id } = session;
-    if (!user) {
-      return res.status(403).send("Unauthorized");
+    const { user } = session;
+
+    if (!user?.id) {
+      return res.status(403).send({ error: "Unauthorized" });
     }
 
     const body = (req.body.body || "").slice(0, 500);
     const newEntry = await prisma.guestbook.create({
       data: {
         body,
-        userId: id as string,
+        userId: user.id,
       },
     });
     const guestbookEntry: GuestBookEntry = {
@@ -52,7 +53,7 @@ const handler = async (
       body: newEntry.body,
       updated_at: newEntry.updated_at.toString(),
       user: {
-        id: id as string,
+        id: user.id,
         name: user.name!,
         image: user.image!,
       },
@@ -61,7 +62,7 @@ const handler = async (
     return res.status(200).json(guestbookEntry);
   }
 
-  return res.send("Method not allowed.");
+  return res.send({ error: "Method not allowed." });
 };
 
 export default withSentry(handler);

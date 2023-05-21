@@ -29,11 +29,12 @@ const guestbookEntries = async (
     });
   } else {
     const session = await auth(req, res);
+
     if (!session?.user) {
       return res.status(401).send("Unauthenticated");
     }
-    const { user, id: userId } = session;
-    if (!user || userId !== entry?.userId) {
+    const { user } = session;
+    if (!user || user.id !== entry?.userId) {
       return res.status(403).send("Unauthorized");
     }
     if (req.method === "DELETE") {

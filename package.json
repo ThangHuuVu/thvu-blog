@@ -17,7 +17,7 @@
     "compose": "node ./scripts/compose.js"
   },
   "dependencies": {
-    "@auth/nextjs": "^0.0.0-manual.d2543e91",
+    "@auth/nextjs": "experimental",
     "@headlessui/react": "^1.4.2",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
@@ -88,5 +88,10 @@
     "*.+(js|jsx|ts|tsx|json|css|md|mdx)": [
       "prettier --write"
     ]
+  },
+  "yarn": {
+    "overrides": {
+      "@auth/core": "latest"
+    }
   }
 }

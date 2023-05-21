@@ -23,10 +23,10 @@
     preact "10.11.3"
     preact-render-to-string "5.2.3"
 
-"@auth/nextjs@^0.0.0-manual.d2543e91":
-  version "0.0.0-manual.d2543e91"
-  resolved "https://registry.yarnpkg.com/@auth/nextjs/-/nextjs-0.0.0-manual.d2543e91.tgz#88231173a0065d0a684dd7d984065aff95523b2d"
-  integrity sha512-GYH7fhBkDIrQSkvKWU+nXo0JionWh4ZzNMKRXGJD37dTOw7+i5zKKKhAOjOwy2hNW0wftncidB8SSWcNZrScgA==
+"@auth/nextjs@experimental":
+  version "0.0.0-manual.d111c4dd"
+  resolved "https://registry.yarnpkg.com/@auth/nextjs/-/nextjs-0.0.0-manual.d111c4dd.tgz#8cf922fcf844b38b7973b4687c9e662702fc5944"
+  integrity sha512-wt9b2yc21uHQMen492iCwXVOfySWaDtrzJAbSm1F+rXg3lVhtXQ+6Kr6z7bTKyzA7KXDNHn3wD7cuZ3BinfeFg==
   dependencies:
     "@auth/core" "0.7.1"
 
