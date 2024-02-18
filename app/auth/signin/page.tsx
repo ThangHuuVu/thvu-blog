@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import LoginButton from "@/components/LoginButton";
 import PageTitle from "@/components/PageTitle";
 import { PageSEO } from "@/components/SEO";
@@ -13,7 +14,7 @@ export default function SignIn() {
   }));
 
   return (
-    <>
+    <Suspense>
       <PageSEO
         title={`Sign In - ${siteMetadata.author}`}
         description={`Sign In - ${siteMetadata.author}`}
@@ -46,6 +47,6 @@ export default function SignIn() {
         </div>
       </div>
       <SignInError />
-    </>
+    </Suspense>
   );
 }
