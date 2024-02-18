@@ -19,9 +19,6 @@ const isDevelopment = process.env.NODE_ENV === "development";
  **/
 const nextConfig = {
   // swcMinify: true,
-  experimental: {
-    serverActions: true,
-  },
   reactStrictMode: true,
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   typescript: {
