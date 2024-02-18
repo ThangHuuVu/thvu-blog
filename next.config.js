@@ -1,7 +1,7 @@
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
-const withPWA = require("next-pwa");
+// const withPWA = require("next-pwa");
 const runtimeCaching = require("next-pwa/cache");
 
 const { withSentryConfig } = require("@sentry/nextjs");
@@ -19,6 +19,9 @@ const isDevelopment = process.env.NODE_ENV === "development";
  **/
 const nextConfig = {
   // swcMinify: true,
+  experimental: {
+    serverActions: true,
+  },
   reactStrictMode: true,
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   typescript: {
@@ -44,19 +47,19 @@ const nextConfig = {
       "profile.line-scdn.net",
     ],
   },
-  pwa: {
-    dest: "public",
-    runtimeCaching,
-    disable: isDevelopment,
-    mode: "production",
-    buildExcludes: [
-      /middleware-manifest\.json$/,
-      /middleware-runtime\.js$/,
-      /middleware-runtime\.js.map$/,
-      /middleware\.js$/,
-      /middleware\.js.map$/,
-    ],
-  },
+  // pwa: {
+  //   dest: "public",
+  //   runtimeCaching,
+  //   disable: isDevelopment,
+  //   mode: "production",
+  //   buildExcludes: [
+  //     /middleware-manifest\.json$/,
+  //     /middleware-runtime\.js$/,
+  //     /middleware-runtime\.js.map$/,
+  //     /middleware\.js$/,
+  //     /middleware\.js.map$/,
+  //   ],
+  // },
   webpack: (config, { dev, isServer }) => {
     config.module.rules.push({
       test: /\.(png|jpe?g|gif|mp4)$/i,
@@ -92,4 +95,4 @@ const nextConfig = {
 
 module.exports = isDevelopment
   ? nextConfig
-  : withSentryConfig(withPWA(withBundleAnalyzer(nextConfig)), SentryWebpackPluginOptions);
+  : withSentryConfig(withBundleAnalyzer(nextConfig), SentryWebpackPluginOptions);

@@ -1,6 +1,6 @@
-import NextAuth from "@auth/core/types";
+import NextAuth from "next-auth";
 
-declare module "@auth/core/types" {
+declare module "next-auth" {
   interface Session {
     id: string;
     user: {
