@@ -41,7 +41,7 @@ export default function SignIn() {
               })}
             <p className="text-center sm:text-left">
               Authentication built with 💚 using{" "}
-              <CustomLink href="https://next-auth.js.org/">NextAuth.js</CustomLink>
+              <CustomLink href="https://authjs.dev/">NextAuth.js</CustomLink>
             </p>
           </div>
         </div>
