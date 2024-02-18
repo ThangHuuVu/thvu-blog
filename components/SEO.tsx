@@ -1,5 +1,7 @@
+"use client";
+
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import siteMetadata from "@/data/siteMetadata";
 import { FrontMatter } from "@/lib/mdx";
 
@@ -16,13 +18,13 @@ const CommonSEO = ({
   ogImage: string | { url: string }[];
   twImage: string;
 }) => {
-  const router = useRouter();
+  const pathname = usePathname();
   return (
     <Head>
       <title>{title}</title>
       <meta name="robots" content="follow, index" />
       <meta name="description" content={description} />
-      <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
+      <meta property="og:url" content={`${siteMetadata.siteUrl}${pathname}`} />
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content={siteMetadata.title} />
       <meta property="og:description" content={description} />
@@ -61,7 +63,7 @@ export const PageSEO = ({ title, description }: SEOProps) => {
 export const TagSEO = ({ title, description }: SEOProps) => {
   const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner;
   const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner;
-  const router = useRouter();
+  const pathname = usePathname();
   return (
     <>
       <CommonSEO
@@ -76,7 +78,7 @@ export const TagSEO = ({ title, description }: SEOProps) => {
           rel="alternate"
           type="application/rss+xml"
           title={`${description} - RSS feed`}
-          href={`${siteMetadata.siteUrl}${router.asPath}/feed.xml`}
+          href={`${siteMetadata.siteUrl}${pathname}/feed.xml`}
         />
       </Head>
     </>
@@ -84,7 +86,7 @@ export const TagSEO = ({ title, description }: SEOProps) => {
 };
 
 export const BlogSEO = ({ title, summary, date, lastModified, url, images = [] }: FrontMatter) => {
-  const router = useRouter();
+  const pathname = usePathname();
   const publishedAt = new Date(date).toISOString();
   const modifiedAt = new Date(lastModified || date).toISOString();
   let imagesArr =
@@ -138,7 +140,7 @@ export const BlogSEO = ({ title, summary, date, lastModified, url, images = [] }
       <Head>
         {date && <meta property="article:published_time" content={publishedAt} />}
         {lastModified && <meta property="article:modified_time" content={modifiedAt} />}
-        <link rel="canonical" href={`${siteMetadata.siteUrl}${router.asPath}`} />
+        <link rel="canonical" href={`${siteMetadata.siteUrl}${pathname}`} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

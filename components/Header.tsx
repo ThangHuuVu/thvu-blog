@@ -1,3 +1,5 @@
+"use client";
+
 import headerNavLinks from "@/data/headerNavLinks";
 import Link from "./CustomLink";
 import { useEffect, useState } from "react";

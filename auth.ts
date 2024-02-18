@@ -1,19 +1,16 @@
-import NextAuth from "@auth/nextjs";
+import NextAuth, { NextAuthConfig } from "next-auth";
 import Google from "@auth/core/providers/google";
 import GitHub from "@auth/core/providers/github";
 import Line from "@auth/core/providers/line";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/lib/prisma";
 
-export const { handlers, auth } = NextAuth({
+export const authConfig: NextAuthConfig = {
   adapter: PrismaAdapter(prisma),
   debug: process.env.NODE_ENV !== "production",
   providers: [
-    // @ts-expect-error
     Google,
-    // @ts-expect-error
     GitHub,
-    // @ts-expect-error
     Line,
     // TODO: Enable this again when SendGrid allows me to send emails
     // {
@@ -60,4 +57,6 @@ export const { handlers, auth } = NextAuth({
       return session;
     },
   },
-});
+};
+
+export const { handlers, auth, signIn, signOut } = NextAuth(authConfig);

@@ -1,16 +1,18 @@
+"use client";
+
 import fetcher from "@/lib/fetcher";
 import { SkillCategory } from "@/lib/types/skill";
-import { useSession } from "@auth/nextjs/client";
 import Badge from "./Badge";
 import useSWR from "swr";
 import ErrorMessage from "../ErrorMessage";
+import { Session } from "next-auth";
 
 interface Props {
   fallbackData: SkillCategory[];
+  session: Session | null;
 }
 
-export default function Skills({ fallbackData }: Props) {
-  const { data: session } = useSession();
+export default function Skills({ fallbackData, session }: Props) {
   const { data: categories, error } = useSWR<SkillCategory[]>("/api/skill-category", fetcher, {
     fallbackData,
   });

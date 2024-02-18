@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useRef } from "react";
 
 import useSWR, { useSWRConfig } from "swr";
@@ -5,16 +7,21 @@ import fetcher from "@/lib/fetcher";
 import SuccessMessage from "@/components/SuccessMessage";
 import ErrorMessage from "@/components/ErrorMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import { useSession } from "@auth/nextjs/client";
 import { GuestBookEntry } from "@/lib/types/guestbook";
 import GuestbookEntry from "./GuestbookEntry";
 import fireConfetti from "@/lib/utils/confetti";
 import { FormState } from "@/lib/types/form";
+import { Session } from "next-auth";
 
-export default function Guestbook({ fallbackData }: { fallbackData: GuestBookEntry[] }) {
+export default function Guestbook({
+  fallbackData,
+  session,
+}: {
+  fallbackData: GuestBookEntry[];
+  session: Session | null;
+}) {
   const [form, setForm] = useState<FormState>(FormState.INITIAL);
   const inputEl = useRef<HTMLTextAreaElement>(null);
-  const { data: session } = useSession();
   const { error: entriesError, data: entries } = useSWR<GuestBookEntry[]>(
     "/api/guestbook",
     fetcher,
