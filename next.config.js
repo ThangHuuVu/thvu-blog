@@ -2,7 +2,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 // const withPWA = require("next-pwa");
-const runtimeCaching = require("next-pwa/cache");
+// const runtimeCaching = require("next-pwa/cache");
 
 const { withSentryConfig } = require("@sentry/nextjs");
 
