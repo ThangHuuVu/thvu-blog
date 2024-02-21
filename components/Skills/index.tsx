@@ -1,13 +1,11 @@
-import { SkillCategory } from "@/lib/types/skill";
+import { auth } from "auth";
 import Badge from "./Badge";
-import { Session } from "next-auth";
+import { getAllSkillsByCategory } from "@/lib/db";
 
-interface Props {
-  skillsByCategory: SkillCategory[];
-  session: Session | null;
-}
+export default async function Skills() {
+  const skillsByCategory = await getAllSkillsByCategory();
+  const session = await auth();
 
-export default function Skills({ skillsByCategory, session }: Props) {
   return (
     <div>
       {skillsByCategory && (
