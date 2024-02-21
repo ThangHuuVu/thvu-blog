@@ -31,7 +31,7 @@ export default async function EndorsementsPage() {
       </div>
       <div className="space-y-16 prose dark:prose-dark">
         <LoginView />
-        <Skills fallbackData={skillsByCategory} session={session} />
+        <Skills skillsByCategory={skillsByCategory} session={session} />
         <Guestbook entries={entries} session={session} />
       </div>
       <div className="mt-16">

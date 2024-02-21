@@ -1,6 +1,5 @@
 "use client";
 
-import LoadingSpinner from "@/components/LoadingSpinner";
 import { GuestBookEntry } from "@/lib/types/guestbook";
 import GuestbookEntry from "./GuestbookEntry";
 import { Session } from "next-auth";
