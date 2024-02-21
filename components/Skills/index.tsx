@@ -1,36 +1,21 @@
-"use client";
-
-import fetcher from "@/lib/fetcher";
 import { SkillCategory } from "@/lib/types/skill";
 import Badge from "./Badge";
-import useSWR from "swr";
-import ErrorMessage from "../ErrorMessage";
 import { Session } from "next-auth";
 
 interface Props {
-  fallbackData: SkillCategory[];
+  skillsByCategory: SkillCategory[];
   session: Session | null;
 }
 
-export default function Skills({ fallbackData, session }: Props) {
-  const { data: categories, error } = useSWR<SkillCategory[]>("/api/skill-category", fetcher, {
-    fallbackData,
-  });
-
+export default function Skills({ skillsByCategory, session }: Props) {
   return (
     <div>
-      {categories && (
+      {skillsByCategory && (
         <div className="mb-10">
-          {error && (
-            <ErrorMessage>
-              An unexpected error occurred. The entries are not available for now. Please try again
-              later
-            </ErrorMessage>
-          )}
           <div className="mt-10 space-y-4">
             <h2 className="text-2xl font-bold leading-8 tracking-tight">Skills</h2>
             <div className="space-y-8 divide-y divide-gray-200 dark:divide-gray-800">
-              {categories.map((category) => (
+              {skillsByCategory.map((category) => (
                 <div key={category.name}>
                   <h4>{category.name}</h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 grid-flow-row auto-rows-auto gap-2">

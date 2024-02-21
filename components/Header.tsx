@@ -52,18 +52,16 @@ export default function Header() {
         <nav className="flex items-center justify-between w-full max-w-2xl px-4 mx-auto sm:px-6 sm:py-2 xl:max-w-3xl xl:px-0">
           <div className="flex items-center text-base leading-5">
             <div className="hidden sm:block sm:space-x-8">
-              {headerNavLinks
-                .filter((l) => !l.onlyMobile)
-                .map((link) => (
-                  <Link
-                    key={link.title}
-                    title={link.title}
-                    href={link.href}
-                    className="font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                  >
-                    {link.title}
-                  </Link>
-                ))}
+              {headerNavLinks.map((link) => (
+                <Link
+                  key={link.title}
+                  title={link.title}
+                  href={link.href}
+                  className="font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
+                >
+                  {link.title}
+                </Link>
+              ))}
             </div>
             <div className="flex items-center sm:hidden">
               <MenuButton onClick={onMenuToggle} isOpened={menuShow} />

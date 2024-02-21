@@ -1,71 +1,32 @@
 "use client";
 
-import { useState, useRef } from "react";
-
-import useSWR, { useSWRConfig } from "swr";
-import fetcher from "@/lib/fetcher";
-import SuccessMessage from "@/components/SuccessMessage";
-import ErrorMessage from "@/components/ErrorMessage";
-import LoadingSpinner from "@/components/LoadingSpinner";
 import { GuestBookEntry } from "@/lib/types/guestbook";
 import GuestbookEntry from "./GuestbookEntry";
-import fireConfetti from "@/lib/utils/confetti";
-import { FormState } from "@/lib/types/form";
 import { Session } from "next-auth";
+import { useFormState, useFormStatus } from "react-dom";
+import { addEntry } from "./actions";
 
 export default function Guestbook({
-  fallbackData,
+  entries,
   session,
 }: {
-  fallbackData: GuestBookEntry[];
+  entries: GuestBookEntry[];
   session: Session | null;
 }) {
-  const [form, setForm] = useState<FormState>(FormState.INITIAL);
-  const inputEl = useRef<HTMLTextAreaElement>(null);
-  const { error: entriesError, data: entries } = useSWR<GuestBookEntry[]>(
-    "/api/guestbook",
-    fetcher,
-    {
-      fallbackData,
-    }
-  );
-  const { mutate } = useSWRConfig();
+  const [state, formAction] = useFormState(addEntry, {
+    message: "",
+  });
+  const { pending } = useFormStatus();
 
   return (
     <div className="mt-4 space-y-8">
       <h2 className="mt-4 text-2xl font-bold leading-8 tracking-tight">Guestbook</h2>
       {Boolean(session?.user) && (
         <>
-          <form
-            className="w-full my-4 flex flex-col items-center gap-4"
-            onSubmit={async (e) => {
-              e.preventDefault();
-              setForm(FormState.LOADING);
-
-              const res = await fetch("/api/guestbook", {
-                body: JSON.stringify({
-                  body: inputEl.current?.value,
-                }),
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                method: "POST",
-              });
-
-              const { error } = await res.json();
-              if (error) {
-                setForm(FormState.ERROR);
-                return;
-              }
-
-              if (inputEl.current) inputEl.current.value = "";
-              mutate("/api/guestbook");
-              setForm(FormState.SUCCESS);
-              fireConfetti();
-            }}
-          >
+          <form action={formAction} className="w-full my-4 flex flex-col items-center gap-4">
             <textarea
-              ref={inputEl}
+              id="body"
+              name="body"
               aria-label="Your message"
               placeholder="Your message..."
               required
@@ -75,29 +36,19 @@ export default function Guestbook({
             <button
               className="px-4 py-2 flex items-center justify-center my-4 font-semibold text-lg text-white bg-primary-400 dark:bg-primary-600 hover:bg-primary-500 dark:hover:bg-primary-500 rounded self-end"
               type="submit"
+              aria-disabled={pending}
             >
-              {form === FormState.LOADING ? <LoadingSpinner /> : "Send"}
+              Send
             </button>
+            <p aria-live="polite" className="sr-only" role="status">
+              {state?.message}
+            </p>
           </form>
-          {form === FormState.ERROR && <ErrorMessage>An error occurred.</ErrorMessage>}
-          {form === FormState.SUCCESS && (
-            <SuccessMessage>Awesome! Thank you for signing my guestbook.</SuccessMessage>
-          )}
         </>
       )}
-      {entriesError && (
-        <ErrorMessage>
-          An unexpected error occurred. The entries are not available for now. Please try again
-          later
-        </ErrorMessage>
-      )}
-      {entries ? (
-        entries.map((entry) => (
-          <GuestbookEntry key={entry.id} entry={entry} currentUserId={session?.id as string} />
-        ))
-      ) : (
-        <LoadingSpinner />
-      )}
+      {entries?.map((entry) => (
+        <GuestbookEntry key={entry.id} entry={entry} currentUserId={session?.id as string} />
+      ))}
     </div>
   );
 }
