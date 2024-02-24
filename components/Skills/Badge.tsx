@@ -5,7 +5,7 @@ import ButtonIcon from "./plus-square-outline.svg";
 import DoneIcon from "./checkmark-circle-outline.svg";
 import DefaultAvatar from "../Guestbook/person-outline.svg";
 import Image from "next/image";
-import type { DefaultSession } from "@auth/core/types";
+import type { DefaultSession } from "next-auth";
 import { giveEndorsement } from "./actions";
 import { useFormState } from "react-dom";
 

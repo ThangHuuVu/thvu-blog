@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthConfig } from "next-auth";
-import Google from "@auth/core/providers/google";
-import GitHub from "@auth/core/providers/github";
-import Line from "@auth/core/providers/line";
+import Google from "next-auth/providers/google";
+import GitHub from "next-auth/providers/github";
+import Line from "next-auth/providers/line";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/lib/prisma";
 
