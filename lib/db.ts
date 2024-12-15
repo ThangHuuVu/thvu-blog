@@ -7,13 +7,6 @@ import { User } from "./types/user";
 export async function getAllBlogPosts() {
   try {
     const posts = await getAllFilesFrontMatter("blog");
-    const viewCountBySlug = (await prisma.view.findMany()).reduce((obj, view) => {
-      obj[view.slug] = view.count.toString();
-      return obj;
-    }, {} as Record<string, string>);
-
-    posts.forEach((post) => (post.viewCount = viewCountBySlug[post.slug] || "0"));
-
     return posts;
   } catch (error) {
     console.error("Error getting blogs: ", error);
