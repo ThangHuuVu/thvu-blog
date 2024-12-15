@@ -48,7 +48,7 @@ export default function ListLayout({ posts, title }: Props) {
       <ul>
         {!filteredBlogPosts.length && "No posts found."}
         {filteredBlogPosts.map((frontMatter) => {
-          const { slug, date, title, summary, tags, viewCount } = frontMatter;
+          const { slug, date, title, summary, tags } = frontMatter;
           return (
             <li key={slug} className="py-4">
               <article className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
@@ -65,7 +65,6 @@ export default function ListLayout({ posts, title }: Props) {
                           })}
                         </time>
                       }
-                      <div className="text-sm">{viewCount} views</div>
                     </dd>
                   </dl>
                 )}

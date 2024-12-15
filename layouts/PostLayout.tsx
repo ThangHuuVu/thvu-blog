@@ -5,7 +5,6 @@ import { BlogSEO } from "@/components/SEO";
 import Tag from "@/components/Tag";
 import siteMetadata from "@/data/siteMetadata";
 import Image from "next/image";
-import useViewCounter from "@/lib/hooks/useViewCounter";
 import { EnhancedFrontMatter } from "@/lib/mdx";
 import { Container } from "@/lib/types/common";
 
@@ -24,7 +23,6 @@ interface PostLayoutProps extends Container {
 export default function PostLayout({ children, frontMatter, next, prev }: PostLayoutProps) {
   const { slug, fileName, date, title, tags, readingMinutes } = frontMatter;
   const roundedReadingMinutes = Math.round(readingMinutes);
-  const viewCount = useViewCounter(slug);
 
   return (
     <SectionContainer>
@@ -56,7 +54,6 @@ export default function PostLayout({ children, frontMatter, next, prev }: PostLa
               <span className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                 {roundedReadingMinutes}{" "}
                 {roundedReadingMinutes == 1 ? " minute " : " minutes " + " read - "}
-                {viewCount}
               </span>
             </div>
           </header>

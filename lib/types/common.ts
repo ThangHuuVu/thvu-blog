@@ -1,5 +1,5 @@
 export interface Container {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T;
