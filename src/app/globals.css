@@ -1,0 +1,197 @@
+@import url("https://api.fontshare.com/v2/css?f[]=paper-mono@400,500,600&display=swap");
+
+:root {
+  color-scheme: light;
+
+  --color-paper: #fbfaf6;
+  --color-ink: #1f1c16;
+  --color-muted: #6b6359;
+  --color-accent: #b5743f;
+  --color-line: rgba(31, 28, 22, 0.06);
+  --color-line-strong: rgba(31, 28, 22, 0.12);
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.95rem;
+  --text-md: 1.05rem;
+  --text-lg: 1.35rem;
+  --text-xl: 2.15rem;
+  --text-2xl: 2.7rem;
+
+  --space-1: 0.35rem;
+  --space-2: 0.6rem;
+  --space-3: 0.9rem;
+  --space-4: 1.4rem;
+  --space-5: 2.1rem;
+  --space-6: 3.2rem;
+  --space-7: 4.8rem;
+
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --grid-size: 28px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Paper Mono", "IBM Plex Mono", "JetBrains Mono", "SFMono-Regular",
+    Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  max-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 80vh 20vh;
+  align-items: stretch;
+  padding: 0;
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 960px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: calc(var(--grid-size) * 0.4);
+  padding: calc(var(--grid-size) * 1.5) calc(var(--grid-size) * 2);
+  min-height: 20vh;
+  grid-row: 2;
+}
+
+
+.name {
+  display: grid;
+  gap: calc(var(--grid-size) * 0.3);
+  text-align: left;
+  align-items: start;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.name h1 {
+  font-size: var(--text-2xl);
+  letter-spacing: -0.03em;
+}
+
+.water-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 80vh;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.water-canvas {
+  width: 100vw;
+  height: 80vh;
+  display: block;
+}
+
+.links {
+  display: flex;
+  align-items: baseline;
+}
+
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.link {
+  font-size: var(--text-sm);
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 150ms ease;
+}
+
+.link:hover {
+  color: var(--color-accent);
+}
+
+.meta {
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  border-left: 1px solid var(--color-line-strong);
+  padding-left: var(--space-3);
+}
+
+.meta strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.footer {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  grid-column: 2;
+  grid-row: 1;
+  align-self: end;
+  justify-self: end;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --grid-size: 22px;
+  }
+
+  .page {
+    padding: 0;
+  }
+
+  .page {
+    grid-template-rows: 75vh 25vh;
+  }
+
+  .hero {
+    gap: var(--space-5);
+    padding: calc(var(--grid-size) * 1.2) calc(var(--grid-size) * 1.2);
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-items: end;
+  }
+
+  .name h1 {
+    font-size: var(--text-xl);
+  }
+
+
+  .footer {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+  }
+}
