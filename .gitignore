@@ -3,7 +3,12 @@
 # dependencies
 /node_modules
 /.pnp
-.pnp.js
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
 # testing
 /coverage
@@ -11,35 +16,26 @@
 # next.js
 /.next/
 /out/
-public/sitemap.xml
-.vercel
 
 # production
 /build
-*.xml
-# rss feed
-/public/feed.xml 
 
 # misc
 .DS_Store
+*.pem
 
 # debug
-*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
-# local env files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# env files (can opt-in for committing if needed)
+.env*
 
-# pwa
-public/*.js
-public/*.js.map
+# vercel
+.vercel
 
-# Sentry
-.sentryclirc
-.pscale.yml
+# typescript
+*.tsbuildinfo
+next-env.d.ts
