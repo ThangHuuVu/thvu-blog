@@ -40,9 +40,7 @@ export default function Home() {
           </section>
         </div>
 
-        <span className="footer">
-          © 2026 thang vu
-        </span>
+        <span className="footer">© {new Date().getFullYear()} thang vu</span>
       </main>
     </div>
   );
