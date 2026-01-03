@@ -57,6 +57,52 @@ a {
   text-decoration: none;
 }
 
+.not-found {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--color-paper);
+}
+
+.not-found-card {
+  display: grid;
+  gap: var(--space-4);
+  place-items: center;
+  padding: calc(var(--grid-size) * 1.2);
+}
+
+.not-found-canvas {
+  width: 320px;
+  height: 320px;
+  display: block;
+}
+
+.not-found-text {
+  display: grid;
+  gap: var(--space-2);
+  text-align: center;
+  color: var(--color-ink);
+}
+
+.not-found-text h1 {
+  font-size: var(--text-xl);
+  letter-spacing: 0.12em;
+}
+
+.not-found-text p {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.not-found-row {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+  align-items: baseline;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
 .page {
   position: relative;
   z-index: 1;
